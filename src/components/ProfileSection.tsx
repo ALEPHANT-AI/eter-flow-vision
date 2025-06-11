@@ -1,35 +1,55 @@
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ProfileSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section ref={sectionRef} className="py-32 relative overflow-hidden bg-gradient-to-b from-transparent to-black-950/50">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Image */}
-            <div className="relative">
-              <div className="relative glass-strong rounded-3xl p-8 overflow-hidden">
-                <div className="w-full h-96 lg:h-[500px] bg-gradient-to-br from-amber-500/20 to-amber-600/10 rounded-2xl flex items-center justify-center relative">
+            <div className={`relative transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            }`}>
+              <div className="relative card-premium overflow-hidden">
+                <div className="w-full h-[600px] bg-gradient-to-br from-gold-500/10 to-gold-600/5 rounded-2xl flex items-center justify-center relative border border-gold-500/20">
                   <img 
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&crop=face" 
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=600&fit=crop&crop=face" 
                     alt="Davi Ribas"
-                    className="w-full h-full object-cover rounded-2xl glow-amber"
+                    className="w-full h-full object-cover rounded-2xl shadow-premium"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-deep-900/50 to-transparent rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black-900/50 to-transparent rounded-2xl"></div>
                 </div>
-                {/* Noise overlay */}
-                <div className="absolute inset-0 noise rounded-3xl"></div>
               </div>
             </div>
 
             {/* Content */}
-            <div className="space-y-8">
+            <div className={`stagger-children space-y-8 ${isVisible ? 'revealed' : ''}`}>
               <div>
-                <h2 className="text-5xl md:text-6xl font-black text-white mb-4 leading-tight">
-                  <span className="gradient-text">DAVI RIBAS</span>
+                <h2 className="text-6xl md:text-7xl font-black text-white mb-4 leading-tight">
+                  <span className="text-gradient">DAVI RIBAS</span>
                 </h2>
-                <p className="text-xl text-amber-400 font-medium mb-2">
+                <p className="text-xl text-gold-400 font-medium mb-2">
                   Idealista, empresário e escritor
                 </p>
                 <p className="text-lg text-white/70 mb-6">
@@ -43,34 +63,34 @@ const ProfileSection = () => {
                 </p>
 
                 <p className="text-lg">
-                  Davi Ribas é <span className="gradient-text font-bold">N.1</span> quando o assunto é Criação de Movimentos e Comunidades para marcas.
+                  Davi Ribas é <span className="text-gradient font-bold text-2xl">N.1</span> quando o assunto é Criação de Movimentos e Comunidades para marcas.
                 </p>
 
                 <p className="text-lg">
-                  Especialista em construção de autoridade e marcas pessoais magnéticas, já impactou mais de <strong className="text-amber-400">10M de pessoas</strong> e gerou mais de <strong className="text-amber-400">R$ 72MM em receita</strong> para seus clientes através de sua metodologia própria.
+                  Especialista em construção de autoridade e marcas pessoais magnéticas, já impactou mais de <strong className="text-gold-400">10M de pessoas</strong> e gerou mais de <strong className="text-gold-400">R$ 72MM em receita</strong> para seus clientes através de sua metodologia própria.
                 </p>
 
                 <p className="text-lg">
-                  Fundador da <strong className="text-white">ETER. Co</strong>, ecossistema de negócios composto pelas empresas ETER Educação, ETER Brands, ETER Scale, ETER Flow e ETER Summit, evento anual da marca que contou com mais de <strong className="text-amber-400">1000 participantes</strong> em sua primeira edição.
+                  Fundador da <strong className="text-white">ETER. Co</strong>, ecossistema de negócios composto pelas empresas ETER Educação, ETER Brands, ETER Scale, ETER Flow e ETER Summit, evento anual da marca que contou com mais de <strong className="text-gold-400">1000 participantes</strong> em sua primeira edição.
                 </p>
               </div>
 
               {/* Credentials/Badges */}
               <div className="flex flex-wrap gap-4">
-                <div className="glass px-4 py-2 rounded-full">
-                  <span className="text-amber-400 font-medium">Best Seller Author</span>
+                <div className="glass px-6 py-3 rounded-full border border-gold-500/20">
+                  <span className="text-gold-400 font-medium">Best Seller Author</span>
                 </div>
-                <div className="glass px-4 py-2 rounded-full">
-                  <span className="text-amber-400 font-medium">10M+ Impactados</span>
+                <div className="glass px-6 py-3 rounded-full border border-gold-500/20">
+                  <span className="text-gold-400 font-medium">10M+ Impactados</span>
                 </div>
-                <div className="glass px-4 py-2 rounded-full">
-                  <span className="text-amber-400 font-medium">R$ 72MM+ Gerados</span>
+                <div className="glass px-6 py-3 rounded-full border border-gold-500/20">
+                  <span className="text-gold-400 font-medium">R$ 72MM+ Gerados</span>
                 </div>
               </div>
 
               {/* CTA */}
               <div className="pt-8">
-                <button className="btn-premium text-lg glow-amber">
+                <button className="btn-premium text-lg glow-gold magnetic">
                   <span>QUERO SER ESCOLHIDO</span>
                 </button>
               </div>

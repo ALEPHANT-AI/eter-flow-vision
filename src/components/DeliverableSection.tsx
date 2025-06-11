@@ -1,8 +1,28 @@
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 
 const DeliverableSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const deliverables = [
     {
       title: "Criação de Movimento",
@@ -31,33 +51,36 @@ const DeliverableSection = () => {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section ref={sectionRef} className="py-32 relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-8 text-white leading-tight">
-              O que você <span className="gradient-text">recebe:</span>
+        <div className="max-w-7xl mx-auto">
+          <div className={`text-center mb-20 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <h2 className="text-5xl md:text-6xl font-black mb-8 text-white leading-tight">
+              O que você <span className="text-gradient">recebe:</span>
             </h2>
           </div>
 
           {/* Mockup Visual */}
-          <div className="glass-strong rounded-3xl p-8 md:p-12 mb-16 text-center">
-            <div className="w-full h-64 bg-gradient-to-br from-amber-500/20 to-amber-600/10 rounded-2xl flex items-center justify-center mb-8">
+          <div className={`card-premium text-center mb-20 transition-all duration-1000 delay-300 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <div className="w-full h-80 bg-gradient-to-br from-gold-500/10 to-gold-600/5 rounded-2xl flex items-center justify-center mb-8 border border-gold-500/20">
               <span className="text-white/60 text-lg font-medium">MOCKUP VISUAL DO ENTREGÁVEL</span>
             </div>
           </div>
 
           {/* Deliverables Grid */}
-          <div className="grid md:grid-cols-2 gap-6 mb-16">
+          <div className={`stagger-children grid md:grid-cols-2 gap-8 mb-20 ${
+            isVisible ? 'revealed' : ''
+          }`}>
             {deliverables.map((item, index) => (
-              <div 
-                key={index}
-                className="glass rounded-xl p-6 hover:glass-strong transition-all duration-300 hover:scale-[1.02] group"
-              >
+              <div key={index} className="card-premium group">
                 <div className="flex items-start space-x-4">
-                  <CheckCircle className="w-6 h-6 text-amber-400 mt-1 flex-shrink-0" />
+                  <CheckCircle className="w-6 h-6 text-gold-400 mt-1 flex-shrink-0 transition-all duration-300 group-hover:scale-110" />
                   <div>
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:gradient-text transition-all duration-300">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-gradient transition-all duration-300">
                       {item.title}
                     </h3>
                     <p className="text-white/70 leading-relaxed">
@@ -70,8 +93,10 @@ const DeliverableSection = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center">
-            <button className="btn-premium text-lg glow-amber group">
+          <div className={`text-center transition-all duration-1000 delay-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <button className="btn-premium text-lg glow-gold group magnetic">
               <span className="flex items-center">
                 QUERO SER SELECIONADO
                 <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
