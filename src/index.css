@@ -99,7 +99,7 @@
 
   /* Premium Buttons */
   .btn-premium {
-    @apply relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black font-semibold px-8 py-4 rounded-xl transition-all duration-500 hover:scale-[1.02] hover:shadow-glow-gold-strong;
+    @apply relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-semibold px-8 py-4 rounded-xl transition-all duration-500 hover:scale-[1.02] hover:shadow-glow-gold-strong;
   }
 
   .btn-premium::before {
@@ -112,7 +112,7 @@
   }
 
   .btn-premium span {
-    @apply relative z-10 text-black font-semibold;
+    @apply relative z-10 text-black-950 font-semibold;
   }
 
   /* Glass Cards */
