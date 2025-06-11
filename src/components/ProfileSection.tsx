@@ -108,13 +108,13 @@ const ProfileSection = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-            {/* Image Section */}
+            {/* Image Section with multiple images */}
             <div className={`relative transition-all duration-1000 delay-300 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
             }`}>
               <div className="relative">
                 {/* Main Image */}
-                <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
+                <div className="relative w-full h-[600px] rounded-3xl overflow-hidden mb-6">
                   {/* Glow Effect Behind Image */}
                   <div className="absolute inset-0 bg-gradient-to-t from-gold-500/30 via-gold-400/20 to-transparent z-10" />
                   
@@ -137,6 +137,22 @@ const ProfileSection = () => {
                       <Award className="w-4 h-4 text-gold-400 mr-2" />
                       <span className="text-white text-sm font-bold">Best Seller</span>
                     </div>
+                  </div>
+                </div>
+
+                {/* Secondary image - thinking strategically */}
+                <div className="relative w-full h-[300px] rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
+                  <img 
+                    src="/lovable-uploads/c579881c-e9dc-42ab-8b69-e573f1cbd8e8.png" 
+                    alt="Davi Ribas - Estratégia"
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  
+                  {/* Overlay text */}
+                  <div className="absolute bottom-4 left-4 z-20">
+                    <div className="text-white font-bold text-lg">Criação de Movimentos</div>
+                    <div className="text-gold-400 text-sm">Estratégia & Inovação</div>
                   </div>
                 </div>
 

@@ -20,8 +20,12 @@ const Header = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-gold-400 to-gold-600 rounded-xl flex items-center justify-center glow-gold">
-              <span className="text-black font-bold text-lg">E</span>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center">
+              <img 
+                src="/lovable-uploads/5f1e1bcf-af5e-4446-83c0-e419e53bd3da.png" 
+                alt="ETER.Co Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <div className="text-white font-bold text-lg tracking-tight">ETER.Co</div>

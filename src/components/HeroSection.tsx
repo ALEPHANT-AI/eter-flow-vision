@@ -69,57 +69,59 @@ const HeroSection = () => {
           <div className={`inline-flex items-center glass px-6 py-3 rounded-full mb-8 transition-all duration-1000 delay-300 hover:bg-white/[0.08] hover:scale-105 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
+            <img 
+              src="/lovable-uploads/5f1e1bcf-af5e-4446-83c0-e419e53bd3da.png" 
+              alt="ETER.Co Logo"
+              className="w-5 h-5 mr-2"
+            />
             <span className="text-gold-400 text-sm font-medium tracking-wide">ETER.Co</span>
           </div>
 
-          {/* Animated Main Title */}
-          <div className="relative mb-8">
-            <h1 className={`text-7xl md:text-9xl font-black leading-[0.9] transition-all duration-1200 delay-500 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              <span className="relative inline-block">
-                <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent animate-text-reveal">
-                  THE EIGHT®
-                </span>
-                {/* Glow Effect */}
-                <span className="absolute inset-0 text-gradient opacity-30 blur-sm animate-glow-pulse">
-                  THE EIGHT®
-                </span>
-              </span>
-            </h1>
+          {/* Smaller THE EIGHT Title */}
+          <div className={`text-3xl md:text-4xl font-bold text-white/70 mb-4 transition-all duration-1000 delay-400 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            THE EIGHT®
           </div>
 
           {/* Powered By ETER Flow */}
-          <div className={`text-lg md:text-xl text-gold-400 font-medium mb-6 transition-all duration-1000 delay-600 ${
+          <div className={`text-lg md:text-xl text-gold-400 font-medium mb-8 transition-all duration-1000 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             Powered By ETER Flow
           </div>
 
-          {/* Movement Is the New Branding */}
-          <div className={`text-2xl md:text-4xl text-white/90 font-light mb-6 max-w-4xl mx-auto transition-all duration-1000 delay-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            <span className="relative">
-              Movement Is the New Branding
-              <span className="absolute -right-1 animate-pulse">|</span>
-            </span>
+          {/* Main Hero Message - Movement Is the New Branding */}
+          <div className="relative mb-8">
+            <h1 className={`text-5xl md:text-7xl font-black leading-[0.9] transition-all duration-1200 delay-600 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              <span className="relative inline-block">
+                <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent animate-text-reveal">
+                  MOVEMENT IS THE<br />NEW BRANDING
+                </span>
+                {/* Glow Effect */}
+                <span className="absolute inset-0 text-gradient opacity-30 blur-sm animate-glow-pulse">
+                  MOVEMENT IS THE<br />NEW BRANDING
+                </span>
+              </span>
+            </h1>
           </div>
 
           {/* Main Value Proposition */}
-          <div className={`text-lg md:text-xl mb-12 max-w-5xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-900 ${
+          <div className={`text-lg md:text-xl mb-12 max-w-5xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-800 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <p className="text-white/80 mb-4">
               <strong className="text-white font-semibold">SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR</strong>
             </p>
-            <p className="text-2xl font-semibold">
+            <p className="text-3xl md:text-4xl font-bold">
               <span className="text-gradient">DAVI RIBAS</span>
             </p>
           </div>
 
           {/* Description */}
-          <div className={`text-base md:text-lg text-white/70 mb-16 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-1100 ${
+          <div className={`text-base md:text-lg text-white/70 mb-16 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
@@ -128,7 +130,7 @@ const HeroSection = () => {
           </div>
 
           {/* Magnetic CTA Button */}
-          <div className={`transition-all duration-1000 delay-1300 ${
+          <div className={`transition-all duration-1000 delay-1200 ${
             isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
           }`}>
             <button 
@@ -158,7 +160,7 @@ const HeroSection = () => {
           </div>
 
           {/* Scroll Indicator */}
-          <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1500 ${
+          <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1400 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
             <div className="flex flex-col items-center text-white/50">
