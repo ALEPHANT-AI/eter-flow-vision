@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle, ArrowRight, Sparkles, Eye, Palette, Target, Users, Video, Calendar } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -91,7 +90,7 @@ const DeliverableSection = () => {
             </p>
           </div>
 
-          {/* Main Visual Mockup with Real Example - Full Size and Scrollable */}
+          {/* Main Visual Mockup with Real Example - Optimized for Quality */}
           <div className={`card-premium mb-20 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01] ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
@@ -105,14 +104,21 @@ const DeliverableSection = () => {
               <p className="text-white/60 text-sm mt-2">Role para ver o entregável completo</p>
             </div>
 
-            {/* Scrollable Image Container */}
-            <div className="relative w-full h-[70vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
+            {/* High-Quality Scrollable Image Container */}
+            <div className="relative w-full h-[75vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
               <ScrollArea className="h-full w-full">
-                <div className="p-4">
+                <div className="p-6">
                   <img 
                     src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
                     alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
-                    className="w-full h-auto object-contain mx-auto"
+                    className="w-full h-auto object-contain mx-auto max-w-none"
+                    style={{
+                      imageRendering: 'crisp-edges',
+                      WebkitImageSmoothing: 'false',
+                      imageSmoothing: 'false'
+                    }}
+                    loading="eager"
+                    decoding="sync"
                   />
                 </div>
               </ScrollArea>
