@@ -6,7 +6,7 @@ const ProfileSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [counters, setCounters] = useState({
     revenue: 0,
-    brands: 0,
+    people: 0,
     followers: 0,
     years: 0
   });
@@ -32,7 +32,7 @@ const ProfileSection = () => {
   }, []);
 
   const animateCounters = () => {
-    const targets = { revenue: 72, brands: 180, followers: 850, years: 15 };
+    const targets = { revenue: 72, people: 10, followers: 1000, years: 15 };
     const duration = 2000;
     const steps = 60;
     const stepTime = duration / steps;
@@ -44,7 +44,7 @@ const ProfileSection = () => {
       
       setCounters({
         revenue: Math.floor(targets.revenue * progress),
-        brands: Math.floor(targets.brands * progress),
+        people: Math.floor(targets.people * progress),
         followers: Math.floor(targets.followers * progress),
         years: Math.floor(targets.years * progress)
       });
@@ -59,27 +59,27 @@ const ProfileSection = () => {
   const achievements = [
     {
       icon: Award,
-      title: "Best Seller Amazon",
-      description: "3 livros na categoria Business",
+      title: "Best Seller",
+      description: "Autor de 'Marketing Ideológico'",
       badge: "🏆"
     },
     {
       icon: Users,
-      title: "Mentor de Elite",
-      description: "Mais de 500 líderes transformados",
-      badge: "👥"
+      title: "Fundador ETER Co",
+      description: "Ecossistema Edu | Brand | Tech",
+      badge: "🚀"
     },
     {
       icon: TrendingUp,
-      title: "Speaker Internacional",
-      description: "Palestrante em 12 países",
-      badge: "🌎"
+      title: "N.1 em Movimentos",
+      description: "Criação de Comunidades para marcas",
+      badge: "⚡"
     },
     {
       icon: BookOpen,
-      title: "Metodologia Própria",
-      description: "ETER Flow - Reconhecida mundialmente",
-      badge: "⚡"
+      title: "ETER Summit",
+      description: "+1000 participantes na 1ª edição",
+      badge: "🎯"
     }
   ];
 
@@ -97,10 +97,13 @@ const ProfileSection = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <h2 className="text-5xl md:text-7xl font-black mb-8 text-white leading-tight">
-              Conheça <span className="text-gradient">DAVI RIBAS</span>
+              <span className="text-gradient">DAVI RIBAS</span>
             </h2>
             <p className="text-xl text-white/70 max-w-4xl mx-auto">
-              O mentor por trás da transformação de centenas de marcas pessoais em movimentos poderosos
+              Idealista, empresário e escritor
+            </p>
+            <p className="text-lg text-gold-400 font-medium mt-2">
+              Autor Best Seller "Marketing Ideológico"
             </p>
           </div>
 
@@ -116,7 +119,7 @@ const ProfileSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gold-500/30 via-gold-400/20 to-transparent z-10" />
                   
                   <img 
-                    src="/lovable-uploads/08386bc3-86ab-4be9-9b4e-aa1e5ccccdeb.png" 
+                    src="/lovable-uploads/80cccb60-11da-42ea-8c05-c02ed032e9e8.png" 
                     alt="Davi Ribas"
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   />
@@ -125,7 +128,7 @@ const ProfileSection = () => {
                   <div className="absolute top-6 left-6 glass-strong px-4 py-2 rounded-xl animate-float">
                     <div className="flex items-center">
                       <Star className="w-4 h-4 text-gold-400 mr-2 fill-current" />
-                      <span className="text-white text-sm font-bold">Mentor de Elite</span>
+                      <span className="text-white text-sm font-bold">N.1 em Movimentos</span>
                     </div>
                   </div>
                   
@@ -135,24 +138,17 @@ const ProfileSection = () => {
                       <span className="text-white text-sm font-bold">Best Seller</span>
                     </div>
                   </div>
-
-                  {/* Play Button for Video */}
-                  <div className="absolute bottom-6 right-6">
-                    <button className="w-16 h-16 bg-gradient-to-br from-gold-500 to-gold-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 glow-gold group">
-                      <Play className="w-6 h-6 text-black ml-1 group-hover:scale-110 transition-transform" />
-                    </button>
-                  </div>
                 </div>
 
                 {/* Floating Stats Cards */}
                 <div className="absolute -bottom-8 -left-8 glass-strong p-6 rounded-2xl animate-float delay-500">
-                  <div className="text-3xl font-black text-gradient mb-1">R$ {counters.revenue}M+</div>
+                  <div className="text-3xl font-black text-gradient mb-1">R$ {counters.revenue}MM+</div>
                   <div className="text-white/80 text-sm">Em receita gerada</div>
                 </div>
 
                 <div className="absolute -top-8 -right-8 glass-strong p-6 rounded-2xl animate-float delay-1500">
-                  <div className="text-3xl font-black text-gradient mb-1">{counters.brands}+</div>
-                  <div className="text-white/80 text-sm">Marcas transformadas</div>
+                  <div className="text-3xl font-black text-gradient mb-1">{counters.people}M+</div>
+                  <div className="text-white/80 text-sm">Pessoas impactadas</div>
                 </div>
               </div>
             </div>
@@ -164,8 +160,8 @@ const ProfileSection = () => {
               {/* Main Stats */}
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-5xl font-black text-gradient mb-2">{counters.followers}K+</div>
-                  <div className="text-white/80">Seguidores</div>
+                  <div className="text-5xl font-black text-gradient mb-2">{counters.followers}+</div>
+                  <div className="text-white/80">Participantes ETER Summit</div>
                 </div>
                 <div className="text-center">
                   <div className="text-5xl font-black text-gradient mb-2">{counters.years}+</div>
@@ -175,20 +171,20 @@ const ProfileSection = () => {
 
               {/* Description */}
               <div className="space-y-6">
-                <h3 className="text-3xl font-bold text-white">
-                  O criador da metodologia que transforma especialistas em líderes de movimento
-                </h3>
-                
                 <p className="text-lg text-white/80 leading-relaxed">
-                  Davi Ribas é reconhecido como o maior especialista em Personal Branding do Brasil. 
-                  Sua metodologia ETER Flow já transformou centenas de profissionais em autoridades 
-                  inquestionáveis em seus mercados.
+                  Fundador da ETER Co, o ecossistema Edu |Brand | Tech que transforma marcas pessoais e institucionais em movimentos que dominam o mercado formando as referências brasileiras do futuro.
                 </p>
                 
                 <p className="text-lg text-white/80 leading-relaxed">
-                  Autor de 3 best-sellers, mentor de CEOs de empresas bilionárias e criador de movimentos 
-                  que impactaram milhões de pessoas. Sua abordagem vai além do marketing pessoal tradicional: 
-                  ele constrói <strong className="text-gradient">líderes que transformam mercados inteiros</strong>.
+                  Davi Ribas é N.1 quando o assunto é Criação de Movimentos e Comunidades para marcas
+                </p>
+                
+                <p className="text-lg text-white/80 leading-relaxed">
+                  Especialista em construção de autoridade e marcas pessoais magnéticas, já impactou mais de 10M de pessoas e gerou mais de R$ 72MM em receita para seus clientes através de sua metodologia própria.
+                </p>
+
+                <p className="text-lg text-white/80 leading-relaxed">
+                  Fundador da ETER. Co, ecossistema de negócios composto pelas empresas ETER Educação, ETER Brands, ETER Scale, ETER Flow e ETER Summit, evento anual da marca que contou com mais de 1000 participantes em sua primeira edição
                 </p>
               </div>
 
@@ -216,15 +212,6 @@ const ProfileSection = () => {
                   );
                 })}
               </div>
-
-              {/* Quote */}
-              <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20">
-                <blockquote className="text-xl text-white/90 italic leading-relaxed">
-                  "Não construo marcas pessoais. Construo <span className="text-gradient font-bold">movimentos que transformam mercados</span> 
-                  e criam líderes que as pessoas seguem apaixonadamente."
-                </blockquote>
-                <cite className="text-gold-400 font-medium mt-4 block">— Davi Ribas</cite>
-              </div>
             </div>
           </div>
 
@@ -232,18 +219,9 @@ const ProfileSection = () => {
           <div className={`text-center transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 mb-8">
-              <h3 className="text-3xl font-bold text-white mb-4">
-                Quer ser mentorado pessoalmente pelo Davi?
-              </h3>
-              <p className="text-white/80 text-lg">
-                Apenas <span className="text-gradient font-bold">8 vagas</span> disponíveis para trabalhar diretamente com ele
-              </p>
-            </div>
-
             <button className="btn-premium text-lg glow-gold magnetic group hover:scale-110 transition-all duration-300">
               <span className="flex items-center">
-                QUERO SER SELECIONADO
+                QUERO SER ESCOLHIDO
               </span>
             </button>
           </div>
