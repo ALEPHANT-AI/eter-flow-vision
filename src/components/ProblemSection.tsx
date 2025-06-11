@@ -1,5 +1,6 @@
+
 import React, { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, TrendingDown, Users, DollarSign, Sparkles } from 'lucide-react';
+import { AlertTriangle, TrendingDown, Users, DollarSign } from 'lucide-react';
 
 const ProblemSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,33 +30,6 @@ const ProblemSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const problemSteps = [
-    {
-      icon: AlertTriangle,
-      title: "Você está fazendo igual a todo mundo",
-      description: "Mostrando competência, cases, diferenciação técnica...",
-      color: "from-red-500 to-orange-500"
-    },
-    {
-      icon: TrendingDown,
-      title: "Isso não basta mais",
-      description: "No mercado saturado de hoje, quem realmente se destaca são as marcas que lideram",
-      color: "from-orange-500 to-yellow-500"
-    },
-    {
-      icon: Users,
-      title: "Falta estratégia personalizada",
-      description: "Um playbook único construído para sua história, valores e visão",
-      color: "from-yellow-500 to-gold-500"
-    },
-    {
-      icon: DollarSign,
-      title: "Resultado: Preços baixos e commoditização",
-      description: "Enquanto outros cobram 3x mais e têm fila de espera...",
-      color: "from-gold-500 to-gold-400"
-    }
-  ];
-
   return (
     <section ref={sectionRef} className="py-32 relative overflow-hidden bg-gradient-to-b from-black-950 to-black-900">
       {/* Background Elements */}
@@ -66,7 +40,7 @@ const ProblemSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-          {/* Emotional Hook */}
+          {/* Title */}
           <div className={`text-center mb-20 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
@@ -81,53 +55,25 @@ const ProblemSection = () => {
             </div>
           </div>
 
-          {/* Animated Problem Journey */}
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
-            {problemSteps.map((step, index) => {
-              const Icon = step.icon;
-              const isActive = currentStep > index;
-              
-              return (
-                <div
-                  key={index}
-                  className={`relative transition-all duration-800 delay-${index * 200} ${
-                    isActive 
-                      ? 'opacity-100 translate-y-0 scale-100' 
-                      : 'opacity-30 translate-y-8 scale-95'
-                  }`}
-                >
-                  {/* Connection Line */}
-                  {index < problemSteps.length - 1 && (
-                    <div className={`absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r ${step.color} z-10 transition-all duration-500 delay-${index * 200 + 400} ${
-                      isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
-                    }`} />
-                  )}
-                  
-                  <div className={`card-premium group hover:scale-105 transition-all duration-500 ${
-                    isActive ? 'bg-white/[0.08] border-gold-500/20' : 'bg-white/[0.02]'
-                  }`}>
-                    {/* Icon with Dynamic Gradient */}
-                    <div className={`w-16 h-16 rounded-2xl mb-6 flex items-center justify-center bg-gradient-to-br ${step.color} transition-all duration-500 ${
-                      isActive ? 'glow-gold scale-110' : 'scale-100'
-                    }`}>
-                      <Icon className="w-8 h-8 text-black font-bold" />
-                    </div>
-                    
-                    <h3 className={`text-2xl font-bold mb-4 transition-all duration-500 ${
-                      isActive ? 'text-gradient' : 'text-white/70'
-                    }`}>
-                      {step.title}
-                    </h3>
-                    
-                    <p className={`text-lg leading-relaxed transition-all duration-500 ${
-                      isActive ? 'text-white/90' : 'text-white/50'
-                    }`}>
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+          {/* Problem Content */}
+          <div className={`text-center mb-20 space-y-8 max-w-5xl mx-auto transition-all duration-1000 delay-500 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <p className="text-xl md:text-2xl text-white leading-relaxed">
+              Porque você está fazendo igual a todo mundo.
+            </p>
+            
+            <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+              Mostrando competência, cases, diferenciação técnica. Isso não basta mais.
+            </p>
+            
+            <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+              No mercado saturado de hoje, enquanto todos seguem os mesmos templates e fórmulas genéricas, quem realmente se destaca são as marcas pessoais que lideram com uma estratégia totalmente personalizada.
+            </p>
+            
+            <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+              Um playbook único construído especificamente para sua história, seus valores e sua visão de mercado.
+            </p>
           </div>
 
           {/* Vision Statement */}
@@ -147,33 +93,31 @@ const ProblemSection = () => {
                   e ainda sim ter <strong className="text-gold-400 text-3xl">fila de espera</strong> para seus produtos e serviços…
                 </div>
                 
-                <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-4xl mx-auto">
+                <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-4xl mx-auto mb-8">
                   Imagine ser reconhecido como <strong className="text-white">O líder</strong> que está transformando seu mercado, 
-                  deixando de competir apenas por competência para <span className="text-gradient">liderar seu segmento</span> com uma marca pessoal magnética.
+                  deixando de competir apenas por competência para <span className="text-gradient">liderar seu segmento</span> com uma marca pessoal forte.
+                </p>
+                
+                <p className="text-lg md:text-xl text-gold-400 font-medium">
+                  Essa é uma oportunidade exclusiva disponível para apenas <strong className="text-white text-2xl">8</strong> empresários, especialistas e líderes criteriosamente selecionados neste programa.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Exclusivity Call */}
+          {/* Separator */}
+          <div className="flex items-center justify-center mb-16">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent"></div>
+            <div className="mx-8 text-gold-400 font-bold text-xl">—————</div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent"></div>
+          </div>
+
+          {/* CTA */}
           <div className={`text-center transition-all duration-1000 delay-1200 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="mb-8">
-              <span className="text-lg md:text-xl text-gold-400 font-medium">
-                Essa é uma oportunidade exclusiva disponível para apenas
-              </span>
-              <div className="text-6xl md:text-8xl font-black text-gradient my-4 animate-glow-pulse">
-                8
-              </div>
-              <span className="text-lg md:text-xl text-gold-400 font-medium">
-                empresários, especialistas e líderes criteriosamente selecionados
-              </span>
-            </div>
-            
             <button className="btn-premium text-lg magnetic group hover:scale-110 transition-all duration-300">
               <span className="flex items-center">
-                <Sparkles className="w-5 h-5 mr-2 animate-spin" />
                 PREENCHER APLICAÇÃO
               </span>
             </button>

@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Star, TrendingUp, Users, Award, BookOpen, Play } from 'lucide-react';
+import { Star, TrendingUp, Users, Award, BookOpen } from 'lucide-react';
 
 const ProfileSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -119,7 +119,7 @@ const ProfileSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gold-500/30 via-gold-400/20 to-transparent z-10" />
                   
                   <img 
-                    src="/lovable-uploads/80cccb60-11da-42ea-8c05-c02ed032e9e8.png" 
+                    src="/lovable-uploads/be389c35-8838-4513-8840-260759c11bd6.png" 
                     alt="Davi Ribas"
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   />
@@ -169,7 +169,7 @@ const ProfileSection = () => {
                 </div>
               </div>
 
-              {/* Description */}
+              {/* Description - Copy Fiel */}
               <div className="space-y-6">
                 <p className="text-lg text-white/80 leading-relaxed">
                   Fundador da ETER Co, o ecossistema Edu |Brand | Tech que transforma marcas pessoais e institucionais em movimentos que dominam o mercado formando as referências brasileiras do futuro.

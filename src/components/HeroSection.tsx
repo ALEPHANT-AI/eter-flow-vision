@@ -65,13 +65,11 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-6 pt-24 text-center relative z-10">
         <div className="max-w-6xl mx-auto">
-          {/* Floating Badge */}
+          {/* Logo ETER.Co */}
           <div className={`inline-flex items-center glass px-6 py-3 rounded-full mb-8 transition-all duration-1000 delay-300 hover:bg-white/[0.08] hover:scale-105 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            <Sparkles className="w-4 h-4 text-gold-400 mr-2 animate-pulse" />
-            <span className="text-gold-400 text-sm font-medium tracking-wide">THE EIGHT®</span>
-            <span className="ml-3 text-white/70 text-sm">Powered By ETER Flow</span>
+            <span className="text-gold-400 text-sm font-medium tracking-wide">ETER.Co</span>
           </div>
 
           {/* Animated Main Title */}
@@ -91,7 +89,14 @@ const HeroSection = () => {
             </h1>
           </div>
 
-          {/* Subheading with Typewriter Effect */}
+          {/* Powered By ETER Flow */}
+          <div className={`text-lg md:text-xl text-gold-400 font-medium mb-6 transition-all duration-1000 delay-600 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            Powered By ETER Flow
+          </div>
+
+          {/* Movement Is the New Branding */}
           <div className={`text-2xl md:text-4xl text-white/90 font-light mb-6 max-w-4xl mx-auto transition-all duration-1000 delay-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
@@ -101,19 +106,19 @@ const HeroSection = () => {
             </span>
           </div>
 
-          {/* Description with Stagger Animation */}
+          {/* Main Value Proposition */}
           <div className={`text-lg md:text-xl mb-12 max-w-5xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-900 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <p className="text-white/80 mb-4">
-              <strong className="text-white font-semibold">SEJA UM DOS 8 ESCOLHIDOS</strong> para ter sua marca pessoal, movimento e narrativa criados pessoalmente por 
+              <strong className="text-white font-semibold">SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR</strong>
             </p>
             <p className="text-2xl font-semibold">
               <span className="text-gradient">DAVI RIBAS</span>
             </p>
           </div>
 
-          {/* Value Proposition */}
+          {/* Description */}
           <div className={`text-base md:text-lg text-white/70 mb-16 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-1100 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
@@ -143,7 +148,6 @@ const HeroSection = () => {
               
               {/* Content */}
               <span className="relative z-10 flex items-center text-lg">
-                <Sparkles className="w-5 h-5 mr-2 animate-spin" />
                 PREENCHER APLICAÇÃO
                 <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-2" />
               </span>

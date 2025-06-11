@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star, TrendingUp, Users, DollarSign } from 'lucide-react';
 
@@ -27,109 +28,46 @@ const CasesCarousel = () => {
 
   const cases = [
     {
-      name: "Alan Nicolas",
-      role: "CEO & Fundador",
-      company: "Digital Ventures",
-      image: "/lovable-uploads/13243273-a668-487d-af78-572da6fc1536.png",
-      result: "+400% faturamento em 10 meses",
-      metric: "R$ 3.2M",
-      metricLabel: "Novo patamar de receita",
-      testimonial: "O THE EIGHT® transformou completamente minha presença no mercado. Hoje sou reconhecido como o principal líder em inovação digital. Meu ticket médio quadruplicou e tenho fila de espera de 8 meses.",
-      stats: [
-        { icon: TrendingUp, value: "400%", label: "Crescimento" },
-        { icon: Users, value: "60K", label: "Seguidores" },
-        { icon: DollarSign, value: "4x", label: "Ticket Médio" }
-      ]
-    },
-    {
       name: "Alan Spadone",
-      role: "Especialista em Growth",
-      company: "Scale Pro",
+      field: "Micropigmentação",
       image: "/lovable-uploads/c07a67ec-0da1-4284-94ef-cb85aab811a6.png",
-      result: "Tornou-se referência nacional em Growth Hacking",
-      metric: "R$ 12M",
-      metricLabel: "Em novos contratos",
-      testimonial: "Davi me ajudou a criar um movimento em torno do 'Growth Sustentável'. Hoje empresários me procuram não por serviços, mas pela metodologia que criei. Sou o primeiro nome que vem à mente quando falam de growth no Brasil.",
-      stats: [
-        { icon: TrendingUp, value: "600%", label: "Reconhecimento" },
-        { icon: Users, value: "150K", label: "Comunidade" },
-        { icon: DollarSign, value: "6x", label: "Valor Hora" }
-      ]
+      description: "Fundador da AS Academy, maior escola de micropigmentação da América Latina e criador de um ecossistema completo da beleza com AS Academy, Make Cake, Odd Sheep e Casa Branca. Transformou-se de profissional comum em autoridade mundial, formando mais de 100 mil profissionais em mais de 25 países através de uma metodologia que vai além da técnica, criando uma verdadeira comunidade global de seguidores fiéis ao movimento."
     },
     {
-      name: "André Diamand",
-      role: "Consultor de Liderança",
-      company: "Leadership Excellence",
-      image: "/lovable-uploads/88241303-9b60-4caa-8527-4d384750190f.png",
-      result: "Criou movimento 'Liderança Humanizada'",
-      metric: "R$ 15M",
-      metricLabel: "Em palestras e consultorias",
-      testimonial: "O processo do ETER me fez descobrir minha verdadeira missão. Hoje lidero um movimento que impacta milhares de líderes pelo Brasil. Saí da 'commoditização' para ser o único no que faço.",
-      stats: [
-        { icon: TrendingUp, value: "900%", label: "Impacto" },
-        { icon: Users, value: "250K", label: "Alcance" },
-        { icon: DollarSign, value: "12x", label: "Valor Palestra" }
-      ]
-    },
-    {
-      name: "Guilherme Cattani",
-      role: "Estrategista Digital",
-      company: "Digital Evolution",
-      image: "/lovable-uploads/7185128b-a8cb-4b12-9902-1d5fe1889d6e.png",
-      result: "Líder em transformação digital corporativa",
-      metric: "R$ 8.5M",
-      metricLabel: "Faturamento anual",
-      testimonial: "Com o THE EIGHT® construí uma autoridade sólida no mercado corporativo. Hoje grandes empresas me procuram para liderar suas transformações digitais. Minha agenda está fechada por 1 ano.",
-      stats: [
-        { icon: TrendingUp, value: "500%", label: "Crescimento" },
-        { icon: Users, value: "80K", label: "Seguidores" },
-        { icon: DollarSign, value: "8x", label: "Valor Projeto" }
-      ]
-    },
-    {
-      name: "Iuri Meira",
-      role: "Expert em Personal Branding",
-      company: "Brand Evolution",
-      image: "/lovable-uploads/6f61776b-2c5b-480a-beb1-916ba151cee9.png",
-      result: "Referência em construção de marca pessoal",
-      metric: "R$ 6.8M",
-      metricLabel: "Em contratos premium",
-      testimonial: "O ETER me transformou de consultor comum em autoridade máxima em personal branding. Hoje tenho uma metodologia própria e sou procurado pelos maiores influenciadores do país.",
-      stats: [
-        { icon: TrendingUp, value: "700%", label: "Autoridade" },
-        { icon: Users, value: "120K", label: "Comunidade" },
-        { icon: DollarSign, value: "10x", label: "Ticket Médio" }
-      ]
+      name: "Alan Nicolas",
+      field: "Inteligência Artificial",
+      image: "/lovable-uploads/13243273-a668-487d-af78-572da6fc1536.png",
+      description: "Criador do Movimento Lendário e fundador da Academia Lendária, transformou sua expertise em IA em uma comunidade nacional de \"mentes inquietas\" com mais de 40 hubs regionais espalhados pelo Brasil. Especialista em IA com clareza e propósito, realizou evento com mais de 2 mil participantes em Florianópolis, demonstrando como construir autoridade através de uma filosofia de vida que atrai seguidores engajados."
     },
     {
       name: "Letícia Felisberto",
-      role: "Consultora de Inovação",
-      company: "Innovation Hub",
+      field: "Neuroprosperidade", 
       image: "/lovable-uploads/d535c18c-ecee-444f-93c6-225e9464f578.png",
-      result: "Pioneira em inovação corporativa feminina",
-      metric: "R$ 9.2M",
-      metricLabel: "Impacto gerado",
-      testimonial: "Com a metodologia ETER, me tornei a principal voz feminina em inovação corporativa. Quebrei barreiras e hoje lidero um movimento que inspira milhares de mulheres executivas.",
-      stats: [
-        { icon: TrendingUp, value: "800%", label: "Influência" },
-        { icon: Users, value: "200K", label: "Seguidoras" },
-        { icon: DollarSign, value: "15x", label: "Valor Consultoria" }
-      ]
+      description: "Especialista número 1 do Brasil em Neurociência da Prosperidade, com 22 anos de experiência em terapia, criou o movimento \"Uma Nova Mulher\" através da metodologia Neuroprosperidade. Professora de mais de 30 mil alunas, transformou conhecimento terapêutico em um sistema de atualização de memórias que liberta mulheres de padrões limitantes, criando uma comunidade que faz da prosperidade o novo normal."
+    },
+    {
+      name: "André Diamand",
+      field: "Inovação",
+      image: "/lovable-uploads/88241303-9b60-4caa-8527-4d384750190f.png",
+      description: "Ex-executivo IBM que criou a metodologia Sexy Canvas, revolucionando a forma como produtos irresistíveis são desenvolvidos através do mapeamento do comportamento humano. Empreendedor serial, inventor e investidor anjo com especializações internacionais, transformou experiência corporativa em movimento de inovação que atrai empresários buscando criar produtos que realmente conectam com seu público."
+    },
+    {
+      name: "Iuri Meira",
+      field: "Marketing Digital",
+      image: "/lovable-uploads/6f61776b-2c5b-480a-beb1-916ba151cee9.png",
+      description: "Especialista em marketing digital que transformou uma dívida de R$ 300 mil em um império digital através do \"Clube da Luta Digital\" e metodologia \"Modo Caverna\". Mentor que formou mais de 1.000 milionários na internet, vendeu mais de R$ 70 milhões em 2 anos através de estratégias próprias de tráfego pago e ofertas irresistíveis, criando uma comunidade de elite de empreendedores digitais."
     },
     {
       name: "Rafa Medeiros",
-      role: "Estrategista de Negócios",
-      company: "Business Pro",
+      field: "Influência",
       image: "/lovable-uploads/7ac967be-be6d-4dd4-9057-54c20c51092a.png",
-      result: "Autoridade em estratégia empresarial",
-      metric: "R$ 11M",
-      metricLabel: "Receita gerada",
-      testimonial: "O THE EIGHT® me posicionou como o estrategista mais procurado do mercado B2B. Desenvolvi uma metodologia única que é referência no setor. Minha agenda está lotada por 18 meses.",
-      stats: [
-        { icon: TrendingUp, value: "1000%", label: "Crescimento" },
-        { icon: Users, value: "180K", label: "Rede" },
-        { icon: DollarSign, value: "20x", label: "ROI Clientes" }
-      ]
+      description: "Criador dos Códigos da Influência e Método Influência Máxima, com 17 anos de experiência transformou-se em palestrante TEDx e fundador do Instituto Rafael Medeiros. Mentor de mais de 10 mil empresários, especializa-se em ensinar vendas através da personalidade, criando uma comunidade de líderes que vendem através da autenticidade e não de técnicas manipulativas."
+    },
+    {
+      name: "Guilherme Cattani",
+      field: "Estratégia Digital",
+      image: "/lovable-uploads/7185128b-a8cb-4b12-9902-1d5fe1889d6e.png",
+      description: "Estrategista digital que transformou conhecimento técnico em autoridade no mercado corporativo, criando metodologias próprias para transformação digital. Especialista reconhecido por grandes empresas, desenvolveu uma comunidade de líderes empresariais que buscam inovação e resultados sustentáveis através de estratégias digitais diferenciadas."
     }
   ];
 
@@ -177,10 +115,10 @@ const CasesCarousel = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <h2 className="text-5xl md:text-6xl font-black mb-8 text-white leading-tight">
-              Quem já fez parte do <span className="text-gradient">THE EIGHT®</span>
+              GRANDES LÍDERES DO MERCADO QUE FORAM AJUDADOS PELA NOSSA METODOLOGIA
             </h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Líderes que transformaram suas marcas pessoais em movimentos poderosos
+              Veja como outros líderes transformaram suas marcas pessoais em movimentos poderosos
             </p>
           </div>
 
@@ -211,17 +149,11 @@ const CasesCarousel = () => {
                               className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                             />
                             
-                            {/* Floating Stats */}
-                            <div className="absolute top-6 left-6 glass px-4 py-2 rounded-xl">
-                              <div className="text-gold-400 text-sm font-medium">{case_.result}</div>
-                            </div>
-                            
                             {/* Name Overlay */}
                             <div className="absolute bottom-6 left-6 right-6">
                               <div className="glass-strong p-6 rounded-xl">
                                 <h3 className="text-2xl font-bold text-white mb-1">{case_.name}</h3>
-                                <p className="text-white/80 mb-2">{case_.role}</p>
-                                <p className="text-gold-400 font-medium">{case_.company}</p>
+                                <p className="text-gold-400 font-medium">{case_.field}</p>
                               </div>
                             </div>
                           </div>
@@ -229,41 +161,10 @@ const CasesCarousel = () => {
 
                         {/* Content Section */}
                         <div className="space-y-8">
-                          {/* Main Metric */}
-                          <div className="text-center lg:text-left">
-                            <div className="text-6xl md:text-7xl font-black text-gradient mb-2">
-                              {case_.metric}
-                            </div>
-                            <div className="text-xl text-white/80">
-                              {case_.metricLabel}
-                            </div>
-                          </div>
-
-                          {/* Stats Grid */}
-                          <div className="grid grid-cols-3 gap-6">
-                            {case_.stats.map((stat, statIndex) => {
-                              const Icon = stat.icon;
-                              return (
-                                <div key={statIndex} className="text-center">
-                                  <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-gold-500 to-gold-600 rounded-xl flex items-center justify-center">
-                                    <Icon className="w-6 h-6 text-black-950" />
-                                  </div>
-                                  <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                                  <div className="text-sm text-white/60">{stat.label}</div>
-                                </div>
-                              );
-                            })}
-                          </div>
-
-                          {/* Testimonial */}
+                          {/* Description */}
                           <div className="glass-strong p-6 rounded-xl">
-                            <div className="flex mb-4">
-                              {[...Array(5)].map((_, i) => (
-                                <Star key={i} className="w-5 h-5 text-gold-400 fill-current" />
-                              ))}
-                            </div>
-                            <blockquote className="text-white/90 text-lg leading-relaxed italic">
-                              "{case_.testimonial}"
+                            <blockquote className="text-white/90 text-lg leading-relaxed">
+                              {case_.description}
                             </blockquote>
                           </div>
                         </div>
@@ -291,7 +192,7 @@ const CasesCarousel = () => {
           </div>
 
           {/* Dots Navigation */}
-          <div className="flex justify-center space-x-3">
+          <div className="flex justify-center space-x-3 mb-16">
             {cases.map((_, index) => (
               <button
                 key={index}
@@ -303,6 +204,17 @@ const CasesCarousel = () => {
                 }`}
               />
             ))}
+          </div>
+
+          {/* CTA */}
+          <div className={`text-center transition-all duration-1000 delay-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <button className="btn-premium text-lg magnetic group hover:scale-110 transition-all duration-300">
+              <span className="flex items-center">
+                QUERO PREENCHER APLICAÇÃO
+              </span>
+            </button>
           </div>
         </div>
       </div>
