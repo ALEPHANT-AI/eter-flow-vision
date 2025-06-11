@@ -112,7 +112,7 @@
   }
 
   .btn-premium span {
-    @apply relative z-10;
+    @apply relative z-10 text-black font-semibold;
   }
 
   /* Glass Cards */

@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Clock, Phone, CheckCircle } from 'lucide-react';
+import { ArrowRight, Clock, Phone, CheckCircle } from 'lucide-react';
 
 const ApplicationForm = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,10 +12,9 @@ const ApplicationForm = () => {
     segment: '',
     motivation: '',
     frustration: '',
-    currentRevenue: '',
-    revenueGoal: ''
+    revenue: '',
+    goal: ''
   });
-  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,21 +42,22 @@ const ApplicationForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Application submitted:', formData);
+    console.log('Form submitted:', formData);
+    // Add form submission logic here
   };
 
   return (
-    <section ref={sectionRef} className="py-32 relative overflow-hidden">
+    <section ref={sectionRef} className="py-32 relative overflow-hidden bg-gradient-to-b from-black-900 to-black-950">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <h2 className="text-5xl md:text-6xl font-black mb-8 text-white leading-tight">
-              <span className="text-gradient">PROCESSO SELETIVO</span>
+              PROCESSO <span className="text-gradient">SELETIVO</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Apenas <strong className="text-gold-400">8 vagas</strong> disponíveis e o processo seletivo é rigoroso porque trabalhamos apenas com pessoas alinhadas aos nossos valores e dispostas a construir marcas pessoais verdadeiramente poderosas.
+            <p className="text-xl text-white/80 mb-8">
+              Apenas <span className="text-gradient font-bold">8 vagas</span> disponíveis
             </p>
           </div>
 
@@ -64,179 +65,146 @@ const ApplicationForm = () => {
           <div className={`card-premium transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">
-              FORMULÁRIO DE APLICAÇÃO
-            </h3>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name */}
-              <div>
-                <label className="block text-white font-medium mb-2">
-                  Seu nome completo *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
-                  placeholder="Digite seu nome completo"
-                  required
-                />
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-white font-medium mb-3">Nome Completo</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full glass-strong border border-gold-500/20 rounded-xl px-6 py-4 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
+                    placeholder="Seu nome completo"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-white font-medium mb-3">E-mail</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full glass-strong border border-gold-500/20 rounded-xl px-6 py-4 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
+                    placeholder="seu@email.com"
+                    required
+                  />
+                </div>
               </div>
 
-              {/* Email */}
-              <div>
-                <label className="block text-white font-medium mb-2">
-                  Seu melhor e-mail *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
-                  placeholder="seu@email.com"
-                  required
-                />
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-white font-medium mb-3">WhatsApp</label>
+                  <input
+                    type="tel"
+                    name="whatsapp"
+                    value={formData.whatsapp}
+                    onChange={handleInputChange}
+                    className="w-full glass-strong border border-gold-500/20 rounded-xl px-6 py-4 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
+                    placeholder="(11) 99999-9999"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-white font-medium mb-3">Segmento de Atuação</label>
+                  <input
+                    type="text"
+                    name="segment"
+                    value={formData.segment}
+                    onChange={handleInputChange}
+                    className="w-full glass-strong border border-gold-500/20 rounded-xl px-6 py-4 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
+                    placeholder="Ex: Consultoria, Educação, Tech..."
+                    required
+                  />
+                </div>
               </div>
 
-              {/* WhatsApp */}
               <div>
-                <label className="block text-white font-medium mb-2">
-                  WhatsApp *
-                </label>
-                <input
-                  type="tel"
-                  name="whatsapp"
-                  value={formData.whatsapp}
-                  onChange={handleInputChange}
-                  className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
-                  placeholder="(11) 99999-9999"
-                  required
-                />
-              </div>
-
-              {/* Segment */}
-              <div>
-                <label className="block text-white font-medium mb-2">
-                  Qual seu segmento de atuação? *
-                </label>
-                <input
-                  type="text"
-                  name="segment"
-                  value={formData.segment}
-                  onChange={handleInputChange}
-                  className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
-                  placeholder="Ex: Consultoria, Marketing Digital, Coaching..."
-                  required
-                />
-              </div>
-
-              {/* Motivation */}
-              <div>
-                <label className="block text-white font-medium mb-2">
-                  Por que você quer construir uma marca pessoal mais poderosa? Que resultado quer gerar? *
-                </label>
+                <label className="block text-white font-medium mb-3">Qual sua principal motivação para criar um movimento?</label>
                 <textarea
                   name="motivation"
                   value={formData.motivation}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300 resize-none"
-                  placeholder="Descreva seus objetivos e resultados esperados..."
+                  className="w-full glass-strong border border-gold-500/20 rounded-xl px-6 py-4 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300 resize-none"
+                  placeholder="Descreva sua motivação..."
                   required
                 />
               </div>
 
-              {/* Frustration */}
               <div>
-                <label className="block text-white font-medium mb-2">
-                  Qual sua principal frustração com sua marca pessoal atual? *
-                </label>
+                <label className="block text-white font-medium mb-3">Qual sua maior frustração com sua marca pessoal atual?</label>
                 <textarea
                   name="frustration"
                   value={formData.frustration}
                   onChange={handleInputChange}
-                  rows={3}
-                  className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300 resize-none"
-                  placeholder="Conte sobre suas dificuldades atuais..."
+                  rows={4}
+                  className="w-full glass-strong border border-gold-500/20 rounded-xl px-6 py-4 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300 resize-none"
+                  placeholder="Descreva sua frustração..."
                   required
                 />
               </div>
 
-              {/* Current Revenue */}
               <div>
-                <label className="block text-white font-medium mb-2">
-                  Qual seu faturamento mensal atual? *
-                </label>
+                <label className="block text-white font-medium mb-3">Faturamento Mensal</label>
                 <select
-                  name="currentRevenue"
-                  value={formData.currentRevenue}
+                  name="revenue"
+                  value={formData.revenue}
                   onChange={handleInputChange}
-                  className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
+                  className="w-full glass-strong border border-gold-500/20 rounded-xl px-6 py-4 text-white focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
                   required
                 >
-                  <option value="" className="bg-black-900">Selecione uma faixa</option>
-                  <option value="0-10k" className="bg-black-900">R$ 0 - R$ 10.000</option>
-                  <option value="10k-30k" className="bg-black-900">R$ 10.000 - R$ 30.000</option>
-                  <option value="30k-50k" className="bg-black-900">R$ 30.000 - R$ 50.000</option>
-                  <option value="50k-100k" className="bg-black-900">R$ 50.000 - R$ 100.000</option>
-                  <option value="100k+" className="bg-black-900">R$ 100.000+</option>
+                  <option value="">Selecione uma faixa</option>
+                  <option value="50k-100k">R$ 50k - R$ 100k</option>
+                  <option value="100k-250k">R$ 100k - R$ 250k</option>
+                  <option value="250k-500k">R$ 250k - R$ 500k</option>
+                  <option value="500k+">R$ 500k+</option>
                 </select>
               </div>
 
-              {/* Revenue Goal */}
               <div>
-                <label className="block text-white font-medium mb-2">
-                  Qual sua meta de faturamento para os próximos 12 meses? *
-                </label>
-                <input
-                  type="text"
-                  name="revenueGoal"
-                  value={formData.revenueGoal}
+                <label className="block text-white font-medium mb-3">Meta para os próximos 12 meses</label>
+                <textarea
+                  name="goal"
+                  value={formData.goal}
                   onChange={handleInputChange}
-                  className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300"
-                  placeholder="Ex: R$ 500.000, R$ 1.000.000..."
+                  rows={3}
+                  className="w-full glass-strong border border-gold-500/20 rounded-xl px-6 py-4 text-white placeholder-white/50 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-all duration-300 resize-none"
+                  placeholder="Descreva suas metas..."
                   required
                 />
               </div>
 
-              {/* Submit Button */}
-              <div className="pt-8">
+              <div className="text-center pt-8">
                 <button
                   type="submit"
-                  className="w-full btn-premium text-lg glow-gold-strong group"
+                  className="btn-premium text-lg glow-gold-strong group magnetic"
                 >
-                  <span className="flex items-center justify-center">
-                    <Send className="mr-2 w-5 h-5" />
+                  <span className="flex items-center">
                     ENVIAR APLICAÇÃO
+                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
                   </span>
                 </button>
               </div>
             </form>
-          </div>
 
-          {/* Process Info */}
-          <div className={`stagger-children mt-16 grid md:grid-cols-3 gap-6 text-center ${
-            isVisible ? 'revealed' : ''
-          }`}>
-            <div className="glass rounded-xl p-6 border border-gold-500/10">
-              <Clock className="w-8 h-8 text-gold-400 mx-auto mb-3" />
-              <h4 className="text-white font-bold mb-2">Prazo para aplicações</h4>
-              <p className="text-white/70">7 dias</p>
-            </div>
-            
-            <div className="glass rounded-xl p-6 border border-gold-500/10">
-              <Phone className="w-8 h-8 text-gold-400 mx-auto mb-3" />
-              <h4 className="text-white font-bold mb-2">Entrevista estratégica</h4>
-              <p className="text-white/70">com aprovados</p>
-            </div>
-            
-            <div className="glass rounded-xl p-6 border border-gold-500/10">
-              <CheckCircle className="w-8 h-8 text-gold-400 mx-auto mb-3" />
-              <h4 className="text-white font-bold mb-2">Início imediato</h4>
-              <p className="text-white/70">para selecionados</p>
+            {/* Process Info */}
+            <div className="grid md:grid-cols-3 gap-6 mt-16 pt-8 border-t border-white/10">
+              <div className="flex items-center space-x-3 text-white/70">
+                <Clock className="w-5 h-5 text-gold-400" />
+                <span>7 dias para análise</span>
+              </div>
+              <div className="flex items-center space-x-3 text-white/70">
+                <Phone className="w-5 h-5 text-gold-400" />
+                <span>Entrevista pessoal</span>
+              </div>
+              <div className="flex items-center space-x-3 text-white/70">
+                <CheckCircle className="w-5 h-5 text-gold-400" />
+                <span>Início imediato</span>
+              </div>
             </div>
           </div>
         </div>
