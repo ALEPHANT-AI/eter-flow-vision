@@ -1,12 +1,13 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle, ArrowRight, Sparkles, Eye, Palette, Target, Users, Video, Calendar } from 'lucide-react';
-import { ScrollArea } from '@/components/ui/scroll-area';
 
 const DeliverableSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [isScrolling, setIsScrolling] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,6 +24,27 @@ const DeliverableSection = () => {
     }
 
     return () => observer.disconnect();
+  }, []);
+
+  // Scroll optimization handler
+  const handleScroll = () => {
+    setIsScrolling(true);
+    
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsScrolling(false);
+    }, 150);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
   }, []);
 
   const deliverables = [
@@ -91,7 +113,7 @@ const DeliverableSection = () => {
             </p>
           </div>
 
-          {/* Main Visual Mockup with High Quality Image */}
+          {/* Main Visual Mockup with Optimized Scroll */}
           <div className={`card-premium mb-20 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01] ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
@@ -105,29 +127,43 @@ const DeliverableSection = () => {
               <p className="text-white/60 text-sm mt-2">Role para ver o entregável completo</p>
             </div>
 
-            {/* Dual Image Layout */}
+            {/* Dual Image Layout with Optimized Scroll */}
             <div className="grid lg:grid-cols-2 gap-8">
-              {/* First Image - High Quality Image Container with Privacy Blur */}
+              {/* First Image - High Quality Container with Optimized Scroll */}
               <div className="relative w-full h-[80vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
-                <ScrollArea className="h-full w-full">
-                  <div className="p-8 relative">
-                    {/* High Quality Image */}
+                <div 
+                  className="h-full w-full overflow-y-auto overflow-x-hidden optimized-scroll"
+                  onScroll={handleScroll}
+                  style={{
+                    scrollBehavior: 'smooth',
+                    willChange: 'scroll-position',
+                    contain: 'layout style paint',
+                  }}
+                >
+                  <div className="p-8 relative image-container">
+                    {/* High Quality Image with Optimizations */}
                     <img 
                       src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
                       alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
-                      className="w-full h-auto object-contain mx-auto max-w-none"
+                      className={`w-full h-auto object-contain mx-auto high-quality-image ${
+                        isScrolling ? 'scrolling' : ''
+                      }`}
                       style={{
                         imageRendering: 'crisp-edges',
                         filter: 'contrast(1.1) saturate(1.05) brightness(1.02)',
                         maxWidth: 'none',
-                        minHeight: '100%'
+                        minHeight: '100%',
+                        backfaceVisibility: 'hidden',
+                        transform: 'translateZ(0)',
+                        willChange: 'transform',
                       }}
                       loading="eager"
                       decoding="sync"
                     />
                     
-                    {/* Privacy Blur Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-black-900/30 via-transparent to-black-900/20 backdrop-blur-[2px] rounded-2xl">
+                    {/* Optimized Privacy Blur Overlay */}
+                    <div className={`absolute inset-0 privacy-overlay ${isScrolling ? 'scrolling' : ''}`}>
+                      <div className="absolute inset-0 bg-gradient-to-br from-black-900/30 via-transparent to-black-900/20 rounded-2xl" />
                       {/* Selective blur areas for sensitive information */}
                       <div className="absolute top-[15%] left-[10%] w-[35%] h-[8%] bg-black-900/40 backdrop-blur-md rounded-lg" />
                       <div className="absolute top-[25%] right-[10%] w-[30%] h-[6%] bg-black-900/40 backdrop-blur-md rounded-lg" />
@@ -143,7 +179,7 @@ const DeliverableSection = () => {
                       </div>
                     </div>
                   </div>
-                </ScrollArea>
+                </div>
                 
                 {/* Scroll Indicator */}
                 <div className="absolute bottom-4 left-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
@@ -154,27 +190,41 @@ const DeliverableSection = () => {
                 </div>
               </div>
 
-              {/* Second Image - Visual Identity */}
+              {/* Second Image - Visual Identity with Same Optimizations */}
               <div className="relative w-full h-[80vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
-                <ScrollArea className="h-full w-full">
-                  <div className="p-8 relative">
+                <div 
+                  className="h-full w-full overflow-y-auto overflow-x-hidden optimized-scroll"
+                  onScroll={handleScroll}
+                  style={{
+                    scrollBehavior: 'smooth',
+                    willChange: 'scroll-position',
+                    contain: 'layout style paint',
+                  }}
+                >
+                  <div className="p-8 relative image-container">
                     {/* Visual Identity Image */}
                     <img 
                       src="/lovable-uploads/942f15a4-0579-45b2-afe1-8343e8c0204f.png" 
                       alt="Identidade Visual - Cores, Fontes e Elementos Visuais"
-                      className="w-full h-auto object-contain mx-auto max-w-none"
+                      className={`w-full h-auto object-contain mx-auto high-quality-image ${
+                        isScrolling ? 'scrolling' : ''
+                      }`}
                       style={{
                         imageRendering: 'crisp-edges',
                         filter: 'contrast(1.1) saturate(1.05) brightness(1.02)',
                         maxWidth: 'none',
-                        minHeight: '100%'
+                        minHeight: '100%',
+                        backfaceVisibility: 'hidden',
+                        transform: 'translateZ(0)',
+                        willChange: 'transform',
                       }}
                       loading="eager"
                       decoding="sync"
                     />
                     
                     {/* Privacy Blur Overlay for Visual Identity */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-black-900/25 via-transparent to-black-900/15 backdrop-blur-[1px] rounded-2xl">
+                    <div className={`absolute inset-0 privacy-overlay ${isScrolling ? 'scrolling' : ''}`}>
+                      <div className="absolute inset-0 bg-gradient-to-br from-black-900/25 via-transparent to-black-900/15 rounded-2xl" />
                       {/* Selective blur areas for sensitive information */}
                       <div className="absolute top-[10%] left-[10%] w-[30%] h-[6%] bg-black-900/35 backdrop-blur-sm rounded-lg" />
                       <div className="absolute top-[20%] right-[15%] w-[25%] h-[5%] bg-black-900/35 backdrop-blur-sm rounded-lg" />
@@ -189,7 +239,7 @@ const DeliverableSection = () => {
                       </div>
                     </div>
                   </div>
-                </ScrollArea>
+                </div>
                 
                 {/* Visual Identity Scroll Indicator */}
                 <div className="absolute bottom-4 left-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
