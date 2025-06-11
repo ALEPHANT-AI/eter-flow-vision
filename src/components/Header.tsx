@@ -7,7 +7,7 @@ const Header = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-royal-500 to-cosmic-600 rounded-lg flex items-center justify-center glow-royal">
               <span className="text-white font-bold text-lg">E</span>
             </div>
             <div>
@@ -15,7 +15,7 @@ const Header = () => {
             </div>
           </div>
           
-          <button className="btn-premium">
+          <button className="btn-premium magnetic-element">
             <span>PREENCHER APLICAÇÃO</span>
           </button>
         </div>

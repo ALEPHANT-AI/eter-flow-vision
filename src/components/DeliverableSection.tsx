@@ -35,27 +35,27 @@ const DeliverableSection = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-8 text-white leading-tight">
+            <h2 className="text-4xl md:text-5xl font-black mb-8 text-white leading-tight text-reveal">
               O que você <span className="gradient-text">recebe:</span>
             </h2>
           </div>
 
           {/* Mockup Visual */}
-          <div className="glass-strong rounded-3xl p-8 md:p-12 mb-16 text-center">
-            <div className="w-full h-64 bg-gradient-to-br from-amber-500/20 to-amber-600/10 rounded-2xl flex items-center justify-center mb-8">
-              <span className="text-white/60 text-lg font-medium">MOCKUP VISUAL DO ENTREGÁVEL</span>
+          <div className="glass-card rounded-3xl p-8 md:p-12 mb-16 text-center depth-card glow-cosmic">
+            <div className="w-full h-64 bg-gradient-to-br from-royal-500/20 via-cosmic-500/15 to-electric-500/10 rounded-2xl flex items-center justify-center mb-8 dynamic-light">
+              <span className="text-white/60 text-lg font-medium gradient-text">MOCKUP VISUAL DO ENTREGÁVEL</span>
             </div>
           </div>
 
           {/* Deliverables Grid */}
-          <div className="grid md:grid-cols-2 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 gap-6 mb-16 stagger-container">
             {deliverables.map((item, index) => (
               <div 
                 key={index}
-                className="glass rounded-xl p-6 hover:glass-strong transition-all duration-300 hover:scale-[1.02] group"
+                className="glass-card rounded-xl p-6 hover:glass-strong transition-all duration-300 hover:scale-[1.02] group depth-card magnetic-element"
               >
                 <div className="flex items-start space-x-4">
-                  <CheckCircle className="w-6 h-6 text-amber-400 mt-1 flex-shrink-0" />
+                  <CheckCircle className="w-6 h-6 text-electric-400 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-bold text-white mb-3 group-hover:gradient-text transition-all duration-300">
                       {item.title}
@@ -71,7 +71,7 @@ const DeliverableSection = () => {
 
           {/* CTA */}
           <div className="text-center">
-            <button className="btn-premium text-lg glow-amber group">
+            <button className="btn-premium text-lg glow-royal group magnetic-element">
               <span className="flex items-center">
                 QUERO SER SELECIONADO
                 <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
