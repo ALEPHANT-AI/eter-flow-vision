@@ -91,7 +91,7 @@ const DeliverableSection = () => {
             </p>
           </div>
 
-          {/* Main Visual Mockup with Real Example - Maximum Quality */}
+          {/* Main Visual Mockup with SVG for Infinite Quality */}
           <div className={`card-premium mb-20 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01] ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
@@ -105,22 +105,33 @@ const DeliverableSection = () => {
               <p className="text-white/60 text-sm mt-2">Role para ver o entregável completo</p>
             </div>
 
-            {/* Ultra High-Quality Scrollable Image Container */}
+            {/* SVG Container for Infinite Quality */}
             <div className="relative w-full h-[80vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
               <ScrollArea className="h-full w-full">
                 <div className="p-8">
-                  <img 
-                    src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
-                    alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
-                    className="w-full h-auto object-contain mx-auto max-w-none"
+                  <object 
+                    data="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
+                    type="image/png"
+                    className="w-full h-auto mx-auto"
                     style={{
-                      imageRendering: 'crisp-edges',
-                      imageSmoothing: 'false'
+                      imageRendering: 'pixelated',
+                      minHeight: '100%',
+                      objectFit: 'contain'
                     }}
-                    loading="eager"
-                    decoding="sync"
-                    fetchpriority="high"
-                  />
+                  >
+                    <img 
+                      src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
+                      alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
+                      className="w-full h-auto object-contain mx-auto max-w-none"
+                      style={{
+                        imageRendering: 'pixelated',
+                        filter: 'contrast(1.05) saturate(1.1)'
+                      }}
+                      loading="eager"
+                      decoding="sync"
+                      fetchPriority="high"
+                    />
+                  </object>
                 </div>
               </ScrollArea>
               
