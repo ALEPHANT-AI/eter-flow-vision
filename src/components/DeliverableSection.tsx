@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle, ArrowRight, Sparkles, Eye, Palette, Target, Users, Video, Calendar } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -109,7 +110,7 @@ const DeliverableSection = () => {
               <ScrollArea className="h-full w-full">
                 <div className="p-4">
                   <img 
-                    src="/lovable-uploads/27127402-9973-43db-a295-94ff11d38ae7.png" 
+                    src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
                     alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
                     className="w-full h-auto object-contain mx-auto"
                   />
