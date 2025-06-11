@@ -105,49 +105,98 @@ const DeliverableSection = () => {
               <p className="text-white/60 text-sm mt-2">Role para ver o entregável completo</p>
             </div>
 
-            {/* High Quality Image Container with Privacy Blur */}
-            <div className="relative w-full h-[80vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
-              <ScrollArea className="h-full w-full">
-                <div className="p-8 relative">
-                  {/* High Quality Image */}
-                  <img 
-                    src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
-                    alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
-                    className="w-full h-auto object-contain mx-auto max-w-none"
-                    style={{
-                      imageRendering: 'crisp-edges',
-                      filter: 'contrast(1.1) saturate(1.05) brightness(1.02)',
-                      maxWidth: 'none',
-                      minHeight: '100%'
-                    }}
-                    loading="eager"
-                    decoding="sync"
-                  />
-                  
-                  {/* Privacy Blur Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-black-900/30 via-transparent to-black-900/20 backdrop-blur-[2px] rounded-2xl">
-                    {/* Selective blur areas for sensitive information */}
-                    <div className="absolute top-[15%] left-[10%] w-[35%] h-[8%] bg-black-900/40 backdrop-blur-md rounded-lg" />
-                    <div className="absolute top-[25%] right-[10%] w-[30%] h-[6%] bg-black-900/40 backdrop-blur-md rounded-lg" />
-                    <div className="absolute bottom-[20%] left-[15%] w-[40%] h-[10%] bg-black-900/40 backdrop-blur-md rounded-lg" />
-                    <div className="absolute bottom-[35%] right-[15%] w-[25%] h-[8%] bg-black-900/40 backdrop-blur-md rounded-lg" />
-                  </div>
-                  
-                  {/* Privacy Notice */}
-                  <div className="absolute top-4 right-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
-                    <div className="flex items-center text-white/70 text-xs">
-                      <Eye className="w-3 h-3 mr-1" />
-                      <span>Informações pessoais protegidas</span>
+            {/* Dual Image Layout */}
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* First Image - High Quality Image Container with Privacy Blur */}
+              <div className="relative w-full h-[80vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
+                <ScrollArea className="h-full w-full">
+                  <div className="p-8 relative">
+                    {/* High Quality Image */}
+                    <img 
+                      src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
+                      alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
+                      className="w-full h-auto object-contain mx-auto max-w-none"
+                      style={{
+                        imageRendering: 'crisp-edges',
+                        filter: 'contrast(1.1) saturate(1.05) brightness(1.02)',
+                        maxWidth: 'none',
+                        minHeight: '100%'
+                      }}
+                      loading="eager"
+                      decoding="sync"
+                    />
+                    
+                    {/* Privacy Blur Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-black-900/30 via-transparent to-black-900/20 backdrop-blur-[2px] rounded-2xl">
+                      {/* Selective blur areas for sensitive information */}
+                      <div className="absolute top-[15%] left-[10%] w-[35%] h-[8%] bg-black-900/40 backdrop-blur-md rounded-lg" />
+                      <div className="absolute top-[25%] right-[10%] w-[30%] h-[6%] bg-black-900/40 backdrop-blur-md rounded-lg" />
+                      <div className="absolute bottom-[20%] left-[15%] w-[40%] h-[10%] bg-black-900/40 backdrop-blur-md rounded-lg" />
+                      <div className="absolute bottom-[35%] right-[15%] w-[25%] h-[8%] bg-black-900/40 backdrop-blur-md rounded-lg" />
+                    </div>
+                    
+                    {/* Privacy Notice */}
+                    <div className="absolute top-4 right-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
+                      <div className="flex items-center text-white/70 text-xs">
+                        <Eye className="w-3 h-3 mr-1" />
+                        <span>Informações pessoais protegidas</span>
+                      </div>
                     </div>
                   </div>
+                </ScrollArea>
+                
+                {/* Scroll Indicator */}
+                <div className="absolute bottom-4 left-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
+                  <div className="flex items-center text-white/70 text-xs">
+                    <div className="w-3 h-3 border border-gold-400 rounded mr-2 animate-pulse" />
+                    <span>Role para explorar</span>
+                  </div>
                 </div>
-              </ScrollArea>
-              
-              {/* Scroll Indicator */}
-              <div className="absolute bottom-4 left-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
-                <div className="flex items-center text-white/70 text-xs">
-                  <div className="w-3 h-3 border border-gold-400 rounded mr-2 animate-pulse" />
-                  <span>Role para explorar</span>
+              </div>
+
+              {/* Second Image - Visual Identity */}
+              <div className="relative w-full h-[80vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
+                <ScrollArea className="h-full w-full">
+                  <div className="p-8 relative">
+                    {/* Visual Identity Image */}
+                    <img 
+                      src="/lovable-uploads/942f15a4-0579-45b2-afe1-8343e8c0204f.png" 
+                      alt="Identidade Visual - Cores, Fontes e Elementos Visuais"
+                      className="w-full h-auto object-contain mx-auto max-w-none"
+                      style={{
+                        imageRendering: 'crisp-edges',
+                        filter: 'contrast(1.1) saturate(1.05) brightness(1.02)',
+                        maxWidth: 'none',
+                        minHeight: '100%'
+                      }}
+                      loading="eager"
+                      decoding="sync"
+                    />
+                    
+                    {/* Privacy Blur Overlay for Visual Identity */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-black-900/25 via-transparent to-black-900/15 backdrop-blur-[1px] rounded-2xl">
+                      {/* Selective blur areas for sensitive information */}
+                      <div className="absolute top-[10%] left-[10%] w-[30%] h-[6%] bg-black-900/35 backdrop-blur-sm rounded-lg" />
+                      <div className="absolute top-[20%] right-[15%] w-[25%] h-[5%] bg-black-900/35 backdrop-blur-sm rounded-lg" />
+                      <div className="absolute bottom-[15%] left-[20%] w-[35%] h-[8%] bg-black-900/35 backdrop-blur-sm rounded-lg" />
+                    </div>
+                    
+                    {/* Visual Identity Notice */}
+                    <div className="absolute top-4 right-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
+                      <div className="flex items-center text-white/70 text-xs">
+                        <Palette className="w-3 h-3 mr-1" />
+                        <span>Identidade Visual Completa</span>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollArea>
+                
+                {/* Visual Identity Scroll Indicator */}
+                <div className="absolute bottom-4 left-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
+                  <div className="flex items-center text-white/70 text-xs">
+                    <div className="w-3 h-3 border border-gold-400 rounded mr-2 animate-pulse" />
+                    <span>Cores • Fontes • Elementos</span>
+                  </div>
                 </div>
               </div>
             </div>
