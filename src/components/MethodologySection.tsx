@@ -44,14 +44,14 @@ const MethodologySection = () => {
               <div key={index} className="relative">
                 {/* Connecting Line */}
                 {index < steps.length - 1 && (
-                  <div className="absolute left-6 top-24 w-0.5 h-16 bg-gradient-to-b from-gold-400 to-amber-600 hidden md:block"></div>
+                  <div className="absolute left-6 top-24 w-0.5 h-16 bg-gradient-to-b from-amber-400 to-amber-600 hidden md:block"></div>
                 )}
                 
                 <div className="glass hover:glass-strong rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] group">
                   <div className="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6">
                     {/* Number */}
-                    <div className="w-12 h-12 bg-gradient-to-br from-gold-400 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 glow-gold">
-                      <span className="text-slate-900 font-black text-xl">{step.number}</span>
+                    <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 glow-amber">
+                      <span className="text-white font-black text-xl">{step.number}</span>
                     </div>
                     
                     {/* Content */}
@@ -71,7 +71,7 @@ const MethodologySection = () => {
 
           {/* CTA */}
           <div className="text-center mt-16">
-            <button className="btn-premium text-lg glow-gold">
+            <button className="btn-premium text-lg glow-amber">
               <span>QUERO SER SELECIONADO</span>
             </button>
           </div>
