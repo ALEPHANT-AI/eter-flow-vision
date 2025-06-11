@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Sparkles, ArrowRight, Shield, Users, Award } from 'lucide-react';
 
@@ -136,9 +135,9 @@ const Footer = () => {
             {/* Logo */}
             <div className="flex items-center space-x-4">
               <img 
-                src="/lovable-uploads/1bdbf413-bc5f-4675-bf33-7f6dcf2fc161.png" 
+                src="/lovable-uploads/eac41d62-c80a-4f5d-9147-4be418220852.png" 
                 alt="ETER"
-                className="h-12"
+                className="h-16"
               />
               <div>
                 <div className="text-white font-black text-xl">Eter Flow</div>

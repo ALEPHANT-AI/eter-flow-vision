@@ -21,9 +21,9 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/1bdbf413-bc5f-4675-bf33-7f6dcf2fc161.png" 
+              src="/lovable-uploads/f03091e1-3ee0-4cdc-abeb-ce20bdea3739.png" 
               alt="ETER"
-              className="h-12"
+              className="h-16"
             />
           </div>
           
