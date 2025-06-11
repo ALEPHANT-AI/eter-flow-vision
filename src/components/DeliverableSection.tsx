@@ -116,15 +116,12 @@ const DeliverableSection = () => {
                     className="w-full h-auto object-contain mx-auto max-w-none"
                     style={{
                       imageRendering: 'crisp-edges',
-                      WebkitImageRendering: '-webkit-optimize-contrast',
-                      msInterpolationMode: 'nearest-neighbor',
                       filter: 'contrast(1.1) saturate(1.05) brightness(1.02)',
                       maxWidth: 'none',
                       minHeight: '100%'
                     }}
                     loading="eager"
                     decoding="sync"
-                    fetchPriority="high"
                   />
                   
                   {/* Privacy Blur Overlay */}
