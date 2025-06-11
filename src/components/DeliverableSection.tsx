@@ -1,6 +1,6 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle, ArrowRight, Sparkles, Eye, Palette, Target, Users, Video, Calendar } from 'lucide-react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const DeliverableSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -90,24 +90,37 @@ const DeliverableSection = () => {
             </p>
           </div>
 
-          {/* Main Visual Mockup with Real Example */}
-          <div className={`card-premium text-center mb-20 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-105 ${
+          {/* Main Visual Mockup with Real Example - Full Size and Scrollable */}
+          <div className={`card-premium mb-20 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01] ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="relative w-full bg-gradient-to-br from-gold-500/20 to-gold-600/10 rounded-2xl flex items-center justify-center mb-8 border border-gold-500/30 overflow-hidden">
-              {/* Real Example Image */}
-              <img 
-                src="/lovable-uploads/27127402-9973-43db-a295-94ff11d38ae7.png" 
-                alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
-                className="w-full h-auto max-h-[800px] object-contain rounded-2xl"
-              />
+            {/* Header with description */}
+            <div className="text-center mb-6">
+              <div className="flex items-center justify-center mb-4">
+                <Sparkles className="w-8 h-8 text-gold-400 mr-3" />
+                <span className="text-white text-2xl font-bold">EXEMPLO REAL DE ENTREGÁVEL</span>
+              </div>
+              <p className="text-white/80 text-lg">Movimento • Identidade • Estratégia • Ativação</p>
+              <p className="text-white/60 text-sm mt-2">Role para ver o entregável completo</p>
+            </div>
+
+            {/* Scrollable Image Container */}
+            <div className="relative w-full h-[70vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
+              <ScrollArea className="h-full w-full">
+                <div className="p-4">
+                  <img 
+                    src="/lovable-uploads/27127402-9973-43db-a295-94ff11d38ae7.png" 
+                    alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
+                    className="w-full h-auto object-contain mx-auto"
+                  />
+                </div>
+              </ScrollArea>
               
-              {/* Overlay with description */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black-950/90 to-transparent p-8">
-                <div className="text-center">
-                  <Sparkles className="w-8 h-8 text-gold-400 mx-auto mb-4" />
-                  <span className="text-white text-xl font-bold block mb-2">EXEMPLO REAL DE ENTREGÁVEL</span>
-                  <p className="text-white/80 text-sm">Movimento • Identidade • Estratégia • Ativação</p>
+              {/* Scroll Indicator */}
+              <div className="absolute bottom-4 right-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
+                <div className="flex items-center text-white/70 text-xs">
+                  <div className="w-3 h-3 border border-gold-400 rounded mr-2 animate-pulse" />
+                  <span>Role para explorar</span>
                 </div>
               </div>
             </div>
