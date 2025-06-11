@@ -21,7 +21,7 @@ const ProblemSection = () => {
             </p>
             
             <p>
-              Mostrando competência, cases, diferenciação técnica. <strong className="text-electric-400">Isso não basta mais.</strong>
+              Mostrando competência, cases, diferenciação técnica. <strong className="text-gold-400">Isso não basta mais.</strong>
             </p>
             
             <p>
@@ -48,7 +48,7 @@ const ProblemSection = () => {
 
           {/* Exclusivity */}
           <div className="text-center">
-            <p className="text-lg md:text-xl text-electric-400 font-medium mb-8">
+            <p className="text-lg md:text-xl text-gold-400 font-medium mb-8">
               Essa é uma oportunidade exclusiva disponível para apenas <strong className="text-2xl gradient-text">8 empresários</strong>, 
               especialistas e líderes criteriosamente selecionados neste programa.
             </p>

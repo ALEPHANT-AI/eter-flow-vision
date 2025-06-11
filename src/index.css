@@ -3,45 +3,45 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Framer-Style Design System - Blue & Purple */
+/* Elegant Gold & Warm Design System */
 
 @layer base {
   :root {
-    --background: 223 46% 9%;
-    --foreground: 210 40% 98%;
+    --background: 220 10% 8%;
+    --foreground: 45 100% 98%;
 
-    --card: 223 46% 9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 10% 8%;
+    --card-foreground: 45 100% 98%;
 
-    --popover: 223 46% 9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 10% 8%;
+    --popover-foreground: 45 100% 98%;
 
-    --primary: 236 69% 56%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 43 96% 56%;
+    --primary-foreground: 220 10% 8%;
 
-    --secondary: 217 32% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 45 100% 98%;
 
-    --muted: 217 32% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 45 20% 65%;
 
-    --accent: 217 32% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 220 15% 15%;
+    --accent-foreground: 45 100% 98%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 45 100% 98%;
 
-    --border: 217 32% 17%;
-    --input: 217 32% 17%;
-    --ring: 236 69% 56%;
-    --sidebar-background: 240 6% 10%;
-    --sidebar-foreground: 240 5% 96%;
-    --sidebar-primary: 236 69% 56%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4% 16%;
-    --sidebar-accent-foreground: 240 5% 96%;
-    --sidebar-border: 240 4% 16%;
-    --sidebar-ring: 236 69% 56%;
+    --border: 220 15% 15%;
+    --input: 220 15% 15%;
+    --ring: 43 96% 56%;
+    --sidebar-background: 220 10% 8%;
+    --sidebar-foreground: 45 90% 96%;
+    --sidebar-primary: 43 96% 56%;
+    --sidebar-primary-foreground: 220 10% 8%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 45 90% 96%;
+    --sidebar-border: 220 15% 15%;
+    --sidebar-ring: 43 96% 56%;
   }
 }
 
@@ -51,7 +51,7 @@
   }
 
   body {
-    @apply bg-gradient-to-br from-deep-900 via-deep-800 to-deep-700 text-foreground;
+    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 text-foreground;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     min-height: 100vh;
     overflow-x: hidden;
@@ -65,62 +65,64 @@
   }
 }
 
-/* Premium Typography with Gradient Effects */
+/* Premium Typography with Golden Gradient Effects */
 .gradient-text {
-  @apply bg-gradient-to-r from-royal-500 via-cosmic-500 to-electric-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-gold-500 via-amber-600 to-bronze-500 bg-clip-text text-transparent;
+  background-size: 200% auto;
+  animation: shimmer 3s ease-in-out infinite;
 }
 
 .text-shadow {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Advanced Glassmorphism 2.0 */
+/* Advanced Glassmorphism with Golden Tints */
 .glass {
-  @apply backdrop-blur-md bg-white/5 border border-white/10;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  @apply backdrop-blur-md bg-white/5 border border-gold-500/20;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
 }
 
 .glass-strong {
-  @apply backdrop-blur-xl bg-white/10 border border-white/20;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-  box-shadow: 0 8px 32px rgba(127, 90, 240, 0.15);
+  @apply backdrop-blur-xl bg-white/10 border border-gold-500/30;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.15);
 }
 
 .glass-card {
-  @apply backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20;
+  @apply backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 border border-gold-500/20;
   box-shadow: 
-    0 8px 32px rgba(127, 90, 240, 0.15),
+    0 8px 32px rgba(245, 158, 11, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Premium Glow Effects */
-.glow-royal {
-  box-shadow: 0 0 20px rgba(46, 81, 232, 0.3);
+/* Premium Golden Glow Effects */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
 }
 
-.glow-cosmic {
-  box-shadow: 0 0 20px rgba(127, 90, 240, 0.3);
+.glow-amber {
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.3);
 }
 
-.glow-electric {
-  box-shadow: 0 0 15px rgba(76, 201, 240, 0.4);
+.glow-bronze {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
 }
 
-.glow-royal-strong {
-  box-shadow: 0 0 40px rgba(46, 81, 232, 0.5), 0 0 80px rgba(127, 90, 240, 0.3);
+.glow-gold-strong {
+  box-shadow: 0 0 40px rgba(245, 158, 11, 0.5), 0 0 80px rgba(217, 119, 6, 0.3);
 }
 
-/* Framer-Style Premium Buttons */
+/* Elegant Premium Buttons */
 .btn-premium {
-  @apply relative overflow-hidden bg-gradient-to-r from-royal-500 to-cosmic-600 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 gpu-accelerated;
+  @apply relative overflow-hidden bg-gradient-to-r from-gold-500 to-amber-600 text-slate-900 font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 gpu-accelerated;
   box-shadow: 
-    0 8px 32px rgba(46, 81, 232, 0.3),
-    0 0 0 1px rgba(127, 90, 240, 0.2);
+    0 8px 32px rgba(245, 158, 11, 0.3),
+    0 0 0 1px rgba(217, 119, 6, 0.2);
 }
 
 .btn-premium::before {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-r from-royal-400 to-cosmic-500 opacity-0 transition-opacity duration-300;
+  @apply absolute inset-0 bg-gradient-to-r from-gold-400 to-amber-500 opacity-0 transition-opacity duration-300;
 }
 
 .btn-premium:hover::before {
@@ -130,8 +132,8 @@
 .btn-premium:hover {
   transform: scale(1.05) translateZ(10px);
   box-shadow: 
-    0 12px 40px rgba(46, 81, 232, 0.4),
-    0 0 0 1px rgba(127, 90, 240, 0.3);
+    0 12px 40px rgba(245, 158, 11, 0.4),
+    0 0 0 1px rgba(217, 119, 6, 0.3);
 }
 
 .btn-premium span {
@@ -157,7 +159,7 @@
   pointer-events: none;
 }
 
-/* Framer-Style Animations */
+/* Elegant Animations */
 .animate-on-scroll {
   @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
 }
@@ -180,25 +182,25 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-deep-800;
+  @apply bg-slate-800;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #2E51E8, #7F5AF0);
+  background: linear-gradient(to bottom, #F59E0B, #D97706);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #4783FF, #9575FF);
+  background: linear-gradient(to bottom, #FCD34D, #F59E0B);
 }
 
-/* Cosmic Mesh Background */
-.cosmic-bg {
+/* Golden Mesh Background */
+.golden-bg {
   background: 
-    radial-gradient(circle at 20% 50%, rgba(46, 81, 232, 0.25) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(127, 90, 240, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(76, 201, 240, 0.15) 0%, transparent 50%),
-    linear-gradient(135deg, #0A0E1A 0%, #161B33 50%, #1F2544 100%);
+    radial-gradient(circle at 20% 50%, rgba(245, 158, 11, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #0F0F13 0%, #1A1A22 50%, #252530 100%);
 }
 
 /* Floating Particles */
@@ -221,7 +223,7 @@
 
 .ripple {
   @apply absolute rounded-full pointer-events-none;
-  background: radial-gradient(circle, rgba(127, 90, 240, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, transparent 70%);
   animation: ripple 0.6s ease-out;
 }
 
@@ -275,7 +277,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(127, 90, 240, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.2), transparent);
   transition: left 0.5s ease;
 }
 
@@ -289,10 +291,16 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(127, 90, 240, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, transparent 70%);
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: screen;
   transition: transform 0.1s ease-out;
 }
 
+/* Shimmer Effect */
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), transparent);
+  background-size: 200% auto;
+  animation: shimmer 3s ease-in-out infinite;
+}

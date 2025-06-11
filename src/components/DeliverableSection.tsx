@@ -41,8 +41,8 @@ const DeliverableSection = () => {
           </div>
 
           {/* Mockup Visual */}
-          <div className="glass-card rounded-3xl p-8 md:p-12 mb-16 text-center depth-card glow-cosmic">
-            <div className="w-full h-64 bg-gradient-to-br from-royal-500/20 via-cosmic-500/15 to-electric-500/10 rounded-2xl flex items-center justify-center mb-8 dynamic-light">
+          <div className="glass-card rounded-3xl p-8 md:p-12 mb-16 text-center depth-card glow-bronze">
+            <div className="w-full h-64 bg-gradient-to-br from-gold-500/20 via-amber-500/15 to-bronze-500/10 rounded-2xl flex items-center justify-center mb-8 dynamic-light">
               <span className="text-white/60 text-lg font-medium gradient-text">MOCKUP VISUAL DO ENTREGÁVEL</span>
             </div>
           </div>
@@ -55,7 +55,7 @@ const DeliverableSection = () => {
                 className="glass-card rounded-xl p-6 hover:glass-strong transition-all duration-300 hover:scale-[1.02] group depth-card magnetic-element"
               >
                 <div className="flex items-start space-x-4">
-                  <CheckCircle className="w-6 h-6 text-electric-400 mt-1 flex-shrink-0" />
+                  <CheckCircle className="w-6 h-6 text-gold-400 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-bold text-white mb-3 group-hover:gradient-text transition-all duration-300">
                       {item.title}
@@ -71,7 +71,7 @@ const DeliverableSection = () => {
 
           {/* CTA */}
           <div className="text-center">
-            <button className="btn-premium text-lg glow-royal group magnetic-element">
+            <button className="btn-premium text-lg glow-gold group magnetic-element">
               <span className="flex items-center">
                 QUERO SER SELECIONADO
                 <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />

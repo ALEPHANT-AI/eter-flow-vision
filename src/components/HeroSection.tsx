@@ -4,24 +4,24 @@ import { ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden cosmic-bg noise">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden golden-bg noise">
       {/* Grain Overlay */}
       <div className="grain-overlay"></div>
 
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="floating-particle top-1/4 left-1/4 w-2 h-2 text-royal-400" style={{animationDelay: '0s'}}></div>
-        <div className="floating-particle top-1/3 right-1/3 w-1 h-1 text-cosmic-500" style={{animationDelay: '2s'}}></div>
-        <div className="floating-particle bottom-1/3 left-1/2 w-1.5 h-1.5 text-electric-400" style={{animationDelay: '4s'}}></div>
-        <div className="floating-particle top-1/2 right-1/4 w-3 h-3 text-royal-500" style={{animationDelay: '1s'}}></div>
-        <div className="floating-particle bottom-1/4 left-1/3 w-2 h-2 text-cosmic-400" style={{animationDelay: '3s'}}></div>
+        <div className="floating-particle top-1/4 left-1/4 w-2 h-2 text-gold-400" style={{animationDelay: '0s'}}></div>
+        <div className="floating-particle top-1/3 right-1/3 w-1 h-1 text-amber-500" style={{animationDelay: '2s'}}></div>
+        <div className="floating-particle bottom-1/3 left-1/2 w-1.5 h-1.5 text-bronze-400" style={{animationDelay: '4s'}}></div>
+        <div className="floating-particle top-1/2 right-1/4 w-3 h-3 text-gold-500" style={{animationDelay: '1s'}}></div>
+        <div className="floating-particle bottom-1/4 left-1/3 w-2 h-2 text-amber-400" style={{animationDelay: '3s'}}></div>
       </div>
 
       <div className="container mx-auto px-6 pt-24 text-center relative z-10">
         <div className="max-w-6xl mx-auto stagger-container">
           {/* Badge */}
-          <div className="inline-flex items-center glass px-4 py-2 rounded-full mb-8 glow-cosmic">
-            <span className="text-electric-400 text-sm font-medium">THE EIGHT®</span>
+          <div className="inline-flex items-center glass px-4 py-2 rounded-full mb-8 glow-bronze">
+            <span className="text-gold-400 text-sm font-medium">THE EIGHT®</span>
             <span className="ml-2 text-white/70 text-sm">Powered By ETER Flow</span>
           </div>
 
@@ -48,7 +48,7 @@ const HeroSection = () => {
           </div>
 
           {/* CTA Button */}
-          <button className="btn-premium text-lg glow-royal-strong animate-glow-pulse group magnetic-element">
+          <button className="btn-premium text-lg glow-gold-strong animate-glow-pulse group magnetic-element">
             <span className="flex items-center">
               PREENCHER APLICAÇÃO
               <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -58,7 +58,7 @@ const HeroSection = () => {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-deep-900 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900 to-transparent"></div>
     </section>
   );
 };
