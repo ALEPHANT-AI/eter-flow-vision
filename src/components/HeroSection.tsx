@@ -28,34 +28,23 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column - Content */}
           <div className="space-y-8">
-            {/* Logo ETER */}
-            <div className={`transition-all duration-1000 delay-300 ${
+            {/* Logo ETER com Powered By */}
+            <div className={`flex items-center space-x-4 transition-all duration-1000 delay-300 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
               <img 
                 src="/lovable-uploads/1bdbf413-bc5f-4675-bf33-7f6dcf2fc161.png" 
                 alt="ETER"
-                className="h-6 mb-8"
+                className="h-10"
               />
-            </div>
-
-            {/* THE EIGHT */}
-            <div className={`text-lg md:text-xl text-white/70 font-medium transition-all duration-1000 delay-400 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              THE EIGHT®
-            </div>
-
-            {/* Powered By */}
-            <div className={`text-sm md:text-base text-gold-400 font-medium transition-all duration-1000 delay-500 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              Powered By ETER Flow
+              <div className="text-sm text-gold-400 font-medium">
+                Powered By ETER Flow
+              </div>
             </div>
 
             {/* Main Title */}
             <div className="relative">
-              <h1 className={`text-4xl md:text-6xl font-black leading-tight transition-all duration-1200 delay-600 ${
+              <h1 className={`text-5xl md:text-7xl font-black leading-tight transition-all duration-1200 delay-600 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
@@ -71,7 +60,7 @@ const HeroSection = () => {
               <p className="text-base md:text-lg text-white/80 leading-relaxed">
                 <strong className="text-white font-semibold">SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR</strong>
               </p>
-              <p className="text-2xl md:text-3xl font-bold">
+              <p className="text-3xl md:text-4xl font-bold">
                 <span className="text-gradient">DAVI RIBAS</span>
               </p>
             </div>
@@ -102,36 +91,21 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Column - Visual Element */}
+          {/* Right Column - Clean Visual Element */}
           <div className={`relative transition-all duration-1000 delay-800 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}>
             <div className="relative">
-              {/* Golden glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-gold-500/30 to-gold-400/20 rounded-3xl blur-3xl" />
+              {/* Elegant background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-gold-500/20 to-gold-400/10 rounded-3xl blur-3xl" />
               
-              {/* Movement visualization */}
-              <div className="relative glass-strong rounded-3xl p-8 overflow-hidden">
-                {/* Floating particles representing movement */}
-                <div className="absolute inset-0 overflow-hidden">
-                  {Array.from({ length: 8 }, (_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-2 h-2 bg-gold-400/40 rounded-full animate-float"
-                      style={{
-                        left: `${20 + (i * 10)}%`,
-                        top: `${30 + (i % 3) * 20}%`,
-                        animationDelay: `${i * 0.5}s`,
-                      }}
-                    />
-                  ))}
-                </div>
-
-                {/* Content inside the visual */}
-                <div className="relative z-10 text-center space-y-4">
-                  <div className="text-6xl font-black text-gradient">8</div>
-                  <div className="text-white font-bold">ESCOLHIDOS</div>
-                  <div className="text-gold-400 text-sm">Para liderar movimentos</div>
+              {/* Clean content container */}
+              <div className="relative glass-strong rounded-3xl p-12 text-center">
+                <div className="space-y-6">
+                  <div className="text-8xl font-black text-gradient">8</div>
+                  <div className="text-2xl text-white font-bold">ESCOLHIDOS</div>
+                  <div className="text-gold-400 text-lg font-medium">Para liderar movimentos</div>
+                  <div className="w-24 h-1 bg-gradient-to-r from-gold-400 to-gold-600 mx-auto rounded-full" />
                 </div>
               </div>
             </div>

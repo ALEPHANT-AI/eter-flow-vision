@@ -135,19 +135,21 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             {/* Logo */}
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-gold-400 to-gold-600 rounded-2xl flex items-center justify-center glow-gold">
-                <span className="text-black font-black text-xl">E</span>
-              </div>
+              <img 
+                src="/lovable-uploads/1bdbf413-bc5f-4675-bf33-7f6dcf2fc161.png" 
+                alt="ETER"
+                className="h-12"
+              />
               <div>
-                <div className="text-white font-black text-xl">ETER.Co</div>
-                <div className="text-white/60 text-sm">Powered by THE EIGHT®</div>
+                <div className="text-white font-black text-xl">Eter Flow</div>
+                <div className="text-white/60 text-sm">Powered by ALEPHANT</div>
               </div>
             </div>
             
             {/* Copyright */}
             <div className="text-center md:text-right">
               <div className="text-white/60 text-sm mb-2">
-                © 2024 ETER Co. Todos os direitos reservados.
+                © 2025 ETER Co. Todos os direitos reservados.
               </div>
               <div className="text-white/40 text-xs">
                 Transformando especialistas em líderes de movimento desde 2019

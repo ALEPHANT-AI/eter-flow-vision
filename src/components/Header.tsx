@@ -23,12 +23,13 @@ const Header = () => {
             <img 
               src="/lovable-uploads/1bdbf413-bc5f-4675-bf33-7f6dcf2fc161.png" 
               alt="ETER"
-              className="h-8"
+              className="h-12"
             />
           </div>
           
-          <button className="btn-premium magnetic hover:glow-gold-strong">
-            <span>PREENCHER APLICAÇÃO</span>
+          <button className="relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic group">
+            <span className="relative z-10">PREENCHER APLICAÇÃO</span>
+            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping rounded-xl" />
           </button>
         </div>
       </div>
