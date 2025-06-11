@@ -1,6 +1,5 @@
-
 import React, { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, TrendingDown, Users, DollarSign } from 'lucide-react';
+import { AlertTriangle, TrendingDown, Users, DollarSign, Sparkles } from 'lucide-react';
 
 const ProblemSection = () => {
   const [isVisible, setIsVisible] = useState(false);

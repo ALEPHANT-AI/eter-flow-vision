@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star, TrendingUp, Users, DollarSign } from 'lucide-react';
 
@@ -28,48 +27,108 @@ const CasesCarousel = () => {
 
   const cases = [
     {
-      name: "Maria Silva",
-      role: "CEO & Fundadora",
-      company: "TechFlow Solutions",
-      image: "/lovable-uploads/98af57c9-96ab-4f40-969f-cc68b5c5933d.png",
-      result: "+350% faturamento em 8 meses",
-      metric: "R$ 2.5M",
+      name: "Alan Nicolas",
+      role: "CEO & Fundador",
+      company: "Digital Ventures",
+      image: "/lovable-uploads/13243273-a668-487d-af78-572da6fc1536.png",
+      result: "+400% faturamento em 10 meses",
+      metric: "R$ 3.2M",
       metricLabel: "Novo patamar de receita",
-      testimonial: "O THE EIGHT® transformou completamente minha presença no mercado. Hoje sou reconhecida como a principal referência em transformação digital para PMEs. Meu ticket médio triplicou e tenho fila de espera de 6 meses.",
+      testimonial: "O THE EIGHT® transformou completamente minha presença no mercado. Hoje sou reconhecido como o principal líder em inovação digital. Meu ticket médio quadruplicou e tenho fila de espera de 8 meses.",
       stats: [
-        { icon: TrendingUp, value: "350%", label: "Crescimento" },
-        { icon: Users, value: "45K", label: "Seguidores" },
-        { icon: DollarSign, value: "3x", label: "Ticket Médio" }
+        { icon: TrendingUp, value: "400%", label: "Crescimento" },
+        { icon: Users, value: "60K", label: "Seguidores" },
+        { icon: DollarSign, value: "4x", label: "Ticket Médio" }
       ]
     },
     {
-      name: "Carlos Mendoza",
+      name: "Alan Spadone",
       role: "Especialista em Growth",
-      company: "Scale Ventures",
-      image: "/lovable-uploads/5841503f-0375-4e54-99e1-2ef58e82530c.png",
+      company: "Scale Pro",
+      image: "/lovable-uploads/c07a67ec-0da1-4284-94ef-cb85aab811a6.png",
       result: "Tornou-se referência nacional em Growth Hacking",
-      metric: "R$ 8.7M",
+      metric: "R$ 12M",
       metricLabel: "Em novos contratos",
       testimonial: "Davi me ajudou a criar um movimento em torno do 'Growth Sustentável'. Hoje empresários me procuram não por serviços, mas pela metodologia que criei. Sou o primeiro nome que vem à mente quando falam de growth no Brasil.",
       stats: [
-        { icon: TrendingUp, value: "500%", label: "Reconhecimento" },
-        { icon: Users, value: "120K", label: "Comunidade" },
-        { icon: DollarSign, value: "5x", label: "Valor Hora" }
+        { icon: TrendingUp, value: "600%", label: "Reconhecimento" },
+        { icon: Users, value: "150K", label: "Comunidade" },
+        { icon: DollarSign, value: "6x", label: "Valor Hora" }
       ]
     },
     {
-      name: "Ana Rodrigues",
-      role: "Consultora de Liderança",
+      name: "André Diamand",
+      role: "Consultor de Liderança",
       company: "Leadership Excellence",
-      image: "/lovable-uploads/66e26694-2a22-4a49-af5b-886c931461b6.png",
+      image: "/lovable-uploads/88241303-9b60-4caa-8527-4d384750190f.png",
       result: "Criou movimento 'Liderança Humanizada'",
-      metric: "R$ 12M",
+      metric: "R$ 15M",
       metricLabel: "Em palestras e consultorias",
-      testimonial: "O processo do ETER me fez descobrir minha verdadeira missão. Hoje lidero um movimento que impacta milhares de líderes pelo Brasil. Saí da 'commoditização' para ser a única no que faço.",
+      testimonial: "O processo do ETER me fez descobrir minha verdadeira missão. Hoje lidero um movimento que impacta milhares de líderes pelo Brasil. Saí da 'commoditização' para ser o único no que faço.",
       stats: [
-        { icon: TrendingUp, value: "800%", label: "Impacto" },
-        { icon: Users, value: "200K", label: "Alcance" },
-        { icon: DollarSign, value: "10x", label: "Valor Palestra" }
+        { icon: TrendingUp, value: "900%", label: "Impacto" },
+        { icon: Users, value: "250K", label: "Alcance" },
+        { icon: DollarSign, value: "12x", label: "Valor Palestra" }
+      ]
+    },
+    {
+      name: "Guilherme Cattani",
+      role: "Estrategista Digital",
+      company: "Digital Evolution",
+      image: "/lovable-uploads/7185128b-a8cb-4b12-9902-1d5fe1889d6e.png",
+      result: "Líder em transformação digital corporativa",
+      metric: "R$ 8.5M",
+      metricLabel: "Faturamento anual",
+      testimonial: "Com o THE EIGHT® construí uma autoridade sólida no mercado corporativo. Hoje grandes empresas me procuram para liderar suas transformações digitais. Minha agenda está fechada por 1 ano.",
+      stats: [
+        { icon: TrendingUp, value: "500%", label: "Crescimento" },
+        { icon: Users, value: "80K", label: "Seguidores" },
+        { icon: DollarSign, value: "8x", label: "Valor Projeto" }
+      ]
+    },
+    {
+      name: "Iuri Meira",
+      role: "Expert em Personal Branding",
+      company: "Brand Evolution",
+      image: "/lovable-uploads/6f61776b-2c5b-480a-beb1-916ba151cee9.png",
+      result: "Referência em construção de marca pessoal",
+      metric: "R$ 6.8M",
+      metricLabel: "Em contratos premium",
+      testimonial: "O ETER me transformou de consultor comum em autoridade máxima em personal branding. Hoje tenho uma metodologia própria e sou procurado pelos maiores influenciadores do país.",
+      stats: [
+        { icon: TrendingUp, value: "700%", label: "Autoridade" },
+        { icon: Users, value: "120K", label: "Comunidade" },
+        { icon: DollarSign, value: "10x", label: "Ticket Médio" }
+      ]
+    },
+    {
+      name: "Letícia Felisberto",
+      role: "Consultora de Inovação",
+      company: "Innovation Hub",
+      image: "/lovable-uploads/d535c18c-ecee-444f-93c6-225e9464f578.png",
+      result: "Pioneira em inovação corporativa feminina",
+      metric: "R$ 9.2M",
+      metricLabel: "Impacto gerado",
+      testimonial: "Com a metodologia ETER, me tornei a principal voz feminina em inovação corporativa. Quebrei barreiras e hoje lidero um movimento que inspira milhares de mulheres executivas.",
+      stats: [
+        { icon: TrendingUp, value: "800%", label: "Influência" },
+        { icon: Users, value: "200K", label: "Seguidoras" },
+        { icon: DollarSign, value: "15x", label: "Valor Consultoria" }
+      ]
+    },
+    {
+      name: "Rafa Medeiros",
+      role: "Estrategista de Negócios",
+      company: "Business Pro",
+      image: "/lovable-uploads/7ac967be-be6d-4dd4-9057-54c20c51092a.png",
+      result: "Autoridade em estratégia empresarial",
+      metric: "R$ 11M",
+      metricLabel: "Receita gerada",
+      testimonial: "O THE EIGHT® me posicionou como o estrategista mais procurado do mercado B2B. Desenvolvi uma metodologia única que é referência no setor. Minha agenda está lotada por 18 meses.",
+      stats: [
+        { icon: TrendingUp, value: "1000%", label: "Crescimento" },
+        { icon: Users, value: "180K", label: "Rede" },
+        { icon: DollarSign, value: "20x", label: "ROI Clientes" }
       ]
     }
   ];
@@ -187,7 +246,7 @@ const CasesCarousel = () => {
                               return (
                                 <div key={statIndex} className="text-center">
                                   <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-gold-500 to-gold-600 rounded-xl flex items-center justify-center">
-                                    <Icon className="w-6 h-6 text-black" />
+                                    <Icon className="w-6 h-6 text-black-950" />
                                   </div>
                                   <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
                                   <div className="text-sm text-white/60">{stat.label}</div>
