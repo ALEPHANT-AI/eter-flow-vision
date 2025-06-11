@@ -1,9 +1,10 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, Sparkles, Eye, Palette, Target, Users, Video, Calendar } from 'lucide-react';
 
 const DeliverableSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -25,81 +26,178 @@ const DeliverableSection = () => {
 
   const deliverables = [
     {
+      icon: Target,
       title: "Criação de Movimento",
-      description: "Sua mensagem, promessa e sistema de crenças que farão as pessoas te seguirem apaixonadamente e se tornarem fãs compradores"
+      description: "Sua mensagem, promessa e sistema de crenças que farão as pessoas te seguirem apaixonadamente e se tornarem fãs compradores",
+      preview: "Manifesto + Sistema de Crenças + Promessa Magnética",
+      gradient: "from-purple-500 to-pink-500"
     },
     {
+      icon: Sparkles,
       title: "Marca Pessoal",
-      description: "Posicionamento único, diferenciação e autoridade que te posiciona como líder autêntico e reconhecido"
+      description: "Posicionamento único, diferenciação e autoridade que te posiciona como líder autêntico e reconhecido",
+      preview: "Posicionamento + Diferenciação + Tom de Voz",
+      gradient: "from-blue-500 to-cyan-500"
     },
     {
+      icon: Video,
       title: "Narrativa",
-      description: "Sua história magnética, mensagens-chave e storytelling que conecta emocionalmente com sua audiência"
+      description: "Sua história magnética, mensagens-chave e storytelling que conecta emocionalmente com sua audiência",
+      preview: "Storytelling + Mensagens-Chave + Jornada do Herói",
+      gradient: "from-green-500 to-emerald-500"
     },
     {
+      icon: Users,
       title: "Identidade da Tribo",
-      description: "Como sua comunidade pensa, fala, age e se reconhece o DNA dos seus seguidores ideais"
+      description: "Como sua comunidade pensa, fala, age e se reconhece o DNA dos seus seguidores ideais",
+      preview: "Persona + Linguagem + Rituais de Comunidade",
+      gradient: "from-orange-500 to-red-500"
     },
     {
+      icon: Palette,
       title: "Identidade Visual Completa",
-      description: "Símbolos, cores, fotografia, fontes, direção de arte e atmosfera visual com templates visuais prontos para usar"
+      description: "Símbolos, cores, fotografia, fontes, direção de arte e atmosfera visual com templates visuais prontos para usar",
+      preview: "Logo + Paleta + Templates + Direção de Arte",
+      gradient: "from-gold-500 to-yellow-500"
     },
     {
+      icon: Calendar,
       title: "Plano de Ativação",
-      description: "Cronograma detalhado, scripts de posts, estratégias de lançamento do Movimento e métricas de acompanhamento para implementar sua nova marca no mercado"
+      description: "Cronograma detalhado, scripts de posts, estratégias de lançamento do Movimento e métricas de acompanhamento para implementar sua nova marca no mercado",
+      preview: "Cronograma + Scripts + Métricas + Lançamento",
+      gradient: "from-teal-500 to-blue-500"
     }
   ];
 
   return (
     <section ref={sectionRef} className="py-32 relative overflow-hidden">
-      <div className="container mx-auto px-6">
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black-900 to-black-950">
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gold-400/5 rounded-full blur-3xl animate-pulse delay-1000" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-5xl md:text-6xl font-black mb-8 text-white leading-tight">
+            <h2 className="text-5xl md:text-7xl font-black mb-8 text-white leading-tight">
               O que você <span className="text-gradient">recebe:</span>
             </h2>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              Uma transformação completa da sua presença no mercado
+            </p>
           </div>
 
-          {/* Mockup Visual */}
-          <div className={`card-premium text-center mb-20 transition-all duration-1000 delay-300 ${
+          {/* Main Visual Mockup */}
+          <div className={`card-premium text-center mb-20 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-105 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="w-full h-80 bg-gradient-to-br from-gold-500/10 to-gold-600/5 rounded-2xl flex items-center justify-center mb-8 border border-gold-500/20">
-              <span className="text-white/60 text-lg font-medium">MOCKUP VISUAL DO ENTREGÁVEL</span>
+            <div className="relative w-full h-96 bg-gradient-to-br from-gold-500/20 to-gold-600/10 rounded-2xl flex items-center justify-center mb-8 border border-gold-500/30 overflow-hidden">
+              {/* Animated Preview Elements */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute top-4 left-4 w-32 h-8 bg-gold-400/30 rounded blur-sm animate-pulse" />
+                <div className="absolute top-4 right-4 w-24 h-24 border-2 border-gold-400/30 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
+                <div className="absolute bottom-4 left-4 w-48 h-4 bg-gradient-to-r from-gold-400/40 to-transparent rounded animate-pulse delay-500" />
+                <div className="absolute bottom-4 right-4 w-40 h-16 bg-gold-500/20 rounded-lg animate-pulse delay-1000" />
+              </div>
+              
+              <div className="text-center z-10">
+                <Sparkles className="w-16 h-16 text-gold-400 mx-auto mb-4 animate-pulse" />
+                <span className="text-white/80 text-2xl font-bold">PREVIEW COMPLETO DO ENTREGÁVEL</span>
+                <p className="text-white/60 mt-2">Manifesto • Identidade • Estratégia • Ativação</p>
+              </div>
+              
+              {/* Floating Elements */}
+              <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-gold-400 rounded-full animate-float" />
+              <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-gold-500 rounded-full animate-float delay-1000" />
+              <div className="absolute bottom-1/3 left-1/2 w-1.5 h-1.5 bg-gold-300 rounded-full animate-float delay-2000" />
             </div>
           </div>
 
-          {/* Deliverables Grid */}
-          <div className={`stagger-children grid md:grid-cols-2 gap-8 mb-20 ${
-            isVisible ? 'revealed' : ''
-          }`}>
-            {deliverables.map((item, index) => (
-              <div key={index} className="card-premium group">
-                <div className="flex items-start space-x-4">
-                  <CheckCircle className="w-6 h-6 text-gold-400 mt-1 flex-shrink-0 transition-all duration-300 group-hover:scale-110" />
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-gradient transition-all duration-300">
-                      {item.title}
-                    </h3>
-                    <p className="text-white/70 leading-relaxed">
-                      {item.description}
-                    </p>
+          {/* Interactive Deliverables Grid */}
+          <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 ${isVisible ? 'stagger-children revealed' : 'stagger-children'}`}>
+            {deliverables.map((item, index) => {
+              const Icon = item.icon;
+              const isHovered = hoveredCard === index;
+              
+              return (
+                <div 
+                  key={index} 
+                  className="group relative"
+                  onMouseEnter={() => setHoveredCard(index)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <div className={`card-premium transition-all duration-500 hover:scale-105 ${
+                    isHovered ? 'bg-white/[0.12] border-gold-500/30 shadow-glow-gold' : ''
+                  }`}>
+                    {/* Animated Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`} />
+                    
+                    <div className="relative z-10">
+                      {/* Icon with Glow */}
+                      <div className={`w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center transition-all duration-500 ${
+                        isHovered ? 'scale-110 glow-gold-strong' : 'scale-100'
+                      }`}>
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+                      
+                      <h3 className={`text-xl font-bold text-white mb-4 transition-all duration-300 ${
+                        isHovered ? 'text-gradient' : ''
+                      }`}>
+                        {item.title}
+                      </h3>
+                      
+                      <p className="text-white/70 leading-relaxed mb-6">
+                        {item.description}
+                      </p>
+                      
+                      {/* Preview Badge */}
+                      <div className={`glass px-4 py-2 rounded-lg transition-all duration-300 ${
+                        isHovered ? 'bg-gold-500/10 border-gold-500/20' : ''
+                      }`}>
+                        <div className="flex items-center">
+                          <Eye className="w-4 h-4 text-gold-400 mr-2" />
+                          <span className="text-sm text-white/80 font-medium">{item.preview}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Hover Glow Effect */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500 rounded-2xl -z-10`} />
                   </div>
                 </div>
+              );
+            })}
+          </div>
+
+          {/* Value Statement */}
+          <div className={`text-center mb-16 transition-all duration-1000 delay-800 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Tudo isso por uma fração do valor de uma consultoria tradicional
+              </h3>
+              <p className="text-xl text-white/80 mb-8">
+                Investimento total de <span className="text-gradient text-3xl font-bold">R$ 97.000</span> em 12x sem juros
+              </p>
+              <div className="text-lg text-gold-400 font-medium">
+                💎 Exclusivo para apenas 8 selecionados
               </div>
-            ))}
+            </div>
           </div>
 
           {/* CTA */}
           <div className={`text-center transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <button className="btn-premium text-lg glow-gold group magnetic">
-              <span className="flex items-center">
+            <button className="group btn-premium text-lg magnetic hover:scale-110 transition-all duration-300">
+              <span className="flex items-center relative z-10">
+                <Sparkles className="w-5 h-5 mr-2 animate-spin" />
                 QUERO SER SELECIONADO
-                <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-2" />
               </span>
             </button>
           </div>
