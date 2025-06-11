@@ -36,18 +36,14 @@ const HeroSection = () => {
                 <img 
                   src="/lovable-uploads/eac41d62-c80a-4f5d-9147-4be418220852.png" 
                   alt="ETER"
-                  className="h-16"
+                  className="h-20"
                 />
-                <div className="text-sm text-gold-400 font-medium">
-                  Powered By ETER Flow
+                <div>
+                  <div className="text-2xl md:text-3xl font-bold text-white">ETER FLOW</div>
+                  <div className="text-sm text-gold-400 font-medium">
+                    Powered By Alephant
+                  </div>
                 </div>
-              </div>
-
-              {/* Program Name */}
-              <div className={`transition-all duration-1000 delay-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">THE EIGHT</h2>
               </div>
 
               {/* Impact Phrase */}
