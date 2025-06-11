@@ -90,29 +90,26 @@ const DeliverableSection = () => {
             </p>
           </div>
 
-          {/* Main Visual Mockup */}
+          {/* Main Visual Mockup with Real Example */}
           <div className={`card-premium text-center mb-20 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-105 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="relative w-full h-96 bg-gradient-to-br from-gold-500/20 to-gold-600/10 rounded-2xl flex items-center justify-center mb-8 border border-gold-500/30 overflow-hidden">
-              {/* Animated Preview Elements */}
-              <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-4 left-4 w-32 h-8 bg-gold-400/30 rounded blur-sm animate-pulse" />
-                <div className="absolute top-4 right-4 w-24 h-24 border-2 border-gold-400/30 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
-                <div className="absolute bottom-4 left-4 w-48 h-4 bg-gradient-to-r from-gold-400/40 to-transparent rounded animate-pulse delay-500" />
-                <div className="absolute bottom-4 right-4 w-40 h-16 bg-gold-500/20 rounded-lg animate-pulse delay-1000" />
-              </div>
+            <div className="relative w-full bg-gradient-to-br from-gold-500/20 to-gold-600/10 rounded-2xl flex items-center justify-center mb-8 border border-gold-500/30 overflow-hidden">
+              {/* Real Example Image */}
+              <img 
+                src="/lovable-uploads/27127402-9973-43db-a295-94ff11d38ae7.png" 
+                alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
+                className="w-full h-auto max-h-[800px] object-contain rounded-2xl"
+              />
               
-              <div className="text-center z-10">
-                <Sparkles className="w-16 h-16 text-gold-400 mx-auto mb-4 animate-pulse" />
-                <span className="text-white/80 text-2xl font-bold">PREVIEW COMPLETO DO ENTREGÁVEL</span>
-                <p className="text-white/60 mt-2">Manifesto • Identidade • Estratégia • Ativação</p>
+              {/* Overlay with description */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black-950/90 to-transparent p-8">
+                <div className="text-center">
+                  <Sparkles className="w-8 h-8 text-gold-400 mx-auto mb-4" />
+                  <span className="text-white text-xl font-bold block mb-2">EXEMPLO REAL DE ENTREGÁVEL</span>
+                  <p className="text-white/80 text-sm">Movimento • Identidade • Estratégia • Ativação</p>
+                </div>
               </div>
-              
-              {/* Floating Elements */}
-              <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-gold-400 rounded-full animate-float" />
-              <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-gold-500 rounded-full animate-float delay-1000" />
-              <div className="absolute bottom-1/3 left-1/2 w-1.5 h-1.5 bg-gold-300 rounded-full animate-float delay-2000" />
             </div>
           </div>
 
