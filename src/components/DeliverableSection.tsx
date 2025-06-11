@@ -91,7 +91,7 @@ const DeliverableSection = () => {
             </p>
           </div>
 
-          {/* Main Visual Mockup with SVG for Infinite Quality */}
+          {/* Main Visual Mockup with High Quality Image */}
           <div className={`card-premium mb-20 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01] ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
@@ -105,38 +105,49 @@ const DeliverableSection = () => {
               <p className="text-white/60 text-sm mt-2">Role para ver o entregável completo</p>
             </div>
 
-            {/* SVG Container for Infinite Quality */}
+            {/* High Quality Image Container with Privacy Blur */}
             <div className="relative w-full h-[80vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
               <ScrollArea className="h-full w-full">
-                <div className="p-8">
-                  <object 
-                    data="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
-                    type="image/png"
-                    className="w-full h-auto mx-auto"
+                <div className="p-8 relative">
+                  {/* High Quality Image */}
+                  <img 
+                    src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
+                    alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
+                    className="w-full h-auto object-contain mx-auto max-w-none"
                     style={{
-                      imageRendering: 'pixelated',
-                      minHeight: '100%',
-                      objectFit: 'contain'
+                      imageRendering: 'crisp-edges',
+                      WebkitImageRendering: '-webkit-optimize-contrast',
+                      msInterpolationMode: 'nearest-neighbor',
+                      filter: 'contrast(1.1) saturate(1.05) brightness(1.02)',
+                      maxWidth: 'none',
+                      minHeight: '100%'
                     }}
-                  >
-                    <img 
-                      src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
-                      alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
-                      className="w-full h-auto object-contain mx-auto max-w-none"
-                      style={{
-                        imageRendering: 'pixelated',
-                        filter: 'contrast(1.05) saturate(1.1)'
-                      }}
-                      loading="eager"
-                      decoding="sync"
-                      fetchPriority="high"
-                    />
-                  </object>
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority="high"
+                  />
+                  
+                  {/* Privacy Blur Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-black-900/30 via-transparent to-black-900/20 backdrop-blur-[2px] rounded-2xl">
+                    {/* Selective blur areas for sensitive information */}
+                    <div className="absolute top-[15%] left-[10%] w-[35%] h-[8%] bg-black-900/40 backdrop-blur-md rounded-lg" />
+                    <div className="absolute top-[25%] right-[10%] w-[30%] h-[6%] bg-black-900/40 backdrop-blur-md rounded-lg" />
+                    <div className="absolute bottom-[20%] left-[15%] w-[40%] h-[10%] bg-black-900/40 backdrop-blur-md rounded-lg" />
+                    <div className="absolute bottom-[35%] right-[15%] w-[25%] h-[8%] bg-black-900/40 backdrop-blur-md rounded-lg" />
+                  </div>
+                  
+                  {/* Privacy Notice */}
+                  <div className="absolute top-4 right-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
+                    <div className="flex items-center text-white/70 text-xs">
+                      <Eye className="w-3 h-3 mr-1" />
+                      <span>Informações pessoais protegidas</span>
+                    </div>
+                  </div>
                 </div>
               </ScrollArea>
               
               {/* Scroll Indicator */}
-              <div className="absolute bottom-4 right-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
+              <div className="absolute bottom-4 left-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
                 <div className="flex items-center text-white/70 text-xs">
                   <div className="w-3 h-3 border border-gold-400 rounded mr-2 animate-pulse" />
                   <span>Role para explorar</span>
@@ -199,23 +210,6 @@ const DeliverableSection = () => {
                 </div>
               );
             })}
-          </div>
-
-          {/* Value Statement */}
-          <div className={`text-center mb-16 transition-all duration-1000 delay-800 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20">
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Tudo isso por uma fração do valor de uma consultoria tradicional
-              </h3>
-              <p className="text-xl text-white/80 mb-8">
-                Investimento total de <span className="text-gradient text-3xl font-bold">R$ 97.000</span> em 12x sem juros
-              </p>
-              <div className="text-lg text-gold-400 font-medium">
-                💎 Exclusivo para apenas 8 selecionados
-              </div>
-            </div>
           </div>
 
           {/* CTA */}
