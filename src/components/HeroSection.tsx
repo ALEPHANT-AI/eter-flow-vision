@@ -28,12 +28,12 @@ const HeroSection = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             {/* Content Column - Left Side */}
-            <div className="space-y-5 text-left">
+            <div className="space-y-8 text-left">
               {/* Impact Phrase */}
               <div className={`transition-all duration-1200 delay-300 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight">
                   <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
                     MOVEMENT IS<br />
                     THE NEW BRANDING
@@ -42,19 +42,19 @@ const HeroSection = () => {
               </div>
 
               {/* Main Value Proposition */}
-              <div className={`space-y-4 transition-all duration-1000 delay-500 ${
+              <div className={`space-y-6 transition-all duration-1000 delay-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
-                <p className="text-base md:text-lg text-white/80 leading-relaxed">
+                <p className="text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed">
                   <strong className="text-white font-semibold">SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR</strong>
                 </p>
-                <p className="text-2xl md:text-3xl font-bold">
+                <p className="text-3xl md:text-4xl lg:text-5xl font-bold">
                   <span className="text-gradient">DAVI RIBAS</span>
                 </p>
               </div>
 
               {/* Description */}
-              <div className={`text-sm md:text-base text-white/70 leading-relaxed transition-all duration-1000 delay-700 ${
+              <div className={`text-base md:text-lg lg:text-xl text-white/70 leading-relaxed transition-all duration-1000 delay-700 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
@@ -66,11 +66,11 @@ const HeroSection = () => {
               <div className={`transition-all duration-1000 delay-900 ${
                 isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
               }`}>
-                <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
+                <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-10 py-5 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
                   {/* Content */}
-                  <span className="relative z-10 flex items-center text-base md:text-lg">
+                  <span className="relative z-10 flex items-center text-lg md:text-xl lg:text-2xl">
                     PREENCHER APLICAÇÃO
-                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-2" />
+                    <ArrowRight className="ml-3 w-6 h-6 transition-transform group-hover:translate-x-2" />
                   </span>
                   
                   {/* Ripple Effect */}
