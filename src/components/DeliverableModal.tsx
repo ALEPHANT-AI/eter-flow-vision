@@ -18,28 +18,28 @@ const DeliverableModal = ({
 }: DeliverableModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full bg-black-900/95 border-gold-500/20 p-0 overflow-hidden">
+      <DialogContent className="!max-w-[95vw] !max-h-[95vh] !w-[95vw] !h-[95vh] !p-0 !gap-0 bg-black-900/95 border-gold-500/20 overflow-hidden">
         {/* Visually hidden accessibility elements */}
         <DialogTitle className="sr-only">{title}</DialogTitle>
         <DialogDescription className="sr-only">
           Full resolution view of {title} deliverable example
         </DialogDescription>
 
-        {/* Compact header with close button */}
-        <div className="absolute top-2 left-2 right-2 z-20 flex items-center justify-between bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2">
-          <div className="text-white/80 text-xs font-medium">
+        {/* Fixed header */}
+        <div className="flex items-center justify-between bg-black-900/90 backdrop-blur-sm px-4 py-3 border-b border-gold-500/10 shrink-0">
+          <div className="text-white/90 text-sm font-medium">
             {title}
           </div>
           <button
             onClick={onClose}
-            className="w-6 h-6 rounded-full bg-black-900/80 backdrop-blur-sm border border-gold-500/20 flex items-center justify-center text-white/70 hover:text-white transition-colors ml-2"
+            className="w-8 h-8 rounded-full bg-black-900/60 border border-gold-500/20 flex items-center justify-center text-white/70 hover:text-white hover:border-gold-500/40 transition-colors"
           >
-            <X className="w-3 h-3" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Full-width scrollable image container */}
-        <div className="w-full h-full pt-10 overflow-y-auto">
+        {/* Scrollable image container taking remaining height */}
+        <div className="flex-1 overflow-y-auto">
           <img
             src={image}
             alt={`${title} deliverable example`}
