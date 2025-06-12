@@ -1,12 +1,20 @@
+
 import React, { useEffect, useRef, useState } from 'react';
-import { CheckCircle, ArrowRight, Sparkles, Eye, Palette, Target, Users, Video, Calendar } from 'lucide-react';
+import { CheckCircle, ArrowRight, Sparkles, Eye, Palette, Target, Users, Video, Calendar, Expand } from 'lucide-react';
+import DeliverableModal from './DeliverableModal';
 
 const DeliverableSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+
+  // Example images - you would replace these with actual deliverable images
+  const deliverableImages = [
+    "/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png",
+    "/lovable-uploads/942f15a4-0579-45b2-afe1-8343e8c0204f.png"
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,234 +33,124 @@ const DeliverableSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll optimization handler
-  const handleScroll = () => {
-    setIsScrolling(true);
-    
-    if (scrollTimeoutRef.current) {
-      clearTimeout(scrollTimeoutRef.current);
-    }
-    
-    scrollTimeoutRef.current = setTimeout(() => {
-      setIsScrolling(false);
-    }, 150);
+  const openModal = (index: number = 0) => {
+    setCurrentImageIndex(index);
+    setModalOpen(true);
   };
 
-  useEffect(() => {
-    return () => {
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
-  }, []);
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % deliverableImages.length);
+  };
+
+  const previousImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + deliverableImages.length) % deliverableImages.length);
+  };
 
   const deliverables = [
     {
       icon: Target,
       title: "Criação de Movimento",
-      description: "Sua mensagem, promessa e sistema de crenças que farão as pessoas te seguirem apaixonadamente e se tornarem fãs compradores do seu movimento único.",
-      preview: "Manifesto + Sistema de Crenças + Promessa Magnética",
+      description: "Sua mensagem, promessa e sistema de crenças que farão as pessoas te seguirem apaixonadamente.",
+      preview: "Manifesto + Sistema de Crenças",
       gradient: "from-purple-500 to-pink-500"
     },
     {
       icon: Sparkles,
       title: "Marca Pessoal",
-      description: "Posicionamento único, diferenciação clara e autoridade que te posiciona como líder autêntico e reconhecido no seu mercado de atuação.",
-      preview: "Posicionamento + Diferenciação + Tom de Voz",
+      description: "Posicionamento único, diferenciação clara e autoridade que te posiciona como líder autêntico.",
+      preview: "Posicionamento + Diferenciação",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       icon: Video,
       title: "Narrativa",
-      description: "Sua história magnética, mensagens-chave e storytelling estruturado que conecta emocionalmente com sua audiência ideal de forma consistente.",
-      preview: "Storytelling + Mensagens-Chave + Jornada do Herói",
+      description: "Sua história magnética e storytelling estruturado que conecta emocionalmente com sua audiência.",
+      preview: "Storytelling + Mensagens-Chave",
       gradient: "from-green-500 to-emerald-500"
     },
     {
       icon: Users,
       title: "Identidade da Tribo",
-      description: "Como sua comunidade pensa, fala, age e se reconhece. O DNA completo dos seus seguidores ideais e como eles se relacionam com você.",
-      preview: "Persona + Linguagem + Rituais de Comunidade",
+      description: "Como sua comunidade pensa, fala, age e se reconhece. O DNA completo dos seus seguidores ideais.",
+      preview: "Persona + Linguagem + Rituais",
       gradient: "from-orange-500 to-red-500"
     },
     {
       icon: Palette,
       title: "Identidade Visual Completa",
-      description: "Símbolos, cores, fotografia, fontes e direção de arte completa com atmosfera visual única e templates visuais prontos para implementação.",
-      preview: "Logo + Paleta + Templates + Direção de Arte",
+      description: "Símbolos, cores, fotografia, fontes e direção de arte completa com atmosfera visual única.",
+      preview: "Logo + Paleta + Templates",
       gradient: "from-gold-500 to-yellow-500"
     },
     {
       icon: Calendar,
       title: "Plano de Ativação",
-      description: "Cronograma detalhado, scripts de posts, estratégias de lançamento do movimento e métricas de acompanhamento para implementar sua nova marca.",
-      preview: "Cronograma + Scripts + Métricas + Lançamento",
+      description: "Cronograma detalhado, scripts de posts e estratégias de lançamento do movimento.",
+      preview: "Cronograma + Scripts + Métricas",
       gradient: "from-teal-500 to-blue-500"
     }
   ];
 
   return (
-    <section ref={sectionRef} className="py-32 relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 relative overflow-hidden bg-gradient-to-b from-black-800 via-black-850 to-black-900">
       {/* Dynamic Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black-900 to-black-950">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gold-400/5 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute inset-0">
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gold-500/8 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gold-400/4 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className={`text-center mb-20 transition-all duration-1000 ${
+          <div className={`text-center mb-12 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 text-white leading-tight">
+            <h2 className="text-3xl md:text-5xl font-black mb-6 text-white leading-tight">
               O que você <span className="text-gradient">recebe:</span>
             </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+            <p className="text-lg text-white/70 max-w-3xl mx-auto">
               Uma transformação completa da sua presença no mercado
             </p>
           </div>
 
-          {/* Main Visual Mockup with Optimized Scroll */}
-          <div className={`card-premium mb-20 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01] ${
+          {/* Compact Example Preview */}
+          <div className={`card-premium mb-12 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01] ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            {/* Header with description */}
-            <div className="text-center mb-6">
-              <div className="flex items-center justify-center mb-4">
-                <Sparkles className="w-8 h-8 text-gold-400 mr-3" />
-                <span className="text-white text-2xl font-bold">EXEMPLO REAL DE ENTREGÁVEL</span>
+            <div className="text-center mb-4">
+              <div className="flex items-center justify-center mb-3">
+                <Sparkles className="w-6 h-6 text-gold-400 mr-2" />
+                <span className="text-white text-lg font-bold">EXEMPLO REAL DE ENTREGÁVEL</span>
               </div>
-              <p className="text-white/80 text-lg">Movimento • Identidade • Estratégia • Ativação</p>
-              <p className="text-white/60 text-sm mt-2">Role para ver o entregável completo</p>
+              <p className="text-white/60 text-sm">Clique para ver em tela cheia</p>
             </div>
 
-            {/* Dual Image Layout with Optimized Scroll */}
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* First Image - High Quality Container with Optimized Scroll */}
-              <div className="relative w-full h-[80vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
+            {/* Thumbnail Grid */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {deliverableImages.map((image, index) => (
                 <div 
-                  className="h-full w-full overflow-y-auto overflow-x-hidden optimized-scroll"
-                  onScroll={handleScroll}
-                  style={{
-                    scrollBehavior: 'smooth',
-                    willChange: 'scroll-position',
-                    contain: 'layout style paint',
-                  }}
+                  key={index}
+                  className="relative h-64 bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-lg border border-gold-500/20 overflow-hidden cursor-pointer group"
+                  onClick={() => openModal(index)}
                 >
-                  <div className="p-8 relative image-container">
-                    {/* High Quality Image with Optimizations */}
-                    <img 
-                      src="/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png" 
-                      alt="Exemplo completo de entregável - Movimento Futuro Ancestral"
-                      className={`w-full h-auto object-contain mx-auto high-quality-image ${
-                        isScrolling ? 'scrolling' : ''
-                      }`}
-                      style={{
-                        imageRendering: 'crisp-edges',
-                        filter: 'contrast(1.1) saturate(1.05) brightness(1.02)',
-                        maxWidth: 'none',
-                        minHeight: '100%',
-                        backfaceVisibility: 'hidden',
-                        transform: 'translateZ(0)',
-                        willChange: 'transform',
-                      }}
-                      loading="eager"
-                      decoding="sync"
-                    />
-                    
-                    {/* Optimized Privacy Blur Overlay */}
-                    <div className={`absolute inset-0 privacy-overlay ${isScrolling ? 'scrolling' : ''}`}>
-                      <div className="absolute inset-0 bg-gradient-to-br from-black-900/30 via-transparent to-black-900/20 rounded-2xl" />
-                      {/* Selective blur areas for sensitive information */}
-                      <div className="absolute top-[15%] left-[10%] w-[35%] h-[8%] bg-black-900/40 backdrop-blur-md rounded-lg" />
-                      <div className="absolute top-[25%] right-[10%] w-[30%] h-[6%] bg-black-900/40 backdrop-blur-md rounded-lg" />
-                      <div className="absolute bottom-[20%] left-[15%] w-[40%] h-[10%] bg-black-900/40 backdrop-blur-md rounded-lg" />
-                      <div className="absolute bottom-[35%] right-[15%] w-[25%] h-[8%] bg-black-900/40 backdrop-blur-md rounded-lg" />
-                    </div>
-                    
-                    {/* Privacy Notice */}
-                    <div className="absolute top-4 right-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
-                      <div className="flex items-center text-white/70 text-xs">
-                        <Eye className="w-3 h-3 mr-1" />
-                        <span>Informações pessoais protegidas</span>
-                      </div>
-                    </div>
+                  <img 
+                    src={image} 
+                    alt={`Deliverable preview ${index + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black-900/20 group-hover:bg-black-900/10 transition-colors duration-300" />
+                  <div className="absolute top-2 right-2 bg-black-900/80 backdrop-blur-sm rounded-lg px-2 py-1">
+                    <Expand className="w-4 h-4 text-white/70" />
+                  </div>
+                  <div className="absolute bottom-2 left-2 bg-black-900/80 backdrop-blur-sm rounded-lg px-2 py-1">
+                    <span className="text-white/70 text-xs">{index === 0 ? 'Movimento' : 'Identidade Visual'}</span>
                   </div>
                 </div>
-                
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-4 left-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
-                  <div className="flex items-center text-white/70 text-xs">
-                    <div className="w-3 h-3 border border-gold-400 rounded mr-2 animate-pulse" />
-                    <span>Role para explorar</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Second Image - Visual Identity with Same Optimizations */}
-              <div className="relative w-full h-[80vh] bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-2xl border border-gold-500/20 overflow-hidden">
-                <div 
-                  className="h-full w-full overflow-y-auto overflow-x-hidden optimized-scroll"
-                  onScroll={handleScroll}
-                  style={{
-                    scrollBehavior: 'smooth',
-                    willChange: 'scroll-position',
-                    contain: 'layout style paint',
-                  }}
-                >
-                  <div className="p-8 relative image-container">
-                    {/* Visual Identity Image */}
-                    <img 
-                      src="/lovable-uploads/942f15a4-0579-45b2-afe1-8343e8c0204f.png" 
-                      alt="Identidade Visual - Cores, Fontes e Elementos Visuais"
-                      className={`w-full h-auto object-contain mx-auto high-quality-image ${
-                        isScrolling ? 'scrolling' : ''
-                      }`}
-                      style={{
-                        imageRendering: 'crisp-edges',
-                        filter: 'contrast(1.1) saturate(1.05) brightness(1.02)',
-                        maxWidth: 'none',
-                        minHeight: '100%',
-                        backfaceVisibility: 'hidden',
-                        transform: 'translateZ(0)',
-                        willChange: 'transform',
-                      }}
-                      loading="eager"
-                      decoding="sync"
-                    />
-                    
-                    {/* Privacy Blur Overlay for Visual Identity */}
-                    <div className={`absolute inset-0 privacy-overlay ${isScrolling ? 'scrolling' : ''}`}>
-                      <div className="absolute inset-0 bg-gradient-to-br from-black-900/25 via-transparent to-black-900/15 rounded-2xl" />
-                      {/* Selective blur areas for sensitive information */}
-                      <div className="absolute top-[10%] left-[10%] w-[30%] h-[6%] bg-black-900/35 backdrop-blur-sm rounded-lg" />
-                      <div className="absolute top-[20%] right-[15%] w-[25%] h-[5%] bg-black-900/35 backdrop-blur-sm rounded-lg" />
-                      <div className="absolute bottom-[15%] left-[20%] w-[35%] h-[8%] bg-black-900/35 backdrop-blur-sm rounded-lg" />
-                    </div>
-                    
-                    {/* Visual Identity Notice */}
-                    <div className="absolute top-4 right-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
-                      <div className="flex items-center text-white/70 text-xs">
-                        <Palette className="w-3 h-3 mr-1" />
-                        <span>Identidade Visual Completa</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Visual Identity Scroll Indicator */}
-                <div className="absolute bottom-4 left-4 bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-gold-500/20">
-                  <div className="flex items-center text-white/70 text-xs">
-                    <div className="w-3 h-3 border border-gold-400 rounded mr-2 animate-pulse" />
-                    <span>Cores • Fontes • Elementos</span>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Interactive Deliverables Grid with Uniform Heights */}
-          <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 ${isVisible ? 'stagger-children revealed' : 'stagger-children'}`}>
+          {/* Interactive Deliverables Grid */}
+          <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 ${isVisible ? 'stagger-children revealed' : 'stagger-children'}`}>
             {deliverables.map((item, index) => {
               const Icon = item.icon;
               const isHovered = hoveredCard === index;
@@ -264,7 +162,7 @@ const DeliverableSection = () => {
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className={`card-premium h-full min-h-[380px] flex flex-col transition-all duration-500 hover:scale-105 ${
+                  <div className={`card-premium h-full min-h-[280px] flex flex-col transition-all duration-500 hover:scale-105 ${
                     isHovered ? 'bg-white/[0.12] border-gold-500/30 shadow-glow-gold' : ''
                   }`}>
                     {/* Animated Background */}
@@ -272,30 +170,30 @@ const DeliverableSection = () => {
                     
                     <div className="relative z-10 flex flex-col h-full">
                       {/* Icon with Glow */}
-                      <div className={`w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center transition-all duration-500 ${
+                      <div className={`w-12 h-12 mb-4 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center transition-all duration-500 ${
                         isHovered ? 'scale-110 glow-gold-strong' : 'scale-100'
                       }`}>
-                        <Icon className="w-8 h-8 text-white" />
+                        <Icon className="w-6 h-6 text-white" />
                       </div>
                       
-                      <h3 className={`text-xl font-bold text-white mb-4 transition-all duration-300 ${
+                      <h3 className={`text-lg font-bold text-white mb-3 transition-all duration-300 ${
                         isHovered ? 'text-gradient' : ''
                       }`}>
                         {item.title}
                       </h3>
                       
                       {/* Description with flex-grow to take available space */}
-                      <p className="text-white/70 leading-relaxed mb-6 flex-grow">
+                      <p className="text-white/70 leading-relaxed mb-4 flex-grow text-sm">
                         {item.description}
                       </p>
                       
                       {/* Preview Badge - positioned at bottom */}
-                      <div className={`glass px-4 py-2 rounded-lg transition-all duration-300 mt-auto ${
+                      <div className={`glass px-3 py-2 rounded-lg transition-all duration-300 mt-auto ${
                         isHovered ? 'bg-gold-500/10 border-gold-500/20' : ''
                       }`}>
                         <div className="flex items-center">
-                          <Eye className="w-4 h-4 text-gold-400 mr-2" />
-                          <span className="text-sm text-white/80 font-medium">{item.preview}</span>
+                          <Eye className="w-3 h-3 text-gold-400 mr-2" />
+                          <span className="text-xs text-white/80 font-medium">{item.preview}</span>
                         </div>
                       </div>
                     </div>
@@ -322,6 +220,16 @@ const DeliverableSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      <DeliverableModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        images={deliverableImages}
+        currentIndex={currentImageIndex}
+        onNext={nextImage}
+        onPrevious={previousImage}
+      />
     </section>
   );
 };
