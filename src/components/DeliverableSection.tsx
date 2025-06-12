@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Sparkles, Target, Users, Video, Calendar, Palette } from 'lucide-react';
 import DeliverableModal from './DeliverableModal';
@@ -12,20 +11,23 @@ const DeliverableSection = () => {
   const [modalContent, setModalContent] = useState({ image: '', title: '' });
   const sectionRef = useRef<HTMLElement>(null);
 
-  // New long deliverable image
-  const longDeliverableImage = "/lovable-uploads/30f0ba28-76cb-4b08-af87-ba4140ba0084.png";
+  // Updated modal images
+  const modalImages = {
+    movimento: "/lovable-uploads/09eda0c9-19c3-47ea-9842-777119a791bb.png",
+    identidadeVisual: "/lovable-uploads/29a10b52-5847-4251-b4ed-912b2cbc0e68.png"
+  };
 
   // Preview images for the thumbnail grid
   const previewImages = [
     { 
       src: "/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png",
       title: "Movimento",
-      fullImage: longDeliverableImage
+      fullImage: modalImages.movimento
     },
     { 
       src: "/lovable-uploads/942f15a4-0579-45b2-afe1-8343e8c0204f.png",
       title: "Identidade Visual",
-      fullImage: longDeliverableImage
+      fullImage: modalImages.identidadeVisual
     }
   ];
 
