@@ -24,19 +24,24 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black-950 via-black-900/50 to-transparent" />
       </div>
 
-      {/* Fixed ETER Logo */}
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none">
-        <img 
-          src="/lovable-uploads/eac41d62-c80a-4f5d-9147-4be418220852.png" 
-          alt="ETER"
-          className="h-24 md:h-32 lg:h-40 opacity-30 mix-blend-overlay"
-        />
-      </div>
-
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Left-aligned Content */}
           <div className="space-y-8">
+            {/* ETER FLOW Logo Text */}
+            <div className={`transition-all duration-1000 delay-100 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold">
+                <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
+                  ETER FLOW
+                </span>
+              </div>
+              <div className="text-sm md:text-base text-gold-400 font-medium mt-2">
+                Powered By Alephant
+              </div>
+            </div>
+
             {/* Impact Phrase */}
             <div className={`transition-all duration-1200 delay-300 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
