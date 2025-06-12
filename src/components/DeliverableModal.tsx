@@ -1,32 +1,29 @@
 
 import React from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
+import { X } from 'lucide-react';
+import { Dialog, DialogContent } from './ui/dialog';
+import { ScrollArea } from './ui/scroll-area';
 
 interface DeliverableModalProps {
   isOpen: boolean;
   onClose: () => void;
-  images: string[];
-  currentIndex: number;
-  onPrevious: () => void;
-  onNext: () => void;
+  image: string;
+  title: string;
 }
 
 const DeliverableModal = ({ 
   isOpen, 
   onClose, 
-  images, 
-  currentIndex, 
-  onPrevious, 
-  onNext 
+  image,
+  title
 }: DeliverableModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full bg-black-900/95 border-gold-500/20 p-0">
         {/* Header */}
         <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
-          <div className="text-white/80 text-sm">
-            {currentIndex + 1} of {images.length}
+          <div className="text-white/80 text-sm font-medium">
+            {title}
           </div>
           <button
             onClick={onClose}
@@ -36,31 +33,18 @@ const DeliverableModal = ({
           </button>
         </div>
 
-        {/* Navigation */}
-        {images.length > 1 && (
-          <>
-            <button
-              onClick={onPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black-900/80 backdrop-blur-sm border border-gold-500/20 flex items-center justify-center text-white/70 hover:text-white transition-colors"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={onNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black-900/80 backdrop-blur-sm border border-gold-500/20 flex items-center justify-center text-white/70 hover:text-white transition-colors"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </>
-        )}
-
-        {/* Image */}
-        <div className="w-full h-full flex items-center justify-center p-16">
-          <img
-            src={images[currentIndex]}
-            alt={`Deliverable example ${currentIndex + 1}`}
-            className="max-w-full max-h-full object-contain"
-          />
+        {/* Scrollable Image Container */}
+        <div className="w-full h-full pt-16 pb-4 px-4">
+          <ScrollArea className="w-full h-full">
+            <div className="w-full">
+              <img
+                src={image}
+                alt={title}
+                className="w-full h-auto object-cover"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            </div>
+          </ScrollArea>
         </div>
       </DialogContent>
     </Dialog>

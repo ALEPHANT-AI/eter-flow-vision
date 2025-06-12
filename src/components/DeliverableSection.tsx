@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle, ArrowRight, Sparkles, Eye, Palette, Target, Users, Video, Calendar, Expand } from 'lucide-react';
 import DeliverableModal from './DeliverableModal';
@@ -7,13 +6,24 @@ const DeliverableSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [modalContent, setModalContent] = useState({ image: '', title: '' });
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Example images - you would replace these with actual deliverable images
-  const deliverableImages = [
-    "/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png",
-    "/lovable-uploads/942f15a4-0579-45b2-afe1-8343e8c0204f.png"
+  // Long deliverable image
+  const longDeliverableImage = "/lovable-uploads/2e8274a7-c30c-431c-82c1-afbefe8f99c2.png";
+
+  // Preview images for the thumbnail grid
+  const previewImages = [
+    { 
+      src: "/lovable-uploads/e8f389e4-fe43-4df2-b475-0ea7644b61fe.png",
+      title: "Movimento",
+      fullImage: longDeliverableImage
+    },
+    { 
+      src: "/lovable-uploads/942f15a4-0579-45b2-afe1-8343e8c0204f.png",
+      title: "Identidade Visual",
+      fullImage: longDeliverableImage
+    }
   ];
 
   useEffect(() => {
@@ -33,17 +43,9 @@ const DeliverableSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const openModal = (index: number = 0) => {
-    setCurrentImageIndex(index);
+  const openModal = (image: string, title: string) => {
+    setModalContent({ image, title });
     setModalOpen(true);
-  };
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % deliverableImages.length);
-  };
-
-  const previousImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + deliverableImages.length) % deliverableImages.length);
   };
 
   const deliverables = [
@@ -126,15 +128,15 @@ const DeliverableSection = () => {
 
             {/* Thumbnail Grid */}
             <div className="grid md:grid-cols-2 gap-4">
-              {deliverableImages.map((image, index) => (
+              {previewImages.map((item, index) => (
                 <div 
                   key={index}
                   className="relative h-64 bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-lg border border-gold-500/20 overflow-hidden cursor-pointer group"
-                  onClick={() => openModal(index)}
+                  onClick={() => openModal(item.fullImage, item.title)}
                 >
                   <img 
-                    src={image} 
-                    alt={`Deliverable preview ${index + 1}`}
+                    src={item.src} 
+                    alt={`${item.title} preview`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-black-900/20 group-hover:bg-black-900/10 transition-colors duration-300" />
@@ -142,7 +144,7 @@ const DeliverableSection = () => {
                     <Expand className="w-4 h-4 text-white/70" />
                   </div>
                   <div className="absolute bottom-2 left-2 bg-black-900/80 backdrop-blur-sm rounded-lg px-2 py-1">
-                    <span className="text-white/70 text-xs">{index === 0 ? 'Movimento' : 'Identidade Visual'}</span>
+                    <span className="text-white/70 text-xs">{item.title}</span>
                   </div>
                 </div>
               ))}
@@ -225,10 +227,8 @@ const DeliverableSection = () => {
       <DeliverableModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        images={deliverableImages}
-        currentIndex={currentImageIndex}
-        onNext={nextImage}
-        onPrevious={previousImage}
+        image={modalContent.image}
+        title={modalContent.title}
       />
     </section>
   );
