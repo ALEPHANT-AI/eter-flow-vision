@@ -1,8 +1,7 @@
 
 import React from 'react';
 import { X } from 'lucide-react';
-import { Dialog, DialogContent } from './ui/dialog';
-import { ScrollArea } from './ui/scroll-area';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 
 interface DeliverableModalProps {
   isOpen: boolean;
@@ -19,32 +18,39 @@ const DeliverableModal = ({
 }: DeliverableModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full bg-black-900/95 border-gold-500/20 p-0">
-        {/* Header */}
-        <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
+      <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full bg-black-900/95 border-gold-500/20 p-0 overflow-hidden">
+        {/* Visually hidden accessibility elements */}
+        <DialogTitle className="sr-only">{title}</DialogTitle>
+        <DialogDescription className="sr-only">
+          Full resolution view of {title} deliverable example
+        </DialogDescription>
+
+        {/* Header with close button */}
+        <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between bg-black-900/80 backdrop-blur-sm rounded-lg px-4 py-2">
           <div className="text-white/80 text-sm font-medium">
             {title}
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 rounded-full bg-black-900/80 backdrop-blur-sm border border-gold-500/20 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+            className="w-8 h-8 rounded-full bg-black-900/80 backdrop-blur-sm border border-gold-500/20 flex items-center justify-center text-white/70 hover:text-white transition-colors ml-4"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Scrollable Image Container */}
-        <div className="w-full h-full pt-16 pb-4 px-4">
-          <ScrollArea className="w-full h-full">
-            <div className="w-full">
-              <img
-                src={image}
-                alt={title}
-                className="w-full h-auto object-cover"
-                style={{ maxWidth: '100%', height: 'auto' }}
-              />
-            </div>
-          </ScrollArea>
+        {/* Scrollable image container */}
+        <div className="w-full h-full pt-16 overflow-y-auto">
+          <div className="min-h-full flex items-start justify-center p-4">
+            <img
+              src={image}
+              alt={`${title} deliverable example`}
+              className="w-full max-w-none h-auto block"
+              style={{ 
+                minHeight: 'auto',
+                objectFit: 'none'
+              }}
+            />
+          </div>
         </div>
       </DialogContent>
     </Dialog>
