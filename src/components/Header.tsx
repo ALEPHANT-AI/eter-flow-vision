@@ -1,12 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 50);
+      setIsVisible(scrollY > 100); // Show header after scrolling 100px
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -15,7 +17,9 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled ? 'glass border-b border-white/5' : 'bg-transparent'
+      isVisible 
+        ? `${isScrolled ? 'glass border-b border-white/5' : 'bg-transparent'} translate-y-0 opacity-100` 
+        : '-translate-y-full opacity-0'
     }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
