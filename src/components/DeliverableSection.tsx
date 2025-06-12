@@ -9,8 +9,8 @@ const DeliverableSection = () => {
   const [modalContent, setModalContent] = useState({ image: '', title: '' });
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Long deliverable image
-  const longDeliverableImage = "/lovable-uploads/2e8274a7-c30c-431c-82c1-afbefe8f99c2.png";
+  // New long deliverable image
+  const longDeliverableImage = "/lovable-uploads/30f0ba28-76cb-4b08-af87-ba4140ba0084.png";
 
   // Preview images for the thumbnail grid
   const previewImages = [
@@ -167,11 +167,9 @@ const DeliverableSection = () => {
                   <div className={`card-premium h-full min-h-[280px] flex flex-col transition-all duration-500 hover:scale-105 ${
                     isHovered ? 'bg-white/[0.12] border-gold-500/30 shadow-glow-gold' : ''
                   }`}>
-                    {/* Animated Background */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`} />
                     
                     <div className="relative z-10 flex flex-col h-full">
-                      {/* Icon with Glow */}
                       <div className={`w-12 h-12 mb-4 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center transition-all duration-500 ${
                         isHovered ? 'scale-110 glow-gold-strong' : 'scale-100'
                       }`}>
@@ -184,12 +182,10 @@ const DeliverableSection = () => {
                         {item.title}
                       </h3>
                       
-                      {/* Description with flex-grow to take available space */}
                       <p className="text-white/70 leading-relaxed mb-4 flex-grow text-sm">
                         {item.description}
                       </p>
                       
-                      {/* Preview Badge - positioned at bottom */}
                       <div className={`glass px-3 py-2 rounded-lg transition-all duration-300 mt-auto ${
                         isHovered ? 'bg-gold-500/10 border-gold-500/20' : ''
                       }`}>
@@ -200,7 +196,6 @@ const DeliverableSection = () => {
                       </div>
                     </div>
                     
-                    {/* Hover Glow Effect */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500 rounded-2xl -z-10`} />
                   </div>
                 </div>
