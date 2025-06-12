@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 
 const Header = () => {
@@ -23,10 +24,10 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* ETER FLOW Logo with symbol */}
+          {/* ETER FLOW Logo with new image */}
           <div className="flex items-center space-x-3">
             <img 
-              src="/lovable-uploads/eac41d62-c80a-4f5d-9147-4be418220852.png" 
+              src="/lovable-uploads/b51a5c29-18bb-44d4-a063-4685b0fb43a9.png" 
               alt="ETER"
               className="h-12"
             />
