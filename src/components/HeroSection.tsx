@@ -1,15 +1,24 @@
+
 import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     setIsVisible(true);
   }, []);
-  return <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20">
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
       {/* Background with Davi's image and golden filter */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black-950 via-black-900 to-black-800" />
-        <img src="/lovable-uploads/36bc4463-f018-4db0-b71f-10a2e1f5e205.png" alt="Davi Ribas criando movimento" className="w-full h-full object-cover opacity-30" />
+        <img 
+          src="/lovable-uploads/36bc4463-f018-4db0-b71f-10a2e1f5e205.png" 
+          alt="Davi Ribas criando movimento" 
+          className="w-full h-full object-cover opacity-30" 
+        />
         {/* Golden filter overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 via-gold-400/10 to-transparent mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-t from-black-950 via-black-900/50 to-transparent" />
@@ -73,6 +82,8 @@ const HeroSection = () => {
 
       {/* Bottom gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black-950 to-transparent pointer-events-none" />
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
