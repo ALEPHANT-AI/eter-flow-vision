@@ -10,7 +10,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background with Davi's image and golden filter */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black-950 via-black-900 to-black-800" />
@@ -27,10 +27,10 @@ const HeroSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Left-aligned Content */}
-          <div className="space-y-8">
+          <div className="space-y-4">
             {/* ETER FLOW Logo Text */}
             <div className={`transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold">
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold">
                 
               </div>
               
@@ -38,7 +38,7 @@ const HeroSection = () => {
 
             {/* Impact Phrase */}
             <div className={`transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight">
                 <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
                   MOVEMENT IS<br />
                   THE NEW BRANDING
@@ -47,29 +47,29 @@ const HeroSection = () => {
             </div>
 
             {/* Main Value Proposition */}
-            <div className={`space-y-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <p className="text-xl md:text-2xl lg:text-3xl text-white/80 leading-relaxed max-w-4xl">
+            <div className={`space-y-4 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <p className="text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-4xl">
                 <strong className="text-white font-semibold">SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR</strong>
               </p>
-              <p className="text-4xl md:text-5xl lg:text-6xl font-bold">
+              <p className="text-3xl md:text-4xl lg:text-5xl font-bold">
                 <span className="text-gradient">DAVI RIBAS</span>
               </p>
             </div>
 
             {/* Description */}
-            <div className={`text-lg md:text-xl lg:text-2xl text-white/70 leading-relaxed transition-all duration-1000 delay-700 max-w-4xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`text-base md:text-lg lg:text-xl text-white/70 leading-relaxed transition-all duration-1000 delay-700 max-w-4xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
               <br />
               <strong className="text-white">construa uma marca que lidera, inspira e cria uma comunidade de fãs engajados e compradores</strong>
             </div>
 
             {/* Centered CTA Button */}
-            <div className={`flex justify-center transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
-              <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-12 py-6 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
+            <div className={`flex justify-center pt-4 transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
+              <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-10 py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
                 {/* Content */}
-                <span className="relative z-10 flex items-center justify-center text-xl md:text-2xl lg:text-3xl">
+                <span className="relative z-10 flex items-center justify-center text-lg md:text-xl lg:text-2xl">
                   PREENCHER APLICAÇÃO
-                  <ArrowRight className="ml-4 w-7 h-7 transition-transform group-hover:translate-x-2" />
+                  <ArrowRight className="ml-3 w-6 h-6 transition-transform group-hover:translate-x-2" />
                 </span>
                 
                 {/* Ripple Effect */}
