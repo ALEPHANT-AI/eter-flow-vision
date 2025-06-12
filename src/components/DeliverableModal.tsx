@@ -25,32 +25,30 @@ const DeliverableModal = ({
           Full resolution view of {title} deliverable example
         </DialogDescription>
 
-        {/* Header with close button */}
-        <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between bg-black-900/80 backdrop-blur-sm rounded-lg px-4 py-2">
-          <div className="text-white/80 text-sm font-medium">
+        {/* Compact header with close button */}
+        <div className="absolute top-2 left-2 right-2 z-20 flex items-center justify-between bg-black-900/80 backdrop-blur-sm rounded-lg px-3 py-2">
+          <div className="text-white/80 text-xs font-medium">
             {title}
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-black-900/80 backdrop-blur-sm border border-gold-500/20 flex items-center justify-center text-white/70 hover:text-white transition-colors ml-4"
+            className="w-6 h-6 rounded-full bg-black-900/80 backdrop-blur-sm border border-gold-500/20 flex items-center justify-center text-white/70 hover:text-white transition-colors ml-2"
           >
-            <X className="w-4 h-4" />
+            <X className="w-3 h-3" />
           </button>
         </div>
 
-        {/* Scrollable image container */}
-        <div className="w-full h-full pt-16 overflow-y-auto">
-          <div className="min-h-full flex items-start justify-center p-4">
-            <img
-              src={image}
-              alt={`${title} deliverable example`}
-              className="w-full max-w-none h-auto block"
-              style={{ 
-                minHeight: 'auto',
-                objectFit: 'none'
-              }}
-            />
-          </div>
+        {/* Full-width scrollable image container */}
+        <div className="w-full h-full pt-10 overflow-y-auto">
+          <img
+            src={image}
+            alt={`${title} deliverable example`}
+            className="w-full h-auto block"
+            style={{ 
+              maxWidth: 'none',
+              objectFit: 'none'
+            }}
+          />
         </div>
       </DialogContent>
     </Dialog>
