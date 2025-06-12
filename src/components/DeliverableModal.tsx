@@ -18,7 +18,7 @@ const DeliverableModal = ({
 }: DeliverableModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="!max-w-[95vw] !max-h-[95vh] !w-[95vw] !h-[95vh] !p-0 !gap-0 bg-black-900/95 border-gold-500/20 overflow-hidden">
+      <DialogContent className="!max-w-[95vw] !max-h-[95vh] !w-[95vw] !h-[95vh] !p-0 !gap-0 bg-black-900/95 border-gold-500/20 overflow-hidden flex flex-col">
         {/* Visually hidden accessibility elements */}
         <DialogTitle className="sr-only">{title}</DialogTitle>
         <DialogDescription className="sr-only">
@@ -39,15 +39,11 @@ const DeliverableModal = ({
         </div>
 
         {/* Scrollable image container taking remaining height */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden">
           <img
             src={image}
             alt={`${title} deliverable example`}
-            className="w-full h-auto block"
-            style={{ 
-              maxWidth: 'none',
-              objectFit: 'none'
-            }}
+            className="w-full min-w-full max-w-none h-auto block"
           />
         </div>
       </DialogContent>
