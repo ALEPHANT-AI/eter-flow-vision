@@ -264,7 +264,7 @@ const DeliverableSection = () => {
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className={`card-premium h-full min-h-[460px] flex flex-col transition-all duration-500 hover:scale-105 ${
+                  <div className={`card-premium h-full min-h-[380px] flex flex-col transition-all duration-500 hover:scale-105 ${
                     isHovered ? 'bg-white/[0.12] border-gold-500/30 shadow-glow-gold' : ''
                   }`}>
                     {/* Animated Background */}
