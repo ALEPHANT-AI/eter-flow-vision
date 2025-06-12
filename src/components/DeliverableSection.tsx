@@ -51,42 +51,42 @@ const DeliverableSection = () => {
     {
       icon: Target,
       title: "Criação de Movimento",
-      description: "Sua mensagem, promessa e sistema de crenças que farão as pessoas te seguirem apaixonadamente e se tornarem fãs compradores",
+      description: "Sua mensagem, promessa e sistema de crenças que farão as pessoas te seguirem apaixonadamente e se tornarem fãs compradores do seu movimento único.",
       preview: "Manifesto + Sistema de Crenças + Promessa Magnética",
       gradient: "from-purple-500 to-pink-500"
     },
     {
       icon: Sparkles,
       title: "Marca Pessoal",
-      description: "Posicionamento único, diferenciação e autoridade que te posiciona como líder autêntico e reconhecido",
+      description: "Posicionamento único, diferenciação clara e autoridade que te posiciona como líder autêntico e reconhecido no seu mercado de atuação.",
       preview: "Posicionamento + Diferenciação + Tom de Voz",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       icon: Video,
       title: "Narrativa",
-      description: "Sua história magnética, mensagens-chave e storytelling que conecta emocionalmente com sua audiência",
+      description: "Sua história magnética, mensagens-chave e storytelling estruturado que conecta emocionalmente com sua audiência ideal de forma consistente.",
       preview: "Storytelling + Mensagens-Chave + Jornada do Herói",
       gradient: "from-green-500 to-emerald-500"
     },
     {
       icon: Users,
       title: "Identidade da Tribo",
-      description: "Como sua comunidade pensa, fala, age e se reconhece o DNA dos seus seguidores ideais",
+      description: "Como sua comunidade pensa, fala, age e se reconhece. O DNA completo dos seus seguidores ideais e como eles se relacionam com você.",
       preview: "Persona + Linguagem + Rituais de Comunidade",
       gradient: "from-orange-500 to-red-500"
     },
     {
       icon: Palette,
       title: "Identidade Visual Completa",
-      description: "Símbolos, cores, fotografia, fontes, direção de arte e atmosfera visual com templates visuais prontos para usar",
+      description: "Símbolos, cores, fotografia, fontes e direção de arte completa com atmosfera visual única e templates visuais prontos para implementação.",
       preview: "Logo + Paleta + Templates + Direção de Arte",
       gradient: "from-gold-500 to-yellow-500"
     },
     {
       icon: Calendar,
       title: "Plano de Ativação",
-      description: "Cronograma detalhado, scripts de posts, estratégias de lançamento do Movimento e métricas de acompanhamento para implementar sua nova marca no mercado",
+      description: "Cronograma detalhado, scripts de posts, estratégias de lançamento do movimento e métricas de acompanhamento para implementar sua nova marca.",
       preview: "Cronograma + Scripts + Métricas + Lançamento",
       gradient: "from-teal-500 to-blue-500"
     }
@@ -252,7 +252,7 @@ const DeliverableSection = () => {
             </div>
           </div>
 
-          {/* Interactive Deliverables Grid */}
+          {/* Interactive Deliverables Grid with Uniform Heights */}
           <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 ${isVisible ? 'stagger-children revealed' : 'stagger-children'}`}>
             {deliverables.map((item, index) => {
               const Icon = item.icon;
@@ -261,17 +261,17 @@ const DeliverableSection = () => {
               return (
                 <div 
                   key={index} 
-                  className="group relative"
+                  className="group relative h-full"
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className={`card-premium transition-all duration-500 hover:scale-105 ${
+                  <div className={`card-premium h-full min-h-[460px] flex flex-col transition-all duration-500 hover:scale-105 ${
                     isHovered ? 'bg-white/[0.12] border-gold-500/30 shadow-glow-gold' : ''
                   }`}>
                     {/* Animated Background */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`} />
                     
-                    <div className="relative z-10">
+                    <div className="relative z-10 flex flex-col h-full">
                       {/* Icon with Glow */}
                       <div className={`w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center transition-all duration-500 ${
                         isHovered ? 'scale-110 glow-gold-strong' : 'scale-100'
@@ -285,12 +285,13 @@ const DeliverableSection = () => {
                         {item.title}
                       </h3>
                       
-                      <p className="text-white/70 leading-relaxed mb-6">
+                      {/* Description with flex-grow to take available space */}
+                      <p className="text-white/70 leading-relaxed mb-6 flex-grow">
                         {item.description}
                       </p>
                       
-                      {/* Preview Badge */}
-                      <div className={`glass px-4 py-2 rounded-lg transition-all duration-300 ${
+                      {/* Preview Badge - positioned at bottom */}
+                      <div className={`glass px-4 py-2 rounded-lg transition-all duration-300 mt-auto ${
                         isHovered ? 'bg-gold-500/10 border-gold-500/20' : ''
                       }`}>
                         <div className="flex items-center">
