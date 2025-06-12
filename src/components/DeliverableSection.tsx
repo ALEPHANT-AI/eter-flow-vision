@@ -1,6 +1,9 @@
+
 import React, { useEffect, useRef, useState } from 'react';
-import { CheckCircle, ArrowRight, Sparkles, Eye, Palette, Target, Users, Video, Calendar, Expand } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, Users, Video, Calendar, Palette } from 'lucide-react';
 import DeliverableModal from './DeliverableModal';
+import DeliverableCard from './DeliverableCard';
+import DeliverablePreview from './DeliverablePreview';
 
 const DeliverableSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -115,92 +118,30 @@ const DeliverableSection = () => {
           </div>
 
           {/* Compact Example Preview */}
-          <div className={`card-premium mb-12 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01] ${
+          <div className={`transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="text-center mb-4">
-              <div className="flex items-center justify-center mb-3">
-                <Sparkles className="w-6 h-6 text-gold-400 mr-2" />
-                <span className="text-white text-lg font-bold">EXEMPLO REAL DE ENTREGÁVEL</span>
-              </div>
-              <p className="text-white/60 text-sm">Clique para ver em tela cheia</p>
-            </div>
-
-            {/* Thumbnail Grid */}
-            <div className="grid md:grid-cols-2 gap-4">
-              {previewImages.map((item, index) => (
-                <div 
-                  key={index}
-                  className="relative h-64 bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-lg border border-gold-500/20 overflow-hidden cursor-pointer group"
-                  onClick={() => openModal(item.fullImage, item.title)}
-                >
-                  <img 
-                    src={item.src} 
-                    alt={`${item.title} preview`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black-900/20 group-hover:bg-black-900/10 transition-colors duration-300" />
-                  <div className="absolute top-2 right-2 bg-black-900/80 backdrop-blur-sm rounded-lg px-2 py-1">
-                    <Expand className="w-4 h-4 text-white/70" />
-                  </div>
-                  <div className="absolute bottom-2 left-2 bg-black-900/80 backdrop-blur-sm rounded-lg px-2 py-1">
-                    <span className="text-white/70 text-xs">{item.title}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <DeliverablePreview 
+              previewImages={previewImages}
+              onImageClick={openModal}
+            />
           </div>
 
           {/* Interactive Deliverables Grid */}
           <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 ${isVisible ? 'stagger-children revealed' : 'stagger-children'}`}>
-            {deliverables.map((item, index) => {
-              const Icon = item.icon;
-              const isHovered = hoveredCard === index;
-              
-              return (
-                <div 
-                  key={index} 
-                  className="group relative h-full"
-                  onMouseEnter={() => setHoveredCard(index)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                >
-                  <div className={`card-premium h-full min-h-[280px] flex flex-col transition-all duration-500 hover:scale-105 ${
-                    isHovered ? 'bg-white/[0.12] border-gold-500/30 shadow-glow-gold' : ''
-                  }`}>
-                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`} />
-                    
-                    <div className="relative z-10 flex flex-col h-full">
-                      <div className={`w-12 h-12 mb-4 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center transition-all duration-500 ${
-                        isHovered ? 'scale-110 glow-gold-strong' : 'scale-100'
-                      }`}>
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      
-                      <h3 className={`text-lg font-bold text-white mb-3 transition-all duration-300 ${
-                        isHovered ? 'text-gradient' : ''
-                      }`}>
-                        {item.title}
-                      </h3>
-                      
-                      <p className="text-white/70 leading-relaxed mb-4 flex-grow text-sm">
-                        {item.description}
-                      </p>
-                      
-                      <div className={`glass px-3 py-2 rounded-lg transition-all duration-300 mt-auto ${
-                        isHovered ? 'bg-gold-500/10 border-gold-500/20' : ''
-                      }`}>
-                        <div className="flex items-center">
-                          <Eye className="w-3 h-3 text-gold-400 mr-2" />
-                          <span className="text-xs text-white/80 font-medium">{item.preview}</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500 rounded-2xl -z-10`} />
-                  </div>
-                </div>
-              );
-            })}
+            {deliverables.map((item, index) => (
+              <DeliverableCard
+                key={index}
+                icon={item.icon}
+                title={item.title}
+                description={item.description}
+                preview={item.preview}
+                gradient={item.gradient}
+                isHovered={hoveredCard === index}
+                onHover={() => setHoveredCard(index)}
+                onLeave={() => setHoveredCard(null)}
+              />
+            ))}
           </div>
 
           {/* CTA */}
