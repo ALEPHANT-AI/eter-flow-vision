@@ -68,7 +68,7 @@ const HeroSection = () => {
               }`}>
                 <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-10 py-5 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
                   {/* Content */}
-                  <span className="relative z-10 flex items-center text-lg md:text-xl lg:text-2xl">
+                  <span className="relative z-10 flex items-center justify-center text-lg md:text-xl lg:text-2xl">
                     PREENCHER APLICAÇÃO
                     <ArrowRight className="ml-3 w-6 h-6 transition-transform group-hover:translate-x-2" />
                   </span>
