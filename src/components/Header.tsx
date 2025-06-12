@@ -19,12 +19,19 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          {/* ETER FLOW Logo with symbol */}
+          <div className="flex items-center space-x-3">
             <img 
-              src="/lovable-uploads/f03091e1-3ee0-4cdc-abeb-ce20bdea3739.png" 
+              src="/lovable-uploads/eac41d62-c80a-4f5d-9147-4be418220852.png" 
               alt="ETER"
-              className="h-16"
+              className="h-12"
             />
+            <div>
+              <div className="text-lg md:text-xl font-bold text-white">ETER FLOW</div>
+              <div className="text-xs text-gold-400 font-medium">
+                Powered By Alephant
+              </div>
+            </div>
           </div>
           
           <button className="relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic group">

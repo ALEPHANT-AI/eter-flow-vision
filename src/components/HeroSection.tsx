@@ -28,26 +28,9 @@ const HeroSection = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             {/* Content Column - Left Side */}
-            <div className="space-y-6 text-left">
-              {/* Logo ETER com Powered By */}
-              <div className={`flex items-center space-x-4 transition-all duration-1000 delay-300 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>
-                <img 
-                  src="/lovable-uploads/eac41d62-c80a-4f5d-9147-4be418220852.png" 
-                  alt="ETER"
-                  className="h-16"
-                />
-                <div>
-                  <div className="text-xl md:text-2xl font-bold text-white">ETER FLOW</div>
-                  <div className="text-xs text-gold-400 font-medium">
-                    Powered By Alephant
-                  </div>
-                </div>
-              </div>
-
+            <div className="space-y-5 text-left">
               {/* Impact Phrase */}
-              <div className={`transition-all duration-1200 delay-700 ${
+              <div className={`transition-all duration-1200 delay-300 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
@@ -59,7 +42,7 @@ const HeroSection = () => {
               </div>
 
               {/* Main Value Proposition */}
-              <div className={`space-y-4 transition-all duration-1000 delay-900 ${
+              <div className={`space-y-4 transition-all duration-1000 delay-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 <p className="text-base md:text-lg text-white/80 leading-relaxed">
@@ -71,7 +54,7 @@ const HeroSection = () => {
               </div>
 
               {/* Description */}
-              <div className={`text-sm md:text-base text-white/70 leading-relaxed transition-all duration-1000 delay-1100 ${
+              <div className={`text-sm md:text-base text-white/70 leading-relaxed transition-all duration-1000 delay-700 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
@@ -80,7 +63,7 @@ const HeroSection = () => {
               </div>
 
               {/* CTA Button */}
-              <div className={`transition-all duration-1000 delay-1300 ${
+              <div className={`transition-all duration-1000 delay-900 ${
                 isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
               }`}>
                 <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
