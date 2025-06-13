@@ -87,7 +87,7 @@ const DeliverableSection = () => {
       title: "Identidade Visual Completa",
       description: "Símbolos, cores, fotografia, fontes e direção de arte completa com atmosfera visual única.",
       preview: "Logo + Paleta + Templates",
-      gradient: "from-purple-500 to-purple-600"
+      gradient: "from-gold-500 to-yellow-500"
     },
     {
       icon: Calendar,
@@ -102,8 +102,8 @@ const DeliverableSection = () => {
     <section ref={sectionRef} className="py-16 relative overflow-hidden bg-gradient-to-b from-black-800 via-black-850 to-black-900">
       {/* Dynamic Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/8 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-400/4 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gold-500/8 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gold-400/4 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

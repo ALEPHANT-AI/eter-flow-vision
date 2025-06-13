@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -62,18 +63,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// THE EIGHT® Premium Color System - Purple Theme
-				purple: {
-					50: '#FAF5FF',
-					100: '#F3E8FF',
-					200: '#E9D5FF',
-					300: '#D8B4FE',
-					400: '#C084FC',
-					500: '#A855F7', // Primary Purple
-					600: '#9333EA',
-					700: '#7C3AED',
-					800: '#6B21A8',
-					900: '#581C87'
+				// THE EIGHT® Premium Color System
+				gold: {
+					50: '#FFFBF0',
+					100: '#FEF7E0',
+					200: '#FDECC4',
+					300: '#FBDC9C',
+					400: '#F8C572',
+					500: '#F5A623', // Primary Gold
+					600: '#E89611',
+					700: '#C17D0F',
+					800: '#9A6412',
+					900: '#7D5112'
 				},
 				black: {
 					50: '#F8F9FA',
@@ -144,8 +145,8 @@ export default {
 					'100%': { opacity: '1', transform: 'scale(1)' }
 				},
 				'glow-pulse': {
-					'0%, 100%': { boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)' },
-					'50%': { boxShadow: '0 0 40px rgba(168, 85, 247, 0.8)' }
+					'0%, 100%': { boxShadow: '0 0 20px rgba(245, 166, 35, 0.4)' },
+					'50%': { boxShadow: '0 0 40px rgba(245, 166, 35, 0.8)' }
 				},
 				'float': {
 					'0%, 100%': { transform: 'translateY(0px)' },
@@ -177,14 +178,12 @@ export default {
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-				'mesh-gradient': 'radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%)',
+				'mesh-gradient': 'radial-gradient(circle at 20% 50%, rgba(245, 166, 35, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.1) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(245, 166, 35, 0.08) 0%, transparent 50%)',
 				'noise': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")"
 			},
 			boxShadow: {
 				'glow-gold': '0 0 20px rgba(245, 166, 35, 0.3)',
 				'glow-gold-strong': '0 0 40px rgba(245, 166, 35, 0.5)',
-				'glow-purple': '0 0 20px rgba(168, 85, 247, 0.3)',
-				'glow-purple-strong': '0 0 40px rgba(168, 85, 247, 0.5)',
 				'glass': '0 8px 32px rgba(0, 0, 0, 0.12)',
 				'premium': '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
 			},
