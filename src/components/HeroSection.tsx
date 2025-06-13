@@ -11,7 +11,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Background with Davi's image and golden filter */}
+      {/* Background with Davi's image and purple filter */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black-950 via-black-900 to-black-800" />
         <img 
@@ -19,8 +19,8 @@ const HeroSection = () => {
           alt="Davi Ribas criando movimento" 
           className="w-full h-full object-cover opacity-30" 
         />
-        {/* Golden filter overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 via-gold-400/10 to-transparent mix-blend-overlay" />
+        {/* Purple filter overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-purple-400/10 to-transparent mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-t from-black-950 via-black-900/50 to-transparent" />
       </div>
 
@@ -39,7 +39,7 @@ const HeroSection = () => {
             {/* Impact Phrase */}
             <div className={`transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight">
-                <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
+                <span className="text-gradient bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">
                   MOVEMENT IS<br />
                   THE NEW BRANDING
                 </span>
@@ -65,7 +65,7 @@ const HeroSection = () => {
 
             {/* Centered CTA Button */}
             <div className={`flex justify-center pt-4 transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
-              <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-10 py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
+              <button className="group relative overflow-hidden bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold px-10 py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-purple-strong hover:from-purple-400 hover:to-purple-500 magnetic">
                 {/* Content */}
                 <span className="relative z-10 flex items-center justify-center text-lg md:text-xl lg:text-2xl">
                   PREENCHER APLICAÇÃO

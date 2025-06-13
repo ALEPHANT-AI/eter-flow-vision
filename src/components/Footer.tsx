@@ -43,9 +43,9 @@ const Footer = () => {
     <footer id="footer" className="relative py-32 bg-gradient-to-b from-black-900 to-black-950 overflow-hidden">
       {/* Dramatic Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gold-400/5 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-gold-500/5 to-transparent rounded-full" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-400/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-purple-500/5 to-transparent rounded-full" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -75,7 +75,7 @@ const Footer = () => {
           }`}>
             <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse mr-3" />
             <span className="text-white font-medium">Apenas 8 vagas disponíveis</span>
-            <Sparkles className="w-4 h-4 text-gold-400 ml-2 animate-spin" />
+            <Sparkles className="w-4 h-4 text-purple-400 ml-2 animate-spin" />
           </div>
           
           {/* Final CTA */}
@@ -83,7 +83,7 @@ const Footer = () => {
             isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
           }`}>
             <button 
-              className="group relative overflow-hidden bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-black-950 font-black px-16 py-8 rounded-3xl transition-all duration-500 hover:scale-110 hover:shadow-glow-gold-strong magnetic text-xl"
+              className="group relative overflow-hidden bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 text-white font-black px-16 py-8 rounded-3xl transition-all duration-500 hover:scale-110 hover:shadow-glow-purple-strong magnetic text-xl"
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
@@ -95,7 +95,7 @@ const Footer = () => {
               }}
             >
               {/* Animated Background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-gold-300 to-gold-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-300 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
               {/* Pulse Effect */}
               <div className="absolute inset-0 bg-white/30 opacity-0 group-hover:opacity-100 group-hover:animate-ping rounded-3xl" />
@@ -118,8 +118,8 @@ const Footer = () => {
             const Icon = seal.icon;
             return (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-gold-500 to-gold-600 rounded-2xl flex items-center justify-center glow-gold">
-                  <Icon className="w-8 h-8 text-black" />
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center glow-purple">
+                  <Icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-white font-bold text-lg mb-2">{seal.title}</h3>
                 <p className="text-white/70">{seal.description}</p>
@@ -160,7 +160,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Glow */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent opacity-50" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" />
     </footer>
   );
 };
