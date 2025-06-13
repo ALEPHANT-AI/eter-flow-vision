@@ -30,13 +30,13 @@ const DeliverableCard = ({
       onMouseLeave={onLeave}
     >
       <div className={`card-premium h-full min-h-[280px] flex flex-col transition-all duration-500 hover:scale-105 ${
-        isHovered ? 'bg-white/[0.12] border-gold-500/30 shadow-glow-gold' : ''
+        isHovered ? 'bg-white/[0.12] border-purple-500/30 shadow-glow-purple' : ''
       }`}>
         <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`} />
         
         <div className="relative z-10 flex flex-col h-full">
           <div className={`w-12 h-12 mb-4 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center transition-all duration-500 ${
-            isHovered ? 'scale-110 glow-gold-strong' : 'scale-100'
+            isHovered ? 'scale-110 glow-purple-strong' : 'scale-100'
           }`}>
             <Icon className="w-6 h-6 text-white" />
           </div>
@@ -52,10 +52,10 @@ const DeliverableCard = ({
           </p>
           
           <div className={`glass px-3 py-2 rounded-lg transition-all duration-300 mt-auto ${
-            isHovered ? 'bg-gold-500/10 border-gold-500/20' : ''
+            isHovered ? 'bg-purple-500/10 border-purple-500/20' : ''
           }`}>
             <div className="flex items-center">
-              <Eye className="w-3 h-3 text-gold-400 mr-2" />
+              <Eye className="w-3 h-3 text-purple-400 mr-2" />
               <span className="text-xs text-white/80 font-medium">{preview}</span>
             </div>
           </div>

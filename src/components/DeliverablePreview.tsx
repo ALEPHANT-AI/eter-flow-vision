@@ -15,10 +15,10 @@ interface DeliverablePreviewProps {
 
 const DeliverablePreview = ({ previewImages, onImageClick }: DeliverablePreviewProps) => {
   return (
-    <div className="card-premium mb-12 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01]">
+    <div className="card-premium mb-12 bg-gradient-to-br from-purple-500/10 to-purple-600/5 border-purple-500/20 transition-all duration-1000 delay-300 hover:scale-[1.01]">
       <div className="text-center mb-4">
         <div className="flex items-center justify-center mb-3">
-          <Sparkles className="w-6 h-6 text-gold-400 mr-2" />
+          <Sparkles className="w-6 h-6 text-purple-400 mr-2" />
           <span className="text-white text-lg font-bold">EXEMPLO REAL DE ENTREGÁVEL</span>
         </div>
         <p className="text-white/60 text-sm">Clique para ver em tela cheia</p>
@@ -28,7 +28,7 @@ const DeliverablePreview = ({ previewImages, onImageClick }: DeliverablePreviewP
         {previewImages.map((item, index) => (
           <div 
             key={index}
-            className="relative h-64 bg-gradient-to-br from-gold-500/5 to-gold-600/5 rounded-lg border border-gold-500/20 overflow-hidden cursor-pointer group"
+            className="relative h-64 bg-gradient-to-br from-purple-500/5 to-purple-600/5 rounded-lg border border-purple-500/20 overflow-hidden cursor-pointer group"
             onClick={() => onImageClick(item.fullImage, item.title)}
           >
             <img 
