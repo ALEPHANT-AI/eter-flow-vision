@@ -107,8 +107,8 @@ const ProfileSection = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-            {/* Image Section with multiple images */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+            {/* Image Section */}
             <div className={`relative transition-all duration-1000 delay-300 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
             }`}>
@@ -148,17 +148,6 @@ const ProfileSection = () => {
                     alt="Davi Ribas - Estratégia"
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   />
-                </div>
-
-                {/* Floating Stats Cards */}
-                <div className="absolute -bottom-8 -left-8 glass-strong p-6 rounded-2xl animate-float delay-500">
-                  <div className="text-3xl font-black text-gradient mb-1">R$ {counters.revenue}MM+</div>
-                  <div className="text-white/80 text-sm">Em receita gerada</div>
-                </div>
-
-                <div className="absolute -top-8 -right-8 glass-strong p-6 rounded-2xl animate-float delay-1500">
-                  <div className="text-3xl font-black text-gradient mb-1">{counters.people}M+</div>
-                  <div className="text-white/80 text-sm">Pessoas impactadas</div>
                 </div>
               </div>
             </div>
