@@ -148,12 +148,6 @@ const ProfileSection = () => {
                     alt="Davi Ribas - Estratégia"
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   />
-                  
-                  {/* Overlay text */}
-                  <div className="absolute bottom-4 left-4 z-20">
-                    <div className="text-white font-bold text-lg">Criação de Movimentos</div>
-                    <div className="text-gold-400 text-sm">Estratégia & Inovação</div>
-                  </div>
                 </div>
 
                 {/* Floating Stats Cards */}
