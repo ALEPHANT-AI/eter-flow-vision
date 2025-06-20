@@ -27,9 +27,9 @@ const Header = () => {
           {/* ETER FLOW Logo with Powered By Alephant */}
           <div className="flex items-center space-x-3">
             <img 
-              src="/lovable-uploads/244e0e3c-6c22-4c1c-9e71-2b4d992d5696.png" 
+              src="/lovable-uploads/6bc9cbd4-7727-4d6d-8de4-1da0209f7d40.png" 
               alt="ETER FLOW"
-              className="h-10 md:h-12"
+              className="h-12 md:h-14"
             />
             <div className="text-xs text-gold-400 font-medium">
               Powered By Alephant

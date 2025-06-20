@@ -27,14 +27,14 @@ const HeroSection = () => {
       <div className="container mx-auto relative z-10 max-w-6xl">
         <div className="text-center space-y-6">
           {/* Logo section - positioned to the left and moved up */}
-          <div className={`flex justify-start mb-12 -mt-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`flex justify-start mb-12 -mt-12 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-left">
               <img 
-                src="/lovable-uploads/244e0e3c-6c22-4c1c-9e71-2b4d992d5696.png" 
+                src="/lovable-uploads/6bc9cbd4-7727-4d6d-8de4-1da0209f7d40.png" 
                 alt="ETER FLOW"
-                className="h-32 md:h-40 mb-1 object-contain filter brightness-110 contrast-110"
+                className="h-32 md:h-40 mb-0 object-contain filter brightness-110 contrast-110"
               />
-              <div className="text-sm text-gold-400 font-medium mb-2">
+              <div className="text-sm text-gold-400 font-medium mb-1 -mt-1">
                 Powered By Alephant
               </div>
               <div className="text-sm md:text-base text-white/60 font-medium tracking-wide">
