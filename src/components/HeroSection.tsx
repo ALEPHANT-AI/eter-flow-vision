@@ -10,7 +10,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 px-4">
       {/* Background with Davi's image and golden filter */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black-950 via-black-900 to-black-800" />
@@ -24,58 +24,62 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black-950 via-black-900/50 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          {/* Left-aligned Content */}
-          <div className="space-y-4">
-            {/* ETER FLOW Logo Text */}
-            <div className={`transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="text-2xl md:text-3xl lg:text-4xl font-bold">
-                
+      <div className="container mx-auto relative z-10 max-w-4xl">
+        <div className="text-center space-y-6">
+          {/* ETERFLOW Logo */}
+          <div className={`transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <img 
+                src="/lovable-uploads/b51a5c29-18bb-44d4-a063-4685b0fb43a9.png" 
+                alt="ETER"
+                className="h-10 md:h-12"
+              />
+              <div className="text-left">
+                <div className="text-xl md:text-2xl font-bold text-white">ETER FLOW</div>
+                <div className="text-xs text-gold-400 font-medium">
+                  Powered By Alephant
+                </div>
               </div>
-              
             </div>
+            
+            {/* Movement is the New Branding - Small tagline */}
+            <p className="text-sm md:text-base text-white/60 font-medium tracking-wide">
+              MOVEMENT IS THE NEW BRANDING
+            </p>
+          </div>
 
-            {/* Impact Phrase */}
-            <div className={`transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight">
-                <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
-                  MOVEMENT IS<br />
-                  THE NEW BRANDING
-                </span>
-              </h1>
-            </div>
-
-            {/* Main Value Proposition */}
-            <div className={`space-y-4 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <p className="text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-4xl">
-                <strong className="text-white font-semibold">SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR</strong>
-              </p>
-              <p className="text-3xl md:text-4xl lg:text-5xl font-bold">
-                <span className="text-gradient">DAVI RIBAS</span>
-              </p>
-            </div>
-
-            {/* Description */}
-            <div className={`text-base md:text-lg lg:text-xl text-white/70 leading-relaxed transition-all duration-1000 delay-700 max-w-4xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
+          {/* Main Headline */}
+          <div className={`transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+              <span className="text-white">
+                SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR
+              </span>
               <br />
-              <strong className="text-white">construa uma marca que lidera, inspira e cria uma comunidade de fãs engajados e compradores</strong>
-            </div>
+              <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
+                DAVI RIBAS
+              </span>
+            </h1>
+          </div>
 
-            {/* Centered CTA Button */}
-            <div className={`flex justify-center pt-4 transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
-              <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-10 py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
-                {/* Content */}
-                <span className="relative z-10 flex items-center justify-center text-lg md:text-xl lg:text-2xl">
-                  PREENCHER APLICAÇÃO
-                  <ArrowRight className="ml-3 w-6 h-6 transition-transform group-hover:translate-x-2" />
-                </span>
-                
-                {/* Ripple Effect */}
-                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping rounded-xl" />
-              </button>
-            </div>
+          {/* Description - Subheading */}
+          <div className={`text-base md:text-lg lg:text-xl text-white/70 leading-relaxed transition-all duration-1000 delay-500 max-w-3xl mx-auto ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
+            <br />
+            <strong className="text-white">construa uma marca que lidera, inspira e cria uma comunidade de fãs engajados e compradores</strong>
+          </div>
+
+          {/* CTA Button */}
+          <div className={`flex justify-center pt-6 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
+            <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 md:px-10 py-3 md:py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
+              {/* Content */}
+              <span className="relative z-10 flex items-center justify-center text-base md:text-lg lg:text-xl">
+                PREENCHER APLICAÇÃO
+                <ArrowRight className="ml-3 w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:translate-x-2" />
+              </span>
+              
+              {/* Ripple Effect */}
+              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping rounded-xl" />
+            </button>
           </div>
         </div>
       </div>

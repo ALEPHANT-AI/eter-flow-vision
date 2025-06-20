@@ -24,12 +24,12 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* ETER FLOW Logo with new image */}
+          {/* ETER FLOW Logo with Powered By Alephant */}
           <div className="flex items-center space-x-3">
             <img 
               src="/lovable-uploads/b51a5c29-18bb-44d4-a063-4685b0fb43a9.png" 
               alt="ETER"
-              className="h-12"
+              className="h-10 md:h-12"
             />
             <div>
               <div className="text-lg md:text-xl font-bold text-white">ETER FLOW</div>
@@ -39,8 +39,8 @@ const Header = () => {
             </div>
           </div>
           
-          <button className="relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic group">
-            <span className="relative z-10">PREENCHER APLICAÇÃO</span>
+          <button className="relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-6 md:px-8 py-2 md:py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic group">
+            <span className="relative z-10 text-sm md:text-base">PREENCHER APLICAÇÃO</span>
             <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping rounded-xl" />
           </button>
         </div>
