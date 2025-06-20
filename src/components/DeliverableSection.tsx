@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Sparkles, Target, Users, Video, Calendar, Palette } from 'lucide-react';
 import DeliverableModal from './DeliverableModal';
@@ -57,42 +58,42 @@ const DeliverableSection = () => {
     {
       icon: Target,
       title: "Criação de Movimento",
-      description: "Sua mensagem, promessa e sistema de crenças que farão as pessoas te seguirem apaixonadamente.",
+      description: "Sua mensagem, promessa e sistema de crenças que farão as pessoas te seguirem apaixonadamente e se tornarem fãs compradores",
       preview: "Manifesto + Sistema de Crenças",
       gradient: "from-purple-500 to-pink-500"
     },
     {
       icon: Sparkles,
       title: "Marca Pessoal",
-      description: "Posicionamento único, diferenciação clara e autoridade que te posiciona como líder autêntico.",
+      description: "Posicionamento único, Ensaio Fotográfico Arquetípico, diferenciação e autoridade que te posiciona como líder autêntico e reconhecido.",
       preview: "Posicionamento + Diferenciação",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       icon: Video,
       title: "Narrativa",
-      description: "Sua história magnética e storytelling estruturado que conecta emocionalmente com sua audiência.",
+      description: "Seu Manifesto completo e Vídeo em alta qualidade. Sua história magnética, mensagens-chave e storytelling que conecta emocionalmente com sua audiência",
       preview: "Storytelling + Mensagens-Chave",
       gradient: "from-green-500 to-emerald-500"
     },
     {
       icon: Users,
       title: "Identidade da Tribo",
-      description: "Como sua comunidade pensa, fala, age e se reconhece. O DNA completo dos seus seguidores ideais.",
+      description: "Como sua comunidade pensa, fala, age e se reconhece o DNA dos seus seguidores ideais",
       preview: "Persona + Linguagem + Rituais",
       gradient: "from-orange-500 to-red-500"
     },
     {
       icon: Palette,
       title: "Identidade Visual Completa",
-      description: "Símbolos, cores, fotografia, fontes e direção de arte completa com atmosfera visual única.",
+      description: "Símbolos, cores, fotografia p fontes, direção de arte e atmosfera visual com templates visuais prontos para usar",
       preview: "Logo + Paleta + Templates",
       gradient: "from-gold-500 to-yellow-500"
     },
     {
       icon: Calendar,
       title: "Plano de Ativação",
-      description: "Cronograma detalhado, scripts de posts e estratégias de lançamento do movimento.",
+      description: "Cronograma detalhado, scripts de posts, estratégias de lançamento do Movimento e métricas de acompanhamento para implementar sua nova marca no mercado",
       preview: "Cronograma + Scripts + Métricas",
       gradient: "from-teal-500 to-blue-500"
     }
