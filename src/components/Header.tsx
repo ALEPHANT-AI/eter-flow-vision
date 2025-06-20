@@ -29,7 +29,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/6bc9cbd4-7727-4d6d-8de4-1da0209f7d40.png" 
               alt="ETER FLOW"
-              className="h-3 md:h-4"
+              className="h-6 md:h-8"
             />
             <div className="text-xs text-gold-400 font-medium">
               Powered By Alephant

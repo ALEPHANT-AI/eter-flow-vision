@@ -10,7 +10,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-12 px-4">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 px-4">
       {/* Background with Davi's image and golden filter */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black-950 via-black-900 to-black-800" />
@@ -25,14 +25,14 @@ const HeroSection = () => {
       </div>
 
       <div className="container mx-auto relative z-10 max-w-6xl">
-        <div className="text-center space-y-6">
+        <div className="text-center space-y-4">
           {/* Logo section - positioned to the left and moved up */}
-          <div className={`flex justify-start mb-12 -mt-12 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`flex justify-start mb-8 -mt-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-left">
               <img 
                 src="/lovable-uploads/6bc9cbd4-7727-4d6d-8de4-1da0209f7d40.png" 
                 alt="ETER FLOW"
-                className="h-8 md:h-10 mb-0 object-contain filter brightness-110 contrast-110"
+                className="h-16 md:h-20 mb-0 object-contain filter brightness-110 contrast-110"
               />
               <div className="text-sm text-gold-400 font-medium mb-1 -mt-1">
                 Powered By Alephant
@@ -45,7 +45,7 @@ const HeroSection = () => {
 
           {/* The Eight Title */}
           <div className={`transition-all duration-1200 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4">
               <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
                 THE EIGHT®
               </span>
@@ -54,7 +54,7 @@ const HeroSection = () => {
 
           {/* Main Headline */}
           <div className={`transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black leading-tight">
               <span className="text-white">
                 SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR
               </span>
@@ -66,14 +66,14 @@ const HeroSection = () => {
           </div>
 
           {/* Description - Subheading */}
-          <div className={`text-base md:text-lg lg:text-xl text-white/70 leading-relaxed transition-all duration-1000 delay-500 max-w-3xl mx-auto ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`text-sm md:text-base lg:text-lg text-white/70 leading-relaxed transition-all duration-1000 delay-500 max-w-3xl mx-auto ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
             <br />
             <strong className="text-white">construa uma marca que lidera, inspira e cria uma comunidade de fãs engajados e compradores</strong>
           </div>
 
           {/* CTA Button */}
-          <div className={`flex justify-center pt-6 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
+          <div className={`flex justify-center pt-4 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
             <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 md:px-10 py-3 md:py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
               {/* Content */}
               <span className="relative z-10 flex items-center justify-center text-base md:text-lg lg:text-xl">
