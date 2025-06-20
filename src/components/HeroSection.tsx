@@ -10,7 +10,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 px-4">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-12 px-4">
       {/* Background with Davi's image and golden filter */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black-950 via-black-900 to-black-800" />
@@ -26,18 +26,18 @@ const HeroSection = () => {
 
       <div className="container mx-auto relative z-10 max-w-6xl">
         <div className="text-center space-y-6">
-          {/* Logo section - positioned to the left */}
-          <div className={`flex justify-start mb-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Logo section - positioned to the left and moved up */}
+          <div className={`flex justify-start mb-12 -mt-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-left">
               <img 
                 src="/lovable-uploads/244e0e3c-6c22-4c1c-9e71-2b4d992d5696.png" 
                 alt="ETER FLOW"
-                className="h-16 md:h-20 mb-2"
+                className="h-32 md:h-40 mb-3 object-contain filter brightness-110 contrast-110"
               />
-              <div className="text-xs text-gold-400 font-medium mb-1">
+              <div className="text-sm text-gold-400 font-medium mb-2">
                 Powered By Alephant
               </div>
-              <div className="text-xs md:text-sm text-white/60 font-medium tracking-wide">
+              <div className="text-sm md:text-base text-white/60 font-medium tracking-wide">
                 MOVEMENT IS THE NEW BRANDING
               </div>
             </div>
