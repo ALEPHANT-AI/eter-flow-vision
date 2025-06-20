@@ -173,19 +173,7 @@ const ProfileSection = () => {
             <div className={`space-y-8 transition-all duration-1000 delay-500 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
             }`}>
-              {/* Main Stats */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center">
-                  <div className="text-5xl font-black text-gradient mb-2">{counters.followers}+</div>
-                  <div className="text-white/80">Participantes ETER Summit</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-5xl font-black text-gradient mb-2">{counters.years}+</div>
-                  <div className="text-white/80">Anos de experiência</div>
-                </div>
-              </div>
-
-              {/* Description - Copy Fiel */}
+              {/* Description - Copy Verdadeira */}
               <div className="space-y-6">
                 <p className="text-lg text-white/80 leading-relaxed">
                   Fundador da ETER Co, o ecossistema Edu |Brand | Tech que transforma marcas pessoais e institucionais em movimentos que dominam o mercado formando as referências brasileiras do futuro.
