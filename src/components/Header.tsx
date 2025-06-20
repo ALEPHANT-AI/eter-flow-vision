@@ -27,19 +27,16 @@ const Header = () => {
           {/* ETER FLOW Logo with Powered By Alephant */}
           <div className="flex items-center space-x-3">
             <img 
-              src="/lovable-uploads/b51a5c29-18bb-44d4-a063-4685b0fb43a9.png" 
-              alt="ETER"
-              className="h-10 md:h-12"
+              src="/lovable-uploads/64dbad49-b4e0-4046-8942-13e1ae0c7e6f.png" 
+              alt="ETER FLOW"
+              className="h-8 md:h-10"
             />
-            <div>
-              <div className="text-lg md:text-xl font-bold text-white">ETER FLOW</div>
-              <div className="text-xs text-gold-400 font-medium">
-                Powered By Alephant
-              </div>
+            <div className="text-xs text-purple-400 font-medium">
+              Powered By Alephant
             </div>
           </div>
           
-          <button className="relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-6 md:px-8 py-2 md:py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic group">
+          <button className="relative overflow-hidden bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold px-6 md:px-8 py-2 md:py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-purple-strong hover:from-purple-400 hover:to-purple-500 magnetic group">
             <span className="relative z-10 text-sm md:text-base">PREENCHER APLICAÇÃO</span>
             <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping rounded-xl" />
           </button>

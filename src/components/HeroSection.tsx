@@ -19,46 +19,58 @@ const HeroSection = () => {
           alt="Davi Ribas criando movimento" 
           className="w-full h-full object-cover opacity-30" 
         />
-        {/* Golden filter overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 via-gold-400/10 to-transparent mix-blend-overlay" />
+        {/* Purple filter overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-purple-400/10 to-transparent mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-t from-black-950 via-black-900/50 to-transparent" />
       </div>
 
       <div className="container mx-auto relative z-10 max-w-4xl">
-        <div className="text-center space-y-6">
+        <div className="text-center space-y-8">
           {/* ETERFLOW Logo */}
           <div className={`transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className="flex items-center justify-center mb-6">
               <img 
-                src="/lovable-uploads/b51a5c29-18bb-44d4-a063-4685b0fb43a9.png" 
-                alt="ETER"
-                className="h-10 md:h-12"
+                src="/lovable-uploads/64dbad49-b4e0-4046-8942-13e1ae0c7e6f.png" 
+                alt="ETER FLOW"
+                className="h-16 md:h-20"
               />
-              <div className="text-left">
-                <div className="text-xl md:text-2xl font-bold text-white">ETER FLOW</div>
-                <div className="text-xs text-gold-400 font-medium">
+            </div>
+            
+            <div className="flex items-center justify-center space-x-8 mb-4">
+              <div className="text-center">
+                <div className="text-sm md:text-base text-white/60 font-medium tracking-wide mb-2">
                   Powered By Alephant
                 </div>
               </div>
+              
+              <div className="text-left">
+                <p className="text-sm md:text-base text-white/60 font-medium tracking-wide">
+                  MOVEMENT IS THE NEW BRANDING
+                </p>
+              </div>
             </div>
-            
-            {/* Movement is the New Branding - Small tagline */}
-            <p className="text-sm md:text-base text-white/60 font-medium tracking-wide">
-              MOVEMENT IS THE NEW BRANDING
-            </p>
+          </div>
+
+          {/* The Eight - Page Title */}
+          <div className={`transition-all duration-1200 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight mb-6">
+              <span className="text-gradient bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">
+                THE EIGHT
+              </span>
+            </h1>
           </div>
 
           {/* Main Headline */}
           <div className={`transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black leading-tight">
               <span className="text-white">
                 SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR
               </span>
               <br />
-              <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
+              <span className="text-gradient bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">
                 DAVI RIBAS
               </span>
-            </h1>
+            </h2>
           </div>
 
           {/* Description - Subheading */}
@@ -70,7 +82,7 @@ const HeroSection = () => {
 
           {/* CTA Button */}
           <div className={`flex justify-center pt-6 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
-            <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 md:px-10 py-3 md:py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
+            <button className="group relative overflow-hidden bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold px-8 md:px-10 py-3 md:py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-purple-strong hover:from-purple-400 hover:to-purple-500 magnetic">
               {/* Content */}
               <span className="relative z-10 flex items-center justify-center text-base md:text-lg lg:text-xl">
                 PREENCHER APLICAÇÃO
