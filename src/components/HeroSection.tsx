@@ -32,7 +32,7 @@ const HeroSection = () => {
               <img 
                 src="/lovable-uploads/6bc9cbd4-7727-4d6d-8de4-1da0209f7d40.png" 
                 alt="ETER FLOW"
-                className="h-32 md:h-40 mb-0 object-contain filter brightness-110 contrast-110"
+                className="h-8 md:h-10 mb-0 object-contain filter brightness-110 contrast-110"
               />
               <div className="text-sm text-gold-400 font-medium mb-1 -mt-1">
                 Powered By Alephant
