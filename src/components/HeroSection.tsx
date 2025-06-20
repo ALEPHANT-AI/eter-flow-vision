@@ -26,8 +26,8 @@ const HeroSection = () => {
 
       <div className="container mx-auto relative z-10 max-w-6xl">
         <div className="text-center space-y-4">
-          {/* Logo section - positioned to the left and moved up more */}
-          <div className={`flex justify-start mb-8 -mt-16 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Logo section - positioned more to the left and moved up even more */}
+          <div className={`flex justify-start mb-8 -mt-24 -ml-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-left">
               <img 
                 src="/lovable-uploads/6bc9cbd4-7727-4d6d-8de4-1da0209f7d40.png" 
