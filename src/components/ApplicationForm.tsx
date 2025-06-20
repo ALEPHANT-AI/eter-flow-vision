@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, ArrowLeft, CheckCircle, User, Building, Target, DollarSign, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowLeft, CheckCircle, User, Building, Target, DollarSign, Sparkles, Instagram } from 'lucide-react';
 
 const ApplicationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -9,6 +8,7 @@ const ApplicationForm = () => {
     name: '',
     email: '',
     phone: '',
+    instagram: '@',
     company: '',
     role: '',
     industry: '',
@@ -26,12 +26,17 @@ const ApplicationForm = () => {
   }, []);
 
   const handleInputChange = (field: string, value: string) => {
+    if (field === 'instagram' && !value.startsWith('@')) {
+      value = '@' + value;
+    }
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const nextStep = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(prev => prev + 1);
+      // TODO: Save form data to database when Supabase is connected
+      console.log('Saving form data:', formData);
     }
   };
 
@@ -43,7 +48,7 @@ const ApplicationForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
+    // Handle final form submission here
     console.log('Form submitted:', formData);
   };
 
@@ -157,15 +162,31 @@ const ApplicationForm = () => {
                     </div>
                   </div>
                   
-                  <div className="relative">
-                    <label className="block text-white/80 text-sm font-medium mb-2">WhatsApp *</label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
-                      placeholder="(11) 99999-9999"
-                    />
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">WhatsApp *</label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        placeholder="(11) 99999-9999"
+                      />
+                    </div>
+                    
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">Instagram *</label>
+                      <div className="relative">
+                        <Instagram className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                        <input
+                          type="text"
+                          value={formData.instagram}
+                          onChange={(e) => handleInputChange('instagram', e.target.value)}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          placeholder="@seuinstagram"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
