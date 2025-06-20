@@ -30,12 +30,11 @@ const HeroSection = () => {
           <div className={`transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="flex items-center justify-center space-x-3 mb-4">
               <img 
-                src="/lovable-uploads/b51a5c29-18bb-44d4-a063-4685b0fb43a9.png" 
-                alt="ETER"
+                src="/lovable-uploads/244e0e3c-6c22-4c1c-9e71-2b4d992d5696.png" 
+                alt="ETER FLOW"
                 className="h-10 md:h-12"
               />
               <div className="text-left">
-                <div className="text-xl md:text-2xl font-bold text-white">ETER FLOW</div>
                 <div className="text-xs text-gold-400 font-medium">
                   Powered By Alephant
                 </div>
