@@ -32,7 +32,7 @@ const HeroSection = () => {
               <img 
                 src="/lovable-uploads/6bc9cbd4-7727-4d6d-8de4-1da0209f7d40.png" 
                 alt="ETER FLOW"
-                className="h-12 md:h-14 mb-0 object-contain filter brightness-110 contrast-110"
+                className="h-10 md:h-12 mb-0 object-contain filter brightness-110 contrast-110"
               />
               <div className="text-sm text-gold-400 font-medium mb-1 -mt-1">
                 ETERFLOW
@@ -45,7 +45,7 @@ const HeroSection = () => {
 
           {/* The Eight Title */}
           <div className={`transition-all duration-1200 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4">
               <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
                 THE EIGHT®
               </span>
@@ -54,7 +54,7 @@ const HeroSection = () => {
 
           {/* Main Headline */}
           <div className={`transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black leading-tight">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black leading-tight">
               <span className="text-white">
                 SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR
               </span>
@@ -65,34 +65,11 @@ const HeroSection = () => {
             </h2>
           </div>
 
-          {/* Description - Updated copy */}
-          <div className={`text-sm md:text-base lg:text-lg text-white/70 leading-relaxed transition-all duration-1000 delay-500 max-w-4xl mx-auto ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="space-y-3 text-left">
-              <div className="flex items-start">
-                <span className="text-gold-400 mr-2">✓</span>
-                <span><strong className="text-white">Criação de Movimento:</strong> Sua mensagem, promessa e sistema de crenças que farão as pessoas te seguirem apaixonadamente e se tornarem fãs compradores</span>
-              </div>
-              <div className="flex items-start">
-                <span className="text-gold-400 mr-2">✓</span>
-                <span><strong className="text-white">Marca Pessoal:</strong> Posicionamento único, Ensaio Fotográfico, diferenciação e autoridade que te posiciona como líder autêntico e reconhecido.</span>
-              </div>
-              <div className="flex items-start">
-                <span className="text-gold-400 mr-2">✓</span>
-                <span><strong className="text-white">Narrativa:</strong> Sua história magnética, mensagens-chave e storytelling que conecta emocionalmente com sua audiência</span>
-              </div>
-              <div className="flex items-start">
-                <span className="text-gold-400 mr-2">✓</span>
-                <span><strong className="text-white">Identidade da Tribo:</strong> Como sua comunidade pensa, fala, age e se reconhece o DNA dos seus seguidores ideais</span>
-              </div>
-              <div className="flex items-start">
-                <span className="text-gold-400 mr-2">✓</span>
-                <span><strong className="text-white">Identidade Visual Completa:</strong> Símbolos, Cores, fotografia p fontes, direção de arte e atmosfera visual com templates visuais prontos para usar</span>
-              </div>
-              <div className="flex items-start">
-                <span className="text-gold-400 mr-2">✓</span>
-                <span><strong className="text-white">Plano de Ativação:</strong> Cronograma detalhado, scripts de posts, estratégias de lançamento do Movimento e métricas de acompanhamento para implementar sua nova marca no mercado</span>
-              </div>
-            </div>
+          {/* Description - Simple subheading */}
+          <div className={`text-sm md:text-base lg:text-lg text-white/70 leading-relaxed transition-all duration-1000 delay-500 max-w-3xl mx-auto ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
+            <br />
+            <strong className="text-white">construa uma marca que lidera, inspira e cria uma comunidade de fãs engajados e compradores</strong>
           </div>
 
           {/* CTA Button */}
