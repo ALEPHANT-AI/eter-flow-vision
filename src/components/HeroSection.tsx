@@ -24,32 +24,37 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black-950 via-black-900/50 to-transparent" />
       </div>
 
-      <div className="container mx-auto relative z-10 max-w-4xl">
+      <div className="container mx-auto relative z-10 max-w-6xl">
         <div className="text-center space-y-6">
-          {/* ETERFLOW Logo */}
-          <div className={`transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="flex items-center justify-center space-x-3 mb-4">
+          {/* Logo section - positioned to the left */}
+          <div className={`flex justify-start mb-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="text-left">
               <img 
                 src="/lovable-uploads/244e0e3c-6c22-4c1c-9e71-2b4d992d5696.png" 
                 alt="ETER FLOW"
-                className="h-10 md:h-12"
+                className="h-16 md:h-20 mb-2"
               />
-              <div className="text-left">
-                <div className="text-xs text-gold-400 font-medium">
-                  Powered By Alephant
-                </div>
+              <div className="text-xs text-gold-400 font-medium mb-1">
+                Powered By Alephant
+              </div>
+              <div className="text-xs md:text-sm text-white/60 font-medium tracking-wide">
+                MOVEMENT IS THE NEW BRANDING
               </div>
             </div>
-            
-            {/* Movement is the New Branding - Small tagline */}
-            <p className="text-sm md:text-base text-white/60 font-medium tracking-wide">
-              MOVEMENT IS THE NEW BRANDING
-            </p>
+          </div>
+
+          {/* The Eight Title */}
+          <div className={`transition-all duration-1200 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6">
+              <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
+                THE EIGHT®
+              </span>
+            </h1>
           </div>
 
           {/* Main Headline */}
           <div className={`transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
               <span className="text-white">
                 SEJA UM DOS 8 ESCOLHIDOS PARA TER SUA MARCA PESSOAL, MOVIMENTO E NARRATIVA CRIADOS PESSOALMENTE POR
               </span>
@@ -57,7 +62,7 @@ const HeroSection = () => {
               <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">
                 DAVI RIBAS
               </span>
-            </h1>
+            </h2>
           </div>
 
           {/* Description - Subheading */}
