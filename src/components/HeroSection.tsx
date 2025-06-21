@@ -1,9 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useApplicationModal } from '../contexts/ApplicationModalContext';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { openModal } = useApplicationModal();
 
   useEffect(() => {
     setIsVisible(true);
@@ -74,7 +76,10 @@ const HeroSection = () => {
 
           {/* CTA Button */}
           <div className={`flex justify-center pt-4 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
-            <button className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 md:px-10 py-3 md:py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic">
+            <button 
+              onClick={openModal}
+              className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 md:px-10 py-3 md:py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic"
+            >
               {/* Content */}
               <span className="relative z-10 flex items-center justify-center text-base md:text-lg lg:text-xl">
                 PREENCHER APLICAÇÃO

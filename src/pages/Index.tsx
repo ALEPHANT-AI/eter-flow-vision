@@ -7,7 +7,6 @@ import DeliverableSection from '../components/DeliverableSection';
 import CasesCarousel from '../components/CasesCarousel';
 import MethodologySection from '../components/MethodologySection';
 import ProfileSection from '../components/ProfileSection';
-import ApplicationForm from '../components/ApplicationForm';
 import Footer from '../components/Footer';
 
 const Index = () => {
@@ -20,7 +19,6 @@ const Index = () => {
       <CasesCarousel />
       <MethodologySection />
       <ProfileSection />
-      <ApplicationForm />
       <Footer />
     </div>
   );

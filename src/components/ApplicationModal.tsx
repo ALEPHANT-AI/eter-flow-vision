@@ -1,422 +1,397 @@
 
-import React, { useState } from 'react';
-import { X, ArrowLeft, ArrowRight, Send } from 'lucide-react';
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { Button } from './ui/button';
-import useFormValidation from '../hooks/useFormValidation';
-import { useToast } from '../hooks/use-toast';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, ArrowLeft, CheckCircle, User, Building, Target, DollarSign, Sparkles, Instagram, X } from 'lucide-react';
+import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
+import { useApplicationModal } from '../contexts/ApplicationModalContext';
 
-interface ApplicationModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
+const ApplicationModal = () => {
+  const { isOpen, closeModal } = useApplicationModal();
   const [currentStep, setCurrentStep] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-  const { errors, validateField, validateAllFields, clearFieldError } = useFormValidation();
-
-  // Debug log
-  console.log('Modal state:', { isOpen, currentStep });
-
   const [formData, setFormData] = useState({
-    nome: '',
+    name: '',
     email: '',
-    whatsapp: '',
-    instagram: '',
-    empresa: '',
-    cargo: '',
-    faturamento: '',
-    principais_desafios: '',
-    objetivos_movimento: '',
-    cronograma: '',
-    orcamento_investimento: '',
-    experiencia_anterior: ''
+    phone: '',
+    instagram: '@',
+    company: '',
+    role: '',
+    industry: '',
+    currentRevenue: '',
+    goals: '',
+    timeline: '',
+    investment: '',
+    motivation: ''
   });
 
-  const totalSteps = 3;
+  const totalSteps = 4;
 
   const handleInputChange = (field: string, value: string) => {
+    if (field === 'instagram' && !value.startsWith('@')) {
+      value = '@' + value;
+    }
     setFormData(prev => ({ ...prev, [field]: value }));
-    clearFieldError(field);
   };
 
-  const handleFieldBlur = (field: string, value: string) => {
-    const error = validateField(field, value);
-    if (error) {
-      clearFieldError(field);
-    }
-  };
-
-  const canProceedToNextStep = () => {
-    const fieldsToValidate = getFieldsForCurrentStep();
-    return fieldsToValidate.every(field => {
-      const error = validateField(field, formData[field as keyof typeof formData]);
-      return !error && formData[field as keyof typeof formData].trim() !== '';
-    });
-  };
-
-  const getFieldsForCurrentStep = () => {
-    switch (currentStep) {
-      case 1:
-        return ['nome', 'email', 'whatsapp', 'instagram'];
-      case 2:
-        return ['empresa', 'cargo', 'faturamento'];
-      case 3:
-        return ['principais_desafios', 'objetivos_movimento', 'cronograma', 'orcamento_investimento'];
-      default:
-        return [];
-    }
-  };
-
-  const handleNext = () => {
-    const fieldsToValidate = getFieldsForCurrentStep();
-    const hasErrors = fieldsToValidate.some(field => {
-      const error = validateField(field, formData[field as keyof typeof formData]);
-      return error || !formData[field as keyof typeof formData].trim();
-    });
-
-    if (!hasErrors && currentStep < totalSteps) {
+  const nextStep = () => {
+    if (currentStep < totalSteps) {
       setCurrentStep(prev => prev + 1);
-      console.log(`Progresso salvo - Etapa ${currentStep + 1}:`, formData);
+      console.log('Saving form data:', formData);
     }
   };
 
-  const handlePrevious = () => {
+  const prevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(prev => prev - 1);
     }
   };
 
-  const handleSubmit = async () => {
-    if (!validateAllFields(formData)) {
-      toast({
-        title: "Erro na validação",
-        description: "Por favor, corrija os campos destacados.",
-        variant: "destructive"
-      });
-      return;
-    }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    closeModal();
+  };
 
-    setIsSubmitting(true);
-    
-    try {
-      console.log('Aplicação enviada:', formData);
-      
-      toast({
-        title: "Aplicação enviada com sucesso!",
-        description: "Entraremos em contato em breve.",
-      });
-      
-      onClose();
-      setFormData({
-        nome: '',
-        email: '',
-        whatsapp: '',
-        instagram: '',
-        empresa: '',
-        cargo: '',
-        faturamento: '',
-        principais_desafios: '',
-        objetivos_movimento: '',
-        cronograma: '',
-        orcamento_investimento: '',
-        experiencia_anterior: ''
-      });
+  const progressPercentage = (currentStep / totalSteps) * 100;
+  const stepIcons = [User, Building, Target, DollarSign];
+
+  // Reset form when modal closes
+  useEffect(() => {
+    if (!isOpen) {
       setCurrentStep(1);
-    } catch (error) {
-      toast({
-        title: "Erro ao enviar",
-        description: "Tente novamente em alguns instantes.",
-        variant: "destructive"
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        instagram: '@',
+        company: '',
+        role: '',
+        industry: '',
+        currentRevenue: '',
+        goals: '',
+        timeline: '',
+        investment: '',
+        motivation: ''
       });
-    } finally {
-      setIsSubmitting(false);
     }
-  };
-
-  const handleClose = () => {
-    console.log('Closing modal');
-    const hasData = Object.values(formData).some(value => value.trim() !== '');
-    if (hasData) {
-      if (confirm('Tem certeza que deseja fechar? Seus dados serão perdidos.')) {
-        onClose();
-      }
-    } else {
-      onClose();
-    }
-  };
-
-  const renderStep1 = () => (
-    <div className="space-y-4">
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Nome Completo *
-        </label>
-        <Input
-          value={formData.nome}
-          onChange={(e) => handleInputChange('nome', e.target.value)}
-          onBlur={(e) => handleFieldBlur('nome', e.target.value)}
-          className="w-full"
-          placeholder="Seu nome completo"
-        />
-        {errors.nome && <p className="text-red-400 text-xs mt-1">{errors.nome}</p>}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Email *
-        </label>
-        <Input
-          type="email"
-          value={formData.email}
-          onChange={(e) => handleInputChange('email', e.target.value)}
-          onBlur={(e) => handleFieldBlur('email', e.target.value)}
-          className="w-full"
-          placeholder="seu@email.com"
-        />
-        {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          WhatsApp *
-        </label>
-        <Input
-          value={formData.whatsapp}
-          onChange={(e) => handleInputChange('whatsapp', e.target.value)}
-          onBlur={(e) => handleFieldBlur('whatsapp', e.target.value)}
-          className="w-full"
-          placeholder="+55 11 99999-9999"
-        />
-        {errors.whatsapp && <p className="text-red-400 text-xs mt-1">{errors.whatsapp}</p>}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Instagram
-        </label>
-        <Input
-          value={formData.instagram}
-          onChange={(e) => handleInputChange('instagram', e.target.value)}
-          onBlur={(e) => handleFieldBlur('instagram', e.target.value)}
-          className="w-full"
-          placeholder="@seuinstagram"
-        />
-        {errors.instagram && <p className="text-red-400 text-xs mt-1">{errors.instagram}</p>}
-      </div>
-    </div>
-  );
-
-  const renderStep2 = () => (
-    <div className="space-y-4">
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Empresa *
-        </label>
-        <Input
-          value={formData.empresa}
-          onChange={(e) => handleInputChange('empresa', e.target.value)}
-          className="w-full"
-          placeholder="Nome da sua empresa"
-        />
-        {errors.empresa && <p className="text-red-400 text-xs mt-1">{errors.empresa}</p>}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Cargo *
-        </label>
-        <Input
-          value={formData.cargo}
-          onChange={(e) => handleInputChange('cargo', e.target.value)}
-          className="w-full"
-          placeholder="Seu cargo na empresa"
-        />
-        {errors.cargo && <p className="text-red-400 text-xs mt-1">{errors.cargo}</p>}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Faturamento Mensal *
-        </label>
-        <select
-          value={formData.faturamento}
-          onChange={(e) => handleInputChange('faturamento', e.target.value)}
-          className="w-full px-3 py-2 border rounded-md bg-background text-foreground"
-        >
-          <option value="">Selecione uma faixa</option>
-          <option value="ate-50k">Até R$ 50.000</option>
-          <option value="50k-100k">R$ 50.001 - R$ 100.000</option>
-          <option value="100k-500k">R$ 100.001 - R$ 500.000</option>
-          <option value="500k-1m">R$ 500.001 - R$ 1.000.000</option>
-          <option value="acima-1m">Acima de R$ 1.000.000</option>
-        </select>
-        {errors.faturamento && <p className="text-red-400 text-xs mt-1">{errors.faturamento}</p>}
-      </div>
-    </div>
-  );
-
-  const renderStep3 = () => (
-    <div className="space-y-4">
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Principais Desafios *
-        </label>
-        <Textarea
-          value={formData.principais_desafios}
-          onChange={(e) => handleInputChange('principais_desafios', e.target.value)}
-          className="min-h-[80px] w-full"
-          placeholder="Descreva os principais desafios da sua marca..."
-        />
-        {errors.principais_desafios && <p className="text-red-400 text-xs mt-1">{errors.principais_desafios}</p>}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Objetivos com o Movimento *
-        </label>
-        <Textarea
-          value={formData.objetivos_movimento}
-          onChange={(e) => handleInputChange('objetivos_movimento', e.target.value)}
-          className="min-h-[80px] w-full"
-          placeholder="O que espera alcançar com a criação do movimento?"
-        />
-        {errors.objetivos_movimento && <p className="text-red-400 text-xs mt-1">{errors.objetivos_movimento}</p>}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Cronograma *
-        </label>
-        <select
-          value={formData.cronograma}
-          onChange={(e) => handleInputChange('cronograma', e.target.value)}
-          className="w-full px-3 py-2 border rounded-md bg-background text-foreground"
-        >
-          <option value="">Quando quer começar?</option>
-          <option value="imediato">Imediatamente</option>
-          <option value="1-mes">Em até 1 mês</option>
-          <option value="3-meses">Em até 3 meses</option>
-          <option value="6-meses">Em até 6 meses</option>
-        </select>
-        {errors.cronograma && <p className="text-red-400 text-xs mt-1">{errors.cronograma}</p>}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Orçamento de Investimento *
-        </label>
-        <select
-          value={formData.orcamento_investimento}
-          onChange={(e) => handleInputChange('orcamento_investimento', e.target.value)}
-          className="w-full px-3 py-2 border rounded-md bg-background text-foreground"
-        >
-          <option value="">Selecione uma faixa</option>
-          <option value="ate-50k">Até R$ 50.000</option>
-          <option value="50k-100k">R$ 50.001 - R$ 100.000</option>
-          <option value="100k-200k">R$ 100.001 - R$ 200.000</option>
-          <option value="acima-200k">Acima de R$ 200.000</option>
-        </select>
-        {errors.orcamento_investimento && <p className="text-red-400 text-xs mt-1">{errors.orcamento_investimento}</p>}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2 text-white">
-          Experiência Anterior
-        </label>
-        <Textarea
-          value={formData.experiencia_anterior}
-          onChange={(e) => handleInputChange('experiencia_anterior', e.target.value)}
-          className="min-h-[60px] w-full"
-          placeholder="Já teve experiência com marketing ou criação de comunidades? (opcional)"
-        />
-      </div>
-    </div>
-  );
-
-  if (!isOpen) return null;
+  }, [isOpen]);
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[95vh] overflow-hidden">
-        <DialogTitle className="sr-only">Formulário de Aplicação</DialogTitle>
-        <DialogDescription className="sr-only">
-          Preencha os dados para se candidatar ao programa
-        </DialogDescription>
+    <Dialog open={isOpen} onOpenChange={closeModal}>
+      <DialogOverlay className="fixed inset-0 bg-black/80 z-50" />
+      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50">
+        {/* Close Button */}
+        <button
+          onClick={closeModal}
+          className="absolute right-6 top-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+        >
+          <X className="w-5 h-5 text-white" />
+        </button>
 
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b">
-          <div>
-            <h2 className="text-2xl font-bold">
-              Quero Ser Escolhido
+        <div className="p-8">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 text-white leading-tight">
+              APLICAÇÃO PARA O <span className="text-gradient">THE EIGHT®</span>
             </h2>
-            <p className="text-muted-foreground text-sm mt-1">
-              Etapa {currentStep} de {totalSteps}
+            <p className="text-lg text-white/70 max-w-3xl mx-auto mb-6">
+              Este processo é altamente seletivo. Apenas candidatos que demonstrarem potencial real de liderança serão aceitos.
             </p>
+            
+            {/* Exclusivity Badge */}
+            <div className="inline-flex items-center glass px-4 py-2 rounded-full">
+              <Sparkles className="w-4 h-4 text-gold-400 mr-2 animate-pulse" />
+              <span className="text-gold-400 text-sm font-medium">8 vagas restantes</span>
+            </div>
           </div>
-          <button
-            onClick={handleClose}
-            className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-accent transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
 
-        {/* Progress Bar */}
-        <div className="px-6 py-2">
-          <div className="w-full bg-muted rounded-full h-2">
-            <div 
-              className="bg-primary h-2 rounded-full transition-all duration-300"
-              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-            />
+          {/* Progress Bar */}
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-4">
+              {Array.from({ length: totalSteps }, (_, index) => {
+                const StepIcon = stepIcons[index];
+                const isActive = currentStep === index + 1;
+                const isCompleted = currentStep > index + 1;
+                
+                return (
+                  <div key={index} className="flex flex-col items-center">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${
+                      isActive 
+                        ? 'bg-gradient-to-br from-gold-500 to-gold-600 scale-110 glow-gold' 
+                        : isCompleted 
+                          ? 'bg-gradient-to-br from-green-500 to-green-600' 
+                          : 'bg-white/10'
+                    }`}>
+                      {isCompleted ? (
+                        <CheckCircle className="w-5 h-5 text-white" />
+                      ) : (
+                        <StepIcon className={`w-5 h-5 ${isActive ? 'text-black' : 'text-white/70'}`} />
+                      )}
+                    </div>
+                    <span className={`text-xs mt-2 transition-colors duration-300 ${
+                      isActive ? 'text-gold-400' : isCompleted ? 'text-green-400' : 'text-white/50'
+                    }`}>
+                      Etapa {index + 1}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+            
+            {/* Progress Line */}
+            <div className="relative h-1 bg-white/10 rounded-full overflow-hidden">
+              <div 
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-gold-400 to-gold-600 transition-all duration-700 ease-out glow-gold"
+                style={{ width: `${progressPercentage}%` }}
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="px-6 py-4 flex-1 overflow-y-auto">
-          {currentStep === 1 && renderStep1()}
-          {currentStep === 2 && renderStep2()}
-          {currentStep === 3 && renderStep3()}
-        </div>
-
-        {/* Footer */}
-        <div className="p-6 border-t flex justify-between items-center">
-          <Button
-            onClick={handlePrevious}
-            disabled={currentStep === 1}
-            variant="outline"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Anterior
-          </Button>
-
-          {currentStep < totalSteps ? (
-            <Button
-              onClick={handleNext}
-              disabled={!canProceedToNextStep()}
-            >
-              Próximo
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          ) : (
-            <Button
-              onClick={handleSubmit}
-              disabled={isSubmitting || !canProceedToNextStep()}
-            >
-              {isSubmitting ? (
-                'Enviando...'
-              ) : (
-                <>
-                  Enviar Aplicação
-                  <Send className="w-4 h-4 ml-2" />
-                </>
+          {/* Form */}
+          <div className="card-premium">
+            <form onSubmit={handleSubmit}>
+              {/* Step 1: Personal Info */}
+              {currentStep === 1 && (
+                <div className="space-y-6 animate-fade-in">
+                  <h3 className="text-2xl font-bold text-white mb-6">Informações Pessoais</h3>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">Nome Completo *</label>
+                      <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => handleInputChange('name', e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        placeholder="Seu nome completo"
+                      />
+                    </div>
+                    
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">Email *</label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        placeholder="seu@email.com"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">WhatsApp *</label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        placeholder="(11) 99999-9999"
+                      />
+                    </div>
+                    
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">Instagram *</label>
+                      <div className="relative">
+                        <Instagram className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                        <input
+                          type="text"
+                          value={formData.instagram}
+                          onChange={(e) => handleInputChange('instagram', e.target.value)}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          placeholder="@seuinstagram"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
-            </Button>
-          )}
+
+              {/* Step 2: Professional Info */}
+              {currentStep === 2 && (
+                <div className="space-y-6 animate-fade-in">
+                  <h3 className="text-2xl font-bold text-white mb-6">Informações Profissionais</h3>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">Empresa/Negócio *</label>
+                      <input
+                        type="text"
+                        value={formData.company}
+                        onChange={(e) => handleInputChange('company', e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        placeholder="Nome da sua empresa"
+                      />
+                    </div>
+                    
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">Cargo/Função *</label>
+                      <input
+                        type="text"
+                        value={formData.role}
+                        onChange={(e) => handleInputChange('role', e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        placeholder="CEO, Fundador, Especialista..."
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="relative">
+                    <label className="block text-white/80 text-sm font-medium mb-2">Segmento/Indústria *</label>
+                    <select
+                      value={formData.industry}
+                      onChange={(e) => handleInputChange('industry', e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                    >
+                      <option value="">Selecione seu segmento</option>
+                      <option value="tecnologia">Tecnologia</option>
+                      <option value="consultoria">Consultoria</option>
+                      <option value="marketing">Marketing</option>
+                      <option value="financas">Finanças</option>
+                      <option value="saude">Saúde</option>
+                      <option value="educacao">Educação</option>
+                      <option value="outros">Outros</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 3: Goals & Vision */}
+              {currentStep === 3 && (
+                <div className="space-y-6 animate-fade-in">
+                  <h3 className="text-2xl font-bold text-white mb-6">Objetivos e Visão</h3>
+                  
+                  <div className="relative">
+                    <label className="block text-white/80 text-sm font-medium mb-2">Principais objetivos com sua marca pessoal *</label>
+                    <textarea
+                      value={formData.goals}
+                      onChange={(e) => handleInputChange('goals', e.target.value)}
+                      rows={4}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                      placeholder="Descreva onde você quer chegar com sua marca pessoal..."
+                    />
+                  </div>
+                  
+                  <div className="relative">
+                    <label className="block text-white/80 text-sm font-medium mb-2">Prazo para alcançar esses objetivos *</label>
+                    <select
+                      value={formData.timeline}
+                      onChange={(e) => handleInputChange('timeline', e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                    >
+                      <option value="">Selecione o prazo</option>
+                      <option value="6meses">6 meses</option>
+                      <option value="1ano">1 ano</option>
+                      <option value="2anos">2 anos</option>
+                      <option value="3anos+">3+ anos</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 4: Investment & Commitment */}
+              {currentStep === 4 && (
+                <div className="space-y-6 animate-fade-in">
+                  <h3 className="text-2xl font-bold text-white mb-6">Investimento e Comprometimento</h3>
+                  
+                  <div className="relative">
+                    <label className="block text-white/80 text-sm font-medium mb-2">Faturamento atual mensal *</label>
+                    <select
+                      value={formData.currentRevenue}
+                      onChange={(e) => handleInputChange('currentRevenue', e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                    >
+                      <option value="">Selecione sua faixa de faturamento</option>
+                      <option value="50k-100k">R$ 50K - R$ 100K</option>
+                      <option value="100k-300k">R$ 100K - R$ 300K</option>
+                      <option value="300k-500k">R$ 300K - R$ 500K</option>
+                      <option value="500k+">R$ 500K+</option>
+                    </select>
+                  </div>
+                  
+                  <div className="relative">
+                    <label className="block text-white/80 text-sm font-medium mb-2">Por que você deveria ser um dos 8 escolhidos? *</label>
+                    <textarea
+                      value={formData.motivation}
+                      onChange={(e) => handleInputChange('motivation', e.target.value)}
+                      rows={5}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                      placeholder="Conte sua história, seus diferenciais e por que você está pronto para liderar um movimento..."
+                    />
+                  </div>
+                  
+                  {/* Investment Info */}
+                  <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20">
+                    <h4 className="text-xl font-bold text-white mb-4">Investimento</h4>
+                    <div className="text-3xl font-black text-gradient mb-2">R$ 97.000</div>
+                    <div className="text-white/80 mb-4">12x de R$ 8.083 sem juros</div>
+                    <div className="text-sm text-gold-400">
+                      ✓ Inclui toda a metodologia ETER<br/>
+                      ✓ Mentoria pessoal com Davi Ribas<br/>
+                      ✓ Entregáveis completos<br/>
+                      ✓ 11 semanas de transformação
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Navigation */}
+              <div className="flex justify-between items-center mt-8 pt-6 border-t border-white/10">
+                {currentStep > 1 ? (
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all duration-300"
+                  >
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Voltar
+                  </button>
+                ) : (
+                  <div />
+                )}
+
+                {currentStep < totalSteps ? (
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="btn-premium group"
+                  >
+                    <span className="flex items-center">
+                      Próximo
+                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="btn-premium text-lg group glow-gold-strong"
+                  >
+                    <span className="flex items-center">
+                      <Sparkles className="w-5 h-5 mr-2 animate-spin" />
+                      ENVIAR APLICAÇÃO
+                    </span>
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="text-center mt-8">
+            <div className="flex justify-center items-center space-x-8 text-white/60">
+              <div className="flex items-center">
+                <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                <span className="text-sm">100% Seguro</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                <span className="text-sm">Processo Seletivo</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                <span className="text-sm">Resposta em 48h</span>
+              </div>
+            </div>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

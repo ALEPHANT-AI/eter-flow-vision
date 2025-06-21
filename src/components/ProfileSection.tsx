@@ -1,10 +1,10 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Star, TrendingUp, Users, Award, BookOpen } from 'lucide-react';
-import ApplicationModal from './ApplicationModal';
+import { useApplicationModal } from '../contexts/ApplicationModalContext';
 
 const ProfileSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [counters, setCounters] = useState({
     revenue: 0,
     people: 0,
@@ -12,19 +12,7 @@ const ProfileSection = () => {
     years: 0
   });
   const sectionRef = useRef<HTMLElement>(null);
-
-  // Debug log for modal state
-  console.log('ProfileSection - Modal state:', isModalOpen);
-
-  const handleOpenModal = () => {
-    console.log('Opening modal...');
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    console.log('Closing modal...');
-    setIsModalOpen(false);
-  };
+  const { openModal } = useApplicationModal();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -221,7 +209,7 @@ const ProfileSection = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <button 
-              onClick={handleOpenModal}
+              onClick={openModal}
               className="btn-premium text-lg glow-gold magnetic group hover:scale-110 transition-all duration-300"
             >
               <span className="flex items-center">
@@ -231,11 +219,6 @@ const ProfileSection = () => {
           </div>
         </div>
       </div>
-
-      <ApplicationModal 
-        isOpen={isModalOpen} 
-        onClose={handleCloseModal} 
-      />
     </section>
   );
 };
