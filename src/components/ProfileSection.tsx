@@ -13,6 +13,19 @@ const ProfileSection = () => {
   });
   const sectionRef = useRef<HTMLElement>(null);
 
+  // Debug log for modal state
+  console.log('ProfileSection - Modal state:', isModalOpen);
+
+  const handleOpenModal = () => {
+    console.log('Opening modal...');
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    console.log('Closing modal...');
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -203,12 +216,12 @@ const ProfileSection = () => {
             </div>
           </div>
 
-          {/* CTA */}
+          {/* CTA - Updated button */}
           <div className={`text-center transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <button 
-              onClick={() => setIsModalOpen(true)}
+              onClick={handleOpenModal}
               className="btn-premium text-lg glow-gold magnetic group hover:scale-110 transition-all duration-300"
             >
               <span className="flex items-center">
@@ -221,7 +234,7 @@ const ProfileSection = () => {
 
       <ApplicationModal 
         isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+        onClose={handleCloseModal} 
       />
     </section>
   );

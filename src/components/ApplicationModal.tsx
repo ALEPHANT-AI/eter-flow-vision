@@ -19,6 +19,9 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
   const { toast } = useToast();
   const { errors, validateField, validateAllFields, clearFieldError } = useFormValidation();
 
+  // Debug log
+  console.log('Modal state:', { isOpen, currentStep });
+
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -136,6 +139,7 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
   };
 
   const handleClose = () => {
+    console.log('Closing modal');
     const hasData = Object.values(formData).some(value => value.trim() !== '');
     if (hasData) {
       if (confirm('Tem certeza que deseja fechar? Seus dados serão perdidos.')) {
@@ -149,21 +153,21 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
   const renderStep1 = () => (
     <div className="space-y-4">
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Nome Completo *
         </label>
         <Input
           value={formData.nome}
           onChange={(e) => handleInputChange('nome', e.target.value)}
           onBlur={(e) => handleFieldBlur('nome', e.target.value)}
-          className="bg-black-800/50 border-gold-500/20 text-white"
+          className="w-full"
           placeholder="Seu nome completo"
         />
         {errors.nome && <p className="text-red-400 text-xs mt-1">{errors.nome}</p>}
       </div>
 
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Email *
         </label>
         <Input
@@ -171,35 +175,35 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
           value={formData.email}
           onChange={(e) => handleInputChange('email', e.target.value)}
           onBlur={(e) => handleFieldBlur('email', e.target.value)}
-          className="bg-black-800/50 border-gold-500/20 text-white"
+          className="w-full"
           placeholder="seu@email.com"
         />
         {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
       </div>
 
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           WhatsApp *
         </label>
         <Input
           value={formData.whatsapp}
           onChange={(e) => handleInputChange('whatsapp', e.target.value)}
           onBlur={(e) => handleFieldBlur('whatsapp', e.target.value)}
-          className="bg-black-800/50 border-gold-500/20 text-white"
+          className="w-full"
           placeholder="+55 11 99999-9999"
         />
         {errors.whatsapp && <p className="text-red-400 text-xs mt-1">{errors.whatsapp}</p>}
       </div>
 
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Instagram
         </label>
         <Input
           value={formData.instagram}
           onChange={(e) => handleInputChange('instagram', e.target.value)}
           onBlur={(e) => handleFieldBlur('instagram', e.target.value)}
-          className="bg-black-800/50 border-gold-500/20 text-white"
+          className="w-full"
           placeholder="@seuinstagram"
         />
         {errors.instagram && <p className="text-red-400 text-xs mt-1">{errors.instagram}</p>}
@@ -210,39 +214,39 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
   const renderStep2 = () => (
     <div className="space-y-4">
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Empresa *
         </label>
         <Input
           value={formData.empresa}
           onChange={(e) => handleInputChange('empresa', e.target.value)}
-          className="bg-black-800/50 border-gold-500/20 text-white"
+          className="w-full"
           placeholder="Nome da sua empresa"
         />
         {errors.empresa && <p className="text-red-400 text-xs mt-1">{errors.empresa}</p>}
       </div>
 
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Cargo *
         </label>
         <Input
           value={formData.cargo}
           onChange={(e) => handleInputChange('cargo', e.target.value)}
-          className="bg-black-800/50 border-gold-500/20 text-white"
+          className="w-full"
           placeholder="Seu cargo na empresa"
         />
         {errors.cargo && <p className="text-red-400 text-xs mt-1">{errors.cargo}</p>}
       </div>
 
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Faturamento Mensal *
         </label>
         <select
           value={formData.faturamento}
           onChange={(e) => handleInputChange('faturamento', e.target.value)}
-          className="w-full bg-black-800/50 border border-gold-500/20 text-white rounded-md px-3 py-2"
+          className="w-full px-3 py-2 border rounded-md bg-background text-foreground"
         >
           <option value="">Selecione uma faixa</option>
           <option value="ate-50k">Até R$ 50.000</option>
@@ -259,39 +263,39 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
   const renderStep3 = () => (
     <div className="space-y-4">
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Principais Desafios *
         </label>
         <Textarea
           value={formData.principais_desafios}
           onChange={(e) => handleInputChange('principais_desafios', e.target.value)}
-          className="bg-black-800/50 border-gold-500/20 text-white min-h-[80px]"
+          className="min-h-[80px] w-full"
           placeholder="Descreva os principais desafios da sua marca..."
         />
         {errors.principais_desafios && <p className="text-red-400 text-xs mt-1">{errors.principais_desafios}</p>}
       </div>
 
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Objetivos com o Movimento *
         </label>
         <Textarea
           value={formData.objetivos_movimento}
           onChange={(e) => handleInputChange('objetivos_movimento', e.target.value)}
-          className="bg-black-800/50 border-gold-500/20 text-white min-h-[80px]"
+          className="min-h-[80px] w-full"
           placeholder="O que espera alcançar com a criação do movimento?"
         />
         {errors.objetivos_movimento && <p className="text-red-400 text-xs mt-1">{errors.objetivos_movimento}</p>}
       </div>
 
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Cronograma *
         </label>
         <select
           value={formData.cronograma}
           onChange={(e) => handleInputChange('cronograma', e.target.value)}
-          className="w-full bg-black-800/50 border border-gold-500/20 text-white rounded-md px-3 py-2"
+          className="w-full px-3 py-2 border rounded-md bg-background text-foreground"
         >
           <option value="">Quando quer começar?</option>
           <option value="imediato">Imediatamente</option>
@@ -303,13 +307,13 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
       </div>
 
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Orçamento de Investimento *
         </label>
         <select
           value={formData.orcamento_investimento}
           onChange={(e) => handleInputChange('orcamento_investimento', e.target.value)}
-          className="w-full bg-black-800/50 border border-gold-500/20 text-white rounded-md px-3 py-2"
+          className="w-full px-3 py-2 border rounded-md bg-background text-foreground"
         >
           <option value="">Selecione uma faixa</option>
           <option value="ate-50k">Até R$ 50.000</option>
@@ -321,40 +325,42 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
       </div>
 
       <div>
-        <label className="block text-white text-sm font-medium mb-2">
+        <label className="block text-sm font-medium mb-2 text-white">
           Experiência Anterior
         </label>
         <Textarea
           value={formData.experiencia_anterior}
           onChange={(e) => handleInputChange('experiencia_anterior', e.target.value)}
-          className="bg-black-800/50 border-gold-500/20 text-white min-h-[60px]"
+          className="min-h-[60px] w-full"
           placeholder="Já teve experiência com marketing ou criação de comunidades? (opcional)"
         />
       </div>
     </div>
   );
 
+  if (!isOpen) return null;
+
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="!max-w-2xl !w-[95vw] sm:!w-full !p-0 bg-gradient-to-br from-black-950 via-black-900 to-black-800 border-gold-500/20 !max-h-[95vh] overflow-hidden">
+      <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[95vh] overflow-hidden">
         <DialogTitle className="sr-only">Formulário de Aplicação</DialogTitle>
         <DialogDescription className="sr-only">
           Preencha os dados para se candidatar ao programa
         </DialogDescription>
 
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gold-500/10">
+        <div className="flex items-center justify-between p-6 border-b">
           <div>
-            <h2 className="text-2xl font-bold text-gradient">
+            <h2 className="text-2xl font-bold">
               Quero Ser Escolhido
             </h2>
-            <p className="text-white/70 text-sm mt-1">
+            <p className="text-muted-foreground text-sm mt-1">
               Etapa {currentStep} de {totalSteps}
             </p>
           </div>
           <button
             onClick={handleClose}
-            className="w-10 h-10 rounded-full bg-black-800/60 border border-gold-500/20 flex items-center justify-center text-white/70 hover:text-white hover:border-gold-500/40 transition-colors"
+            className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-accent transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -362,9 +368,9 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
 
         {/* Progress Bar */}
         <div className="px-6 py-2">
-          <div className="w-full bg-black-800/50 rounded-full h-2">
+          <div className="w-full bg-muted rounded-full h-2">
             <div 
-              className="bg-gradient-to-r from-gold-400 to-gold-500 h-2 rounded-full transition-all duration-300"
+              className="bg-primary h-2 rounded-full transition-all duration-300"
               style={{ width: `${(currentStep / totalSteps) * 100}%` }}
             />
           </div>
@@ -378,12 +384,11 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-gold-500/10 flex justify-between items-center">
+        <div className="p-6 border-t flex justify-between items-center">
           <Button
             onClick={handlePrevious}
             disabled={currentStep === 1}
             variant="outline"
-            className="bg-transparent border-gold-500/20 text-white hover:bg-gold-500/10"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Anterior
@@ -393,7 +398,6 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
             <Button
               onClick={handleNext}
               disabled={!canProceedToNextStep()}
-              className="btn-premium"
             >
               Próximo
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -402,7 +406,6 @@ const ApplicationModal = ({ isOpen, onClose }: ApplicationModalProps) => {
             <Button
               onClick={handleSubmit}
               disabled={isSubmitting || !canProceedToNextStep()}
-              className="btn-premium"
             >
               {isSubmitting ? (
                 'Enviando...'
