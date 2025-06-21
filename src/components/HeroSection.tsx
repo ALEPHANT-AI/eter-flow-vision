@@ -26,20 +26,20 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black-950 via-black-900/50 to-transparent" />
       </div>
 
-      <div className="container mx-auto relative z-10 max-w-6xl">
+      <div className="container mx-auto relative z-10 max-w-6xl flex flex-col h-full">
         {/* Logo section - positioned at the very top */}
         <div className={`flex justify-start pt-4 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="text-left">
             <img 
               src="/lovable-uploads/5bf8c202-e854-4fba-8707-b047b0730c9e.png" 
               alt="ETER"
-              className="h-16 md:h-20 object-contain filter brightness-110 contrast-110"
+              className="h-8 md:h-10 object-contain filter brightness-110 contrast-110"
             />
           </div>
         </div>
 
-        {/* Main content centered */}
-        <div className="flex-1 flex items-center">
+        {/* Main content centered with more space from top */}
+        <div className="flex-1 flex items-center justify-start pt-16 md:pt-20">
           <div className="text-left space-y-4 max-w-3xl">
             {/* The Eight Title with Movement tagline */}
             <div className={`transition-all duration-1200 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
