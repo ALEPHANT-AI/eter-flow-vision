@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
+import { Dialog, DialogContent, DialogOverlay, DialogTitle, DialogDescription } from './ui/dialog';
 import { useApplicationModal } from '../contexts/ApplicationModalContext';
 import { useToast } from '../hooks/use-toast';
 import useFormValidation from '../hooks/useFormValidation';
@@ -266,6 +265,30 @@ const ApplicationModal = () => {
     return `${baseClassName} ${hasError ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'focus:border-gold-500 focus:ring-gold-500/20'}`;
   };
 
+  const getStepTitle = () => {
+    switch (currentStep) {
+      case 0: return 'Bem-vindo ao ETER - Transforme sua Marca Pessoal';
+      case 1: return 'Informações Pessoais - ETER';
+      case 2: return 'Informações da Empresa - ETER';
+      case 3: return 'Desafios e Objetivos - ETER';
+      case 4: return 'Investimento - ETER';
+      case 5: return 'Aplicação Enviada com Sucesso - ETER';
+      default: return 'ETER - Metodologia de Transformação';
+    }
+  };
+
+  const getStepDescription = () => {
+    switch (currentStep) {
+      case 0: return 'Inicie sua jornada de transformação com a metodologia ETER';
+      case 1: return 'Preencha suas informações pessoais para começar';
+      case 2: return 'Conte-nos sobre sua empresa e negócio';
+      case 3: return 'Compartilhe seus desafios e objetivos';
+      case 4: return 'Defina seu investimento na transformação';
+      case 5: return 'Sua aplicação foi enviada e em breve entraremos em contato';
+      default: return 'Formulário de aplicação para a metodologia ETER';
+    }
+  };
+
   const renderStepContent = () => {
     switch (currentStep) {
       case 0:
@@ -317,24 +340,34 @@ const ApplicationModal = () => {
     }
   };
 
+  // Debug: adicionar logs para verificar se o modal está sendo renderizado
+  console.log('ApplicationModal render - isOpen:', isOpen, 'currentStep:', currentStep);
+
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
-      <DialogOverlay className="fixed inset-0 bg-black/80 z-50" />
-      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-4xl h-[95vh] sm:h-[90vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden [&>button]:hidden">
+      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-4xl h-[95vh] sm:h-[90vh] max-h-[95vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden [&>button]:hidden">
+        {/* Componentes obrigatórios do Radix UI para acessibilidade */}
+        <DialogTitle className="sr-only">
+          {getStepTitle()}
+        </DialogTitle>
+        <DialogDescription className="sr-only">
+          {getStepDescription()}
+        </DialogDescription>
+
         <button
           onClick={closeModal}
-          className="absolute right-4 top-4 sm:right-6 sm:top-6 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+          className="absolute right-3 top-3 sm:right-4 sm:top-4 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
         >
-          <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </button>
 
         <div className="h-full flex flex-col">
           <ApplicationModalHeader currentStep={currentStep} />
 
-          <div className="flex-1 px-4 sm:px-8 pb-4 sm:pb-8 overflow-hidden">
+          <div className="flex-1 px-3 sm:px-6 md:px-8 pb-3 sm:pb-6 md:pb-8 overflow-hidden">
             <div className="card-premium h-full">
               <form onSubmit={handleSubmit} className="h-full flex flex-col">
-                <div className="flex-1 overflow-y-auto px-2 sm:px-0">
+                <div className="flex-1 overflow-y-auto px-1 sm:px-3 md:px-0 py-2 sm:py-4">
                   {renderStepContent()}
                 </div>
 
