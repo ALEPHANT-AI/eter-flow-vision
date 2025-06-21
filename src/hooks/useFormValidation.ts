@@ -35,7 +35,7 @@ const useFormValidation = () => {
   };
 
   const validateInstagram = (instagram: string): boolean => {
-    if (!instagram) return true; // Optional field
+    if (!instagram || instagram === '@') return true; // Optional field
     const instagramRegex = /^@[a-zA-Z0-9._]+$/;
     return instagramRegex.test(instagram);
   };
@@ -58,12 +58,13 @@ const useFormValidation = () => {
         return !value ? 'Selecione uma faixa de faturamento' : '';
       case 'principais_desafios':
         return value.trim().length < 10 ? 'Descreva seus principais desafios (mínimo 10 caracteres)' : '';
-      case 'objetivos_movimento':
-        return value.trim().length < 10 ? 'Descreva seus objetivos (mínimo 10 caracteres)' : '';
       case 'cronograma':
         return !value ? 'Selecione um cronograma' : '';
       case 'orcamento_investimento':
         return !value ? 'Selecione uma faixa de investimento' : '';
+      case 'experiencia_anterior':
+        // Campo opcional - não validar se estiver vazio
+        return '';
       default:
         return '';
     }
@@ -72,8 +73,17 @@ const useFormValidation = () => {
   const validateAllFields = (formData: FormData): boolean => {
     const newErrors: FormErrors = {};
     
-    Object.keys(formData).forEach((field) => {
-      const error = validateField(field, formData[field as keyof FormData]);
+    // Definir campos obrigatórios por step
+    const requiredFields = [
+      'nome', 'email', 'whatsapp', // Step 1 (instagram é opcional)
+      'empresa', 'cargo', 'faturamento', // Step 2
+      'principais_desafios', 'cronograma', // Step 3
+      'orcamento_investimento' // Step 4 (experiencia_anterior é opcional)
+    ];
+    
+    requiredFields.forEach((field) => {
+      const value = formData[field as keyof FormData];
+      const error = validateField(field, value);
       if (error) {
         newErrors[field] = error;
       }

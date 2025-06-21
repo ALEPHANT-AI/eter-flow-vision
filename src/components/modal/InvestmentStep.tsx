@@ -39,13 +39,16 @@ const InvestmentStep: React.FC<InvestmentStepProps> = ({
       </div>
       
       <div className="relative">
-        <label className="block text-white/80 text-sm font-medium mb-2">Experiência anterior com consultoria/mentoria</label>
+        <label className="block text-white/80 text-sm font-medium mb-2">
+          Experiência anterior com consultoria/mentoria
+          <span className="text-white/50 text-xs ml-1">(opcional)</span>
+        </label>
         <textarea
           value={formData.experiencia_anterior}
           onChange={(e) => onInputChange('experiencia_anterior', e.target.value)}
           rows={4}
           className={getFieldClassName('experiencia_anterior', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none")}
-          placeholder="Conte sobre suas experiências anteriores com consultoria ou mentoria..."
+          placeholder="Conte sobre suas experiências anteriores com consultoria ou mentoria... (opcional)"
         />
         {getFieldError('experiencia_anterior') && (
           <p className="text-red-400 text-xs mt-1">{getFieldError('experiencia_anterior')}</p>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
@@ -82,7 +81,15 @@ const ApplicationModal = () => {
     const stepFields = getStepFields(currentStep);
     return stepFields.every(field => {
       const value = formData[field as keyof typeof formData];
-      return value && value.trim() !== '' && value !== '@' && !errors[field];
+      // Instagram é opcional, então se estiver apenas '@', considerar válido
+      if (field === 'instagram') {
+        return !errors[field];
+      }
+      // experiencia_anterior é opcional
+      if (field === 'experiencia_anterior') {
+        return !errors[field];
+      }
+      return value && value.trim() !== '' && !errors[field];
     });
   };
 
@@ -91,7 +98,7 @@ const ApplicationModal = () => {
       case 1: return ['nome', 'email', 'whatsapp', 'instagram'];
       case 2: return ['empresa', 'cargo', 'faturamento'];
       case 3: return ['principais_desafios', 'cronograma'];
-      case 4: return ['orcamento_investimento', 'experiencia_anterior'];
+      case 4: return ['orcamento_investimento']; // Removido experiencia_anterior pois é opcional
       default: return [];
     }
   };
@@ -124,11 +131,27 @@ const ApplicationModal = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const isFormValid = validateAllFields(formData as any);
+    
+    // Validar apenas campos obrigatórios para o envio final
+    const requiredFieldsForSubmission = {
+      nome: formData.nome,
+      email: formData.email,
+      whatsapp: formData.whatsapp,
+      empresa: formData.empresa,
+      cargo: formData.cargo,
+      faturamento: formData.faturamento,
+      principais_desafios: formData.principais_desafios,
+      cronograma: formData.cronograma,
+      orcamento_investimento: formData.orcamento_investimento
+    };
+    
+    const isFormValid = validateAllFields(requiredFieldsForSubmission as any);
     
     if (isFormValid) {
-      console.log('Form submitted:', formData);
-      setCurrentStep(5);
+      console.log('Form submitted successfully:', formData);
+      setCurrentStep(5); // Ir para tela de sucesso
+    } else {
+      console.log('Form validation failed:', errors);
     }
   };
 
