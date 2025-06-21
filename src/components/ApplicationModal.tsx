@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, ArrowLeft, CheckCircle, User, Building, Target, DollarSign, Sparkles, Instagram, X } from 'lucide-react';
+import { ArrowRight, ArrowLeft, CheckCircle, User, Building, Target, DollarSign, Sparkles, Instagram, X, Check } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
 import { useApplicationModal } from '../contexts/ApplicationModalContext';
 import useFormValidation from '../hooks/useFormValidation';
@@ -10,7 +10,7 @@ const ApplicationModal = () => {
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
-    whatsapp: '+55 ',
+    whatsapp: '',
     instagram: '@',
     empresa: '',
     cargo: '',
@@ -23,24 +23,37 @@ const ApplicationModal = () => {
   });
 
   const { errors, validateField, validateAllFields, clearFieldError } = useFormValidation();
-  const totalSteps = 5;
+  const totalSteps = 6; // Updated to include success screen
 
   const formatPhoneNumber = (value: string) => {
-    const numbers = value.replace(/[^\d+]/g, '');
+    // If empty, return empty
+    if (!value) return '';
     
-    if (!numbers.startsWith('+55')) {
-      return '+55 ';
+    // Remove all non-digit characters except +
+    const cleaned = value.replace(/[^\d+]/g, '');
+    
+    // If it doesn't start with +, add + if there are digits
+    if (cleaned && !cleaned.startsWith('+')) {
+      return '+' + cleaned;
     }
     
-    const phoneDigits = numbers.slice(3);
-    
-    if (phoneDigits.length <= 2) {
-      return `+55 ${phoneDigits}`;
-    } else if (phoneDigits.length <= 7) {
-      return `+55 (${phoneDigits.slice(0, 2)}) ${phoneDigits.slice(2)}`;
-    } else {
-      return `+55 (${phoneDigits.slice(0, 2)}) ${phoneDigits.slice(2, 7)}-${phoneDigits.slice(7, 11)}`;
+    // If it starts with +55 (Brazil), apply Brazilian formatting
+    if (cleaned.startsWith('+55')) {
+      const numbers = cleaned.slice(3); // Remove +55
+      
+      if (numbers.length === 0) {
+        return '+55 ';
+      } else if (numbers.length <= 2) {
+        return `+55 (${numbers}`;
+      } else if (numbers.length <= 7) {
+        return `+55 (${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+      } else {
+        return `+55 (${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+      }
     }
+    
+    // For other country codes, just return as is
+    return cleaned;
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -65,7 +78,7 @@ const ApplicationModal = () => {
     const stepFields = getStepFields(currentStep);
     return stepFields.every(field => {
       const value = formData[field as keyof typeof formData];
-      return value && value.trim() !== '' && value !== '@' && value !== '+55 ' && !errors[field];
+      return value && value.trim() !== '' && value !== '@' && !errors[field];
     });
   };
 
@@ -111,11 +124,33 @@ const ApplicationModal = () => {
     
     if (isFormValid) {
       console.log('Form submitted:', formData);
-      closeModal();
+      // Move to success screen instead of closing modal
+      setCurrentStep(5);
     }
   };
 
-  const progressPercentage = currentStep === 0 ? 0 : ((currentStep) / (totalSteps - 1)) * 100;
+  const handleBackToHome = () => {
+    closeModal();
+    // Reset form when going back to home
+    setCurrentStep(0);
+    setFormData({
+      nome: '',
+      email: '',
+      whatsapp: '',
+      instagram: '@',
+      empresa: '',
+      cargo: '',
+      faturamento: '',
+      principais_desafios: '',
+      objetivos_movimento: '',
+      cronograma: '',
+      orcamento_investimento: '',
+      experiencia_anterior: ''
+    });
+  };
+
+  // Progress calculation should not include success screen
+  const progressPercentage = currentStep === 0 ? 0 : currentStep >= 5 ? 100 : ((currentStep) / 4) * 100;
   const stepIcons = [User, Building, Target, DollarSign];
 
   useEffect(() => {
@@ -124,7 +159,7 @@ const ApplicationModal = () => {
       setFormData({
         nome: '',
         email: '',
-        whatsapp: '+55 ',
+        whatsapp: '',
         instagram: '@',
         empresa: '',
         cargo: '',
@@ -173,7 +208,7 @@ const ApplicationModal = () => {
             </div>
           )}
 
-          {currentStep > 0 && (
+          {currentStep > 0 && currentStep < 5 && (
             <div className="px-8 pt-8 pb-6">
               <div className="flex justify-between items-center mb-4">
                 {Array.from({ length: 4 }, (_, index) => {
@@ -452,57 +487,112 @@ const ApplicationModal = () => {
                   </div>
                 )}
 
-                <div className="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
-                  {currentStep > 0 ? (
-                    <button
-                      type="button"
-                      onClick={prevStep}
-                      className="flex items-center px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all duration-300"
-                    >
-                      <ArrowLeft className="w-4 h-4 mr-2" />
-                      Voltar
-                    </button>
-                  ) : (
-                    <div />
-                  )}
+                {/* Success Screen */}
+                {currentStep === 5 && (
+                  <div className="flex-1 flex flex-col justify-center items-center text-center space-y-8 animate-fade-in">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center glow-green">
+                      <Check className="w-10 h-10 text-white" />
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <h3 className="text-3xl md:text-4xl font-black text-white leading-tight">
+                        APLICAÇÃO ENVIADA
+                      </h3>
+                      
+                      <p className="text-xl text-white/80 max-w-md mx-auto">
+                        Entraremos em contato brevemente...
+                      </p>
+                      
+                      <p className="text-base text-white/60 max-w-lg mx-auto">
+                        Sua aplicação foi recebida com sucesso. Nossa equipe analisará seu perfil e retornará em até 48 horas com os próximos passos.
+                      </p>
+                    </div>
 
-                  {currentStep === 0 ? (
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-center space-x-6 text-white/50 text-sm">
+                        <div className="flex items-center">
+                          <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                          <span>Aplicação Recebida</span>
+                        </div>
+                        <div className="flex items-center">
+                          <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                          <span>Análise em Andamento</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Navigation Buttons */}
+                {currentStep < 5 && (
+                  <div className="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
+                    {currentStep > 0 ? (
+                      <button
+                        type="button"
+                        onClick={prevStep}
+                        className="flex items-center px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all duration-300"
+                      >
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        Voltar
+                      </button>
+                    ) : (
+                      <div />
+                    )}
+
+                    {currentStep === 0 ? (
+                      <button
+                        type="button"
+                        onClick={nextStep}
+                        className="btn-premium group text-xl"
+                      >
+                        <span className="flex items-center">
+                          <Sparkles className="w-5 h-5 mr-2 animate-spin" />
+                          APLICAR
+                          <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                        </span>
+                      </button>
+                    ) : currentStep < 4 ? (
+                      <button
+                        type="button"
+                        onClick={nextStep}
+                        disabled={!canProceedToNextStep()}
+                        className={`btn-premium group ${!canProceedToNextStep() ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      >
+                        <span className="flex items-center">
+                          Próximo
+                          <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                        </span>
+                      </button>
+                    ) : (
+                      <button
+                        type="submit"
+                        disabled={!canProceedToNextStep()}
+                        className={`btn-premium text-lg group glow-gold-strong ${!canProceedToNextStep() ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      >
+                        <span className="flex items-center">
+                          <Sparkles className="w-5 h-5 mr-2 animate-spin" />
+                          ENVIAR APLICAÇÃO
+                        </span>
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {/* Success Screen Button */}
+                {currentStep === 5 && (
+                  <div className="flex justify-center mt-8">
                     <button
                       type="button"
-                      onClick={nextStep}
-                      className="btn-premium group text-xl"
+                      onClick={handleBackToHome}
+                      className="btn-premium text-lg group glow-gold-strong"
                     >
                       <span className="flex items-center">
-                        <Sparkles className="w-5 h-5 mr-2 animate-spin" />
-                        APLICAR
+                        Voltar à página principal
                         <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                       </span>
                     </button>
-                  ) : currentStep < totalSteps - 1 ? (
-                    <button
-                      type="button"
-                      onClick={nextStep}
-                      disabled={!canProceedToNextStep()}
-                      className={`btn-premium group ${!canProceedToNextStep() ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                      <span className="flex items-center">
-                        Próximo
-                        <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      disabled={!canProceedToNextStep()}
-                      className={`btn-premium text-lg group glow-gold-strong ${!canProceedToNextStep() ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                      <span className="flex items-center">
-                        <Sparkles className="w-5 h-5 mr-2 animate-spin" />
-                        ENVIAR APLICAÇÃO
-                      </span>
-                    </button>
-                  )}
-                </div>
+                  </div>
+                )}
               </form>
             </div>
           </div>
