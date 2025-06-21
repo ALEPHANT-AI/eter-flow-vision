@@ -32,7 +32,7 @@ const HeroSection = () => {
           <div className={`flex justify-start mb-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-left">
               <img 
-                src="/lovable-uploads/79c57192-38b3-4580-98a3-85751ad4e1a0.png" 
+                src="/lovable-uploads/5bf8c202-e854-4fba-8707-b047b0730c9e.png" 
                 alt="ETER"
                 className="h-20 md:h-24 mb-2 object-contain filter brightness-110 contrast-110"
               />

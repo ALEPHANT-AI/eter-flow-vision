@@ -42,27 +42,27 @@ const Footer = () => {
   ];
 
   return (
-    <footer id="footer" className="relative py-24 bg-gradient-to-b from-black-900 to-black-950 overflow-hidden">
+    <footer id="footer" className="relative py-20 bg-gradient-to-b from-black-900 to-black-950 overflow-hidden">
       {/* Subtle Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-gold-500/8 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/3 right-1/3 w-56 h-56 bg-gold-400/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/3 left-1/3 w-48 h-48 bg-gold-500/6 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/3 w-40 h-40 bg-gold-400/4 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Main Content */}
-        <div className="text-center mb-16 max-w-4xl mx-auto">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
           <div className={`transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-white leading-tight">
-              <span className="text-gradient">CONSTRUA UMA MARCA PESSOAL</span>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-white leading-tight">
+              <span className="text-gradient bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent">CONSTRUA UMA MARCA PESSOAL</span>
               <br />
               <span className="text-white">QUE LIDERA</span>
             </h2>
           </div>
           
-          <div className={`text-lg md:text-xl text-white/70 leading-relaxed mb-8 transition-all duration-1000 delay-300 ${
+          <div className={`text-base md:text-lg text-white/70 leading-relaxed mb-8 transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             Pare de competir apenas por competência.
@@ -70,66 +70,66 @@ const Footer = () => {
             <span className="text-white font-medium">Torne-se o líder que as pessoas seguem, respeitam e pagam premium para trabalhar.</span>
           </div>
 
-          {/* Urgency Indicator - More Elegant */}
-          <div className={`inline-flex items-center bg-black-800/80 backdrop-blur-sm border border-gold-500/20 px-6 py-3 rounded-full mb-10 transition-all duration-1000 delay-500 ${
+          {/* Urgency Indicator */}
+          <div className={`inline-flex items-center bg-black-800/60 backdrop-blur-sm border border-gold-500/20 px-5 py-2 rounded-full mb-8 transition-all duration-1000 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
           }`}>
-            <div className="w-2 h-2 bg-gold-500 rounded-full animate-pulse mr-3" />
+            <div className="w-2 h-2 bg-gold-500 rounded-full animate-pulse mr-2" />
             <span className="text-white/90 font-medium text-sm">Apenas 8 vagas disponíveis</span>
             <Sparkles className="w-4 h-4 text-gold-400 ml-2" />
           </div>
           
-          {/* Final CTA - More Proportional */}
+          {/* Final CTA */}
           <div className={`transition-all duration-1000 delay-700 ${
             isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
           }`}>
             <button 
               onClick={openModal}
-              className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-12 py-4 rounded-2xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic text-lg"
+              className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-10 py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic text-base"
             >
               {/* Animated Background */}
               <div className="absolute inset-0 bg-gradient-to-r from-gold-300 to-gold-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
               {/* Pulse Effect */}
-              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping rounded-2xl" />
+              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping rounded-xl" />
               
               {/* Content */}
               <span className="relative z-10 flex items-center">
-                <Sparkles className="w-5 h-5 mr-3" />
+                <Sparkles className="w-4 h-4 mr-2" />
                 PREENCHER APLICAÇÃO AGORA
-                <ArrowRight className="ml-3 w-5 h-5 transition-transform group-hover:translate-x-2" />
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-2" />
               </span>
             </button>
           </div>
         </div>
 
-        {/* Trust Seals - More Refined */}
-        <div className={`grid md:grid-cols-3 gap-8 mb-16 transition-all duration-1000 delay-900 ${
+        {/* Trust Seals */}
+        <div className={`grid md:grid-cols-3 gap-6 mb-12 transition-all duration-1000 delay-900 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {trustSeals.map((seal, index) => {
             const Icon = seal.icon;
             return (
               <div key={index} className="text-center">
-                <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/30 rounded-xl flex items-center justify-center">
-                  <Icon className="w-6 h-6 text-gold-400" />
+                <div className="w-10 h-10 mx-auto mb-3 bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/30 rounded-lg flex items-center justify-center">
+                  <Icon className="w-5 h-5 text-gold-400" />
                 </div>
-                <h3 className="text-white font-semibold text-base mb-2">{seal.title}</h3>
-                <p className="text-white/60 text-sm">{seal.description}</p>
+                <h3 className="text-white font-semibold text-sm mb-1">{seal.title}</h3>
+                <p className="text-white/60 text-xs">{seal.description}</p>
               </div>
             );
           })}
         </div>
 
-        {/* Company Info - Cleaner */}
-        <div className={`border-t border-white/10 pt-12 transition-all duration-1000 delay-1100 ${
+        {/* Company Info */}
+        <div className={`border-t border-white/10 pt-8 transition-all duration-1000 delay-1100 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Logo */}
             <div className="flex items-center">
               <img 
-                src="/lovable-uploads/79c57192-38b3-4580-98a3-85751ad4e1a0.png" 
+                src="/lovable-uploads/5bf8c202-e854-4fba-8707-b047b0730c9e.png" 
                 alt="ETER"
                 className="h-24"
               />
