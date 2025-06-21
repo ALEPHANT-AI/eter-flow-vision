@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
@@ -255,7 +256,7 @@ const ApplicationModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogOverlay className="fixed inset-0 bg-black/80 z-50" />
-      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[90vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden">
+      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[90vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden [&>button]:hidden">
         <button
           onClick={closeModal}
           className="absolute right-6 top-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
