@@ -33,7 +33,7 @@ const HeroSection = () => {
             <img 
               src="/lovable-uploads/5bf8c202-e854-4fba-8707-b047b0730c9e.png" 
               alt="ETER"
-              className="h-8 md:h-10 object-contain filter brightness-110 contrast-110"
+              className="h-16 md:h-20 object-contain filter brightness-110 contrast-110"
             />
           </div>
         </div>
