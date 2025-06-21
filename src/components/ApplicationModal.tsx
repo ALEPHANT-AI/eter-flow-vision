@@ -1,44 +1,39 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, ArrowLeft, CheckCircle, User, Building, Target, DollarSign, Sparkles, Instagram, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
 import { useApplicationModal } from '../contexts/ApplicationModalContext';
-import { useFormValidation } from '../hooks/useFormValidation';
+import useFormValidation from '../hooks/useFormValidation';
 
 const ApplicationModal = () => {
   const { isOpen, closeModal } = useApplicationModal();
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
-    name: '',
+    nome: '',
     email: '',
-    phone: '+55 ',
+    whatsapp: '+55 ',
     instagram: '@',
-    company: '',
-    role: '',
-    industry: '',
-    currentRevenue: '',
-    goals: '',
-    timeline: '',
-    investment: '',
-    motivation: ''
+    empresa: '',
+    cargo: '',
+    faturamento: '',
+    principais_desafios: '',
+    objetivos_movimento: '',
+    cronograma: '',
+    orcamento_investimento: '',
+    experiencia_anterior: ''
   });
 
-  const { errors, validateField, validateStep, clearError } = useFormValidation();
-  const totalSteps = 5; // 0 (intro) + 4 form steps
+  const { errors, validateField, validateAllFields, clearFieldError } = useFormValidation();
+  const totalSteps = 5;
 
   const formatPhoneNumber = (value: string) => {
-    // Remove all non-digits except the + at the beginning
     const numbers = value.replace(/[^\d+]/g, '');
     
-    // Ensure it starts with +55
     if (!numbers.startsWith('+55')) {
       return '+55 ';
     }
     
-    // Extract just the digits after +55
     const phoneDigits = numbers.slice(3);
     
-    // Format: +55 (XX) XXXXX-XXXX
     if (phoneDigits.length <= 2) {
       return `+55 ${phoneDigits}`;
     } else if (phoneDigits.length <= 7) {
@@ -51,7 +46,7 @@ const ApplicationModal = () => {
   const handleInputChange = (field: string, value: string) => {
     let formattedValue = value;
     
-    if (field === 'phone') {
+    if (field === 'whatsapp') {
       formattedValue = formatPhoneNumber(value);
     } else if (field === 'instagram' && !value.startsWith('@')) {
       formattedValue = '@' + value.replace('@', '');
@@ -59,12 +54,10 @@ const ApplicationModal = () => {
     
     setFormData(prev => ({ ...prev, [field]: formattedValue }));
     
-    // Clear error when user starts typing
     if (errors[field]) {
-      clearError(field);
+      clearFieldError(field);
     }
     
-    // Validate field in real-time
     validateField(field, formattedValue);
   };
 
@@ -78,10 +71,10 @@ const ApplicationModal = () => {
 
   const getStepFields = (step: number) => {
     switch (step) {
-      case 1: return ['name', 'email', 'phone', 'instagram'];
-      case 2: return ['company', 'role', 'industry'];
-      case 3: return ['goals', 'timeline'];
-      case 4: return ['currentRevenue', 'motivation'];
+      case 1: return ['nome', 'email', 'whatsapp', 'instagram'];
+      case 2: return ['empresa', 'cargo', 'faturamento'];
+      case 3: return ['principais_desafios', 'cronograma'];
+      case 4: return ['orcamento_investimento', 'experiencia_anterior'];
       default: return [];
     }
   };
@@ -93,7 +86,11 @@ const ApplicationModal = () => {
     }
     
     const stepFields = getStepFields(currentStep);
-    const isStepValid = validateStep(stepFields, formData);
+    const stepData = Object.fromEntries(
+      stepFields.map(field => [field, formData[field as keyof typeof formData]])
+    );
+    
+    const isStepValid = validateAllFields(stepData as any);
     
     if (isStepValid && currentStep < totalSteps - 1) {
       setCurrentStep(prev => prev + 1);
@@ -110,8 +107,7 @@ const ApplicationModal = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const allFields = getStepFields(1).concat(getStepFields(2), getStepFields(3), getStepFields(4));
-    const isFormValid = validateStep(allFields, formData);
+    const isFormValid = validateAllFields(formData as any);
     
     if (isFormValid) {
       console.log('Form submitted:', formData);
@@ -122,23 +118,22 @@ const ApplicationModal = () => {
   const progressPercentage = currentStep === 0 ? 0 : ((currentStep) / (totalSteps - 1)) * 100;
   const stepIcons = [User, Building, Target, DollarSign];
 
-  // Reset form when modal closes
   useEffect(() => {
     if (!isOpen) {
       setCurrentStep(0);
       setFormData({
-        name: '',
+        nome: '',
         email: '',
-        phone: '+55 ',
+        whatsapp: '+55 ',
         instagram: '@',
-        company: '',
-        role: '',
-        industry: '',
-        currentRevenue: '',
-        goals: '',
-        timeline: '',
-        investment: '',
-        motivation: ''
+        empresa: '',
+        cargo: '',
+        faturamento: '',
+        principais_desafios: '',
+        objetivos_movimento: '',
+        cronograma: '',
+        orcamento_investimento: '',
+        experiencia_anterior: ''
       });
     }
   }, [isOpen]);
@@ -154,7 +149,6 @@ const ApplicationModal = () => {
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogOverlay className="fixed inset-0 bg-black/80 z-50" />
       <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[90vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden">
-        {/* Close Button */}
         <button
           onClick={closeModal}
           className="absolute right-6 top-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
@@ -163,7 +157,6 @@ const ApplicationModal = () => {
         </button>
 
         <div className="h-full flex flex-col">
-          {/* Header - Only show for step 0 */}
           {currentStep === 0 && (
             <div className="text-center p-8 pb-6">
               <h2 className="text-3xl md:text-4xl font-black mb-4 text-white leading-tight">
@@ -173,7 +166,6 @@ const ApplicationModal = () => {
                 Este processo é altamente seletivo. Apenas candidatos que demonstrarem potencial real de liderança serão aceitos.
               </p>
               
-              {/* Exclusivity Badge */}
               <div className="inline-flex items-center glass px-4 py-2 rounded-full">
                 <Sparkles className="w-4 h-4 text-gold-400 mr-2 animate-pulse" />
                 <span className="text-gold-400 text-sm font-medium">8 vagas restantes</span>
@@ -181,7 +173,6 @@ const ApplicationModal = () => {
             </div>
           )}
 
-          {/* Progress Bar - Only show after step 0 */}
           {currentStep > 0 && (
             <div className="px-8 pt-8 pb-6">
               <div className="flex justify-between items-center mb-4">
@@ -215,7 +206,6 @@ const ApplicationModal = () => {
                 })}
               </div>
               
-              {/* Progress Line */}
               <div className="relative h-1 bg-white/10 rounded-full overflow-hidden">
                 <div 
                   className="absolute top-0 left-0 h-full bg-gradient-to-r from-gold-400 to-gold-600 transition-all duration-700 ease-out glow-gold"
@@ -225,11 +215,9 @@ const ApplicationModal = () => {
             </div>
           )}
 
-          {/* Content Area */}
           <div className="flex-1 px-8 pb-8 overflow-hidden">
             <div className="card-premium h-full">
               <form onSubmit={handleSubmit} className="h-full flex flex-col">
-                {/* Step 0: Initial Message */}
                 {currentStep === 0 && (
                   <div className="flex-1 flex flex-col justify-center items-center text-center space-y-8 animate-fade-in">
                     <div className="space-y-6">
@@ -265,7 +253,6 @@ const ApplicationModal = () => {
                   </div>
                 )}
 
-                {/* Step 1: Personal Info */}
                 {currentStep === 1 && (
                   <div className="space-y-4 animate-fade-in">
                     <div className="grid md:grid-cols-2 gap-4">
@@ -273,13 +260,13 @@ const ApplicationModal = () => {
                         <label className="block text-white/80 text-sm font-medium mb-2">Nome Completo *</label>
                         <input
                           type="text"
-                          value={formData.name}
-                          onChange={(e) => handleInputChange('name', e.target.value)}
-                          className={getFieldClassName('name', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+                          value={formData.nome}
+                          onChange={(e) => handleInputChange('nome', e.target.value)}
+                          className={getFieldClassName('nome', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
                           placeholder="Seu nome completo"
                         />
-                        {getFieldError('name') && (
-                          <p className="text-red-400 text-xs mt-1">{getFieldError('name')}</p>
+                        {getFieldError('nome') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('nome')}</p>
                         )}
                       </div>
                       
@@ -303,13 +290,13 @@ const ApplicationModal = () => {
                         <label className="block text-white/80 text-sm font-medium mb-2">WhatsApp *</label>
                         <input
                           type="tel"
-                          value={formData.phone}
-                          onChange={(e) => handleInputChange('phone', e.target.value)}
-                          className={getFieldClassName('phone', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+                          value={formData.whatsapp}
+                          onChange={(e) => handleInputChange('whatsapp', e.target.value)}
+                          className={getFieldClassName('whatsapp', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
                           placeholder="+55 (11) 99999-9999"
                         />
-                        {getFieldError('phone') && (
-                          <p className="text-red-400 text-xs mt-1">{getFieldError('phone')}</p>
+                        {getFieldError('whatsapp') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('whatsapp')}</p>
                         )}
                       </div>
                       
@@ -333,7 +320,6 @@ const ApplicationModal = () => {
                   </div>
                 )}
 
-                {/* Step 2: Professional Info */}
                 {currentStep === 2 && (
                   <div className="space-y-4 animate-fade-in">
                     <div className="grid md:grid-cols-2 gap-4">
@@ -341,13 +327,13 @@ const ApplicationModal = () => {
                         <label className="block text-white/80 text-sm font-medium mb-2">Empresa/Negócio *</label>
                         <input
                           type="text"
-                          value={formData.company}
-                          onChange={(e) => handleInputChange('company', e.target.value)}
-                          className={getFieldClassName('company', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+                          value={formData.empresa}
+                          onChange={(e) => handleInputChange('empresa', e.target.value)}
+                          className={getFieldClassName('empresa', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
                           placeholder="Nome da sua empresa"
                         />
-                        {getFieldError('company') && (
-                          <p className="text-red-400 text-xs mt-1">{getFieldError('company')}</p>
+                        {getFieldError('empresa') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('empresa')}</p>
                         )}
                       </div>
                       
@@ -355,86 +341,23 @@ const ApplicationModal = () => {
                         <label className="block text-white/80 text-sm font-medium mb-2">Cargo/Função *</label>
                         <input
                           type="text"
-                          value={formData.role}
-                          onChange={(e) => handleInputChange('role', e.target.value)}
-                          className={getFieldClassName('role', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+                          value={formData.cargo}
+                          onChange={(e) => handleInputChange('cargo', e.target.value)}
+                          className={getFieldClassName('cargo', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
                           placeholder="CEO, Fundador, Especialista..."
                         />
-                        {getFieldError('role') && (
-                          <p className="text-red-400 text-xs mt-1">{getFieldError('role')}</p>
+                        {getFieldError('cargo') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('cargo')}</p>
                         )}
                       </div>
                     </div>
                     
                     <div className="relative">
-                      <label className="block text-white/80 text-sm font-medium mb-2">Segmento/Indústria *</label>
+                      <label className="block text-white/80 text-sm font-medium mb-2">Faturamento Mensal *</label>
                       <select
-                        value={formData.industry}
-                        onChange={(e) => handleInputChange('industry', e.target.value)}
-                        className={getFieldClassName('industry', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
-                      >
-                        <option value="">Selecione seu segmento</option>
-                        <option value="tecnologia">Tecnologia</option>
-                        <option value="consultoria">Consultoria</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="financas">Finanças</option>
-                        <option value="saude">Saúde</option>
-                        <option value="educacao">Educação</option>
-                        <option value="outros">Outros</option>
-                      </select>
-                      {getFieldError('industry') && (
-                        <p className="text-red-400 text-xs mt-1">{getFieldError('industry')}</p>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 3: Goals & Vision */}
-                {currentStep === 3 && (
-                  <div className="space-y-4 animate-fade-in">
-                    <div className="relative">
-                      <label className="block text-white/80 text-sm font-medium mb-2">Principais objetivos com sua marca pessoal *</label>
-                      <textarea
-                        value={formData.goals}
-                        onChange={(e) => handleInputChange('goals', e.target.value)}
-                        rows={3}
-                        className={getFieldClassName('goals', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none")}
-                        placeholder="Descreva onde você quer chegar com sua marca pessoal..."
-                      />
-                      {getFieldError('goals') && (
-                        <p className="text-red-400 text-xs mt-1">{getFieldError('goals')}</p>
-                      )}
-                    </div>
-                    
-                    <div className="relative">
-                      <label className="block text-white/80 text-sm font-medium mb-2">Prazo para alcançar esses objetivos *</label>
-                      <select
-                        value={formData.timeline}
-                        onChange={(e) => handleInputChange('timeline', e.target.value)}
-                        className={getFieldClassName('timeline', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
-                      >
-                        <option value="">Selecione o prazo</option>
-                        <option value="6meses">6 meses</option>
-                        <option value="1ano">1 ano</option>
-                        <option value="2anos">2 anos</option>
-                        <option value="3anos+">3+ anos</option>
-                      </select>
-                      {getFieldError('timeline') && (
-                        <p className="text-red-400 text-xs mt-1">{getFieldError('timeline')}</p>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 4: Investment & Commitment */}
-                {currentStep === 4 && (
-                  <div className="space-y-4 animate-fade-in">
-                    <div className="relative">
-                      <label className="block text-white/80 text-sm font-medium mb-2">Faturamento atual mensal *</label>
-                      <select
-                        value={formData.currentRevenue}
-                        onChange={(e) => handleInputChange('currentRevenue', e.target.value)}
-                        className={getFieldClassName('currentRevenue', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
+                        value={formData.faturamento}
+                        onChange={(e) => handleInputChange('faturamento', e.target.value)}
+                        className={getFieldClassName('faturamento', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
                       >
                         <option value="">Selecione sua faixa de faturamento</option>
                         <option value="50k-100k">R$ 50K - R$ 100K</option>
@@ -442,26 +365,82 @@ const ApplicationModal = () => {
                         <option value="300k-500k">R$ 300K - R$ 500K</option>
                         <option value="500k+">R$ 500K+</option>
                       </select>
-                      {getFieldError('currentRevenue') && (
-                        <p className="text-red-400 text-xs mt-1">{getFieldError('currentRevenue')}</p>
+                      {getFieldError('faturamento') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('faturamento')}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {currentStep === 3 && (
+                  <div className="space-y-4 animate-fade-in">
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">Principais desafios da sua marca pessoal *</label>
+                      <textarea
+                        value={formData.principais_desafios}
+                        onChange={(e) => handleInputChange('principais_desafios', e.target.value)}
+                        rows={3}
+                        className={getFieldClassName('principais_desafios', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none")}
+                        placeholder="Descreva os principais desafios que enfrenta..."
+                      />
+                      {getFieldError('principais_desafios') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('principais_desafios')}</p>
                       )}
                     </div>
                     
                     <div className="relative">
-                      <label className="block text-white/80 text-sm font-medium mb-2">Por que você deveria ser um dos 8 escolhidos? *</label>
-                      <textarea
-                        value={formData.motivation}
-                        onChange={(e) => handleInputChange('motivation', e.target.value)}
-                        rows={4}
-                        className={getFieldClassName('motivation', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none")}
-                        placeholder="Conte sua história, seus diferenciais e por que você está pronto para liderar um movimento..."
-                      />
-                      {getFieldError('motivation') && (
-                        <p className="text-red-400 text-xs mt-1">{getFieldError('motivation')}</p>
+                      <label className="block text-white/80 text-sm font-medium mb-2">Cronograma para alcançar objetivos *</label>
+                      <select
+                        value={formData.cronograma}
+                        onChange={(e) => handleInputChange('cronograma', e.target.value)}
+                        className={getFieldClassName('cronograma', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
+                      >
+                        <option value="">Selecione o cronograma</option>
+                        <option value="6meses">6 meses</option>
+                        <option value="1ano">1 ano</option>
+                        <option value="2anos">2 anos</option>
+                        <option value="3anos+">3+ anos</option>
+                      </select>
+                      {getFieldError('cronograma') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('cronograma')}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {currentStep === 4 && (
+                  <div className="space-y-4 animate-fade-in">
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">Orçamento de investimento *</label>
+                      <select
+                        value={formData.orcamento_investimento}
+                        onChange={(e) => handleInputChange('orcamento_investimento', e.target.value)}
+                        className={getFieldClassName('orcamento_investimento', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
+                      >
+                        <option value="">Selecione sua faixa de investimento</option>
+                        <option value="50k-100k">R$ 50K - R$ 100K</option>
+                        <option value="100k-300k">R$ 100K - R$ 300K</option>
+                        <option value="300k+">R$ 300K+</option>
+                      </select>
+                      {getFieldError('orcamento_investimento') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('orcamento_investimento')}</p>
                       )}
                     </div>
                     
-                    {/* Investment Info - More compact */}
+                    <div className="relative">
+                      <label className="block text-white/80 text-sm font-medium mb-2">Experiência anterior com consultoria/mentoria</label>
+                      <textarea
+                        value={formData.experiencia_anterior}
+                        onChange={(e) => handleInputChange('experiencia_anterior', e.target.value)}
+                        rows={4}
+                        className={getFieldClassName('experiencia_anterior', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none")}
+                        placeholder="Conte sobre suas experiências anteriores com consultoria ou mentoria..."
+                      />
+                      {getFieldError('experiencia_anterior') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('experiencia_anterior')}</p>
+                      )}
+                    </div>
+                    
                     <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 p-4">
                       <h4 className="text-lg font-bold text-white mb-2">Investimento</h4>
                       <div className="text-2xl font-black text-gradient mb-1">R$ 97.000</div>
@@ -473,7 +452,6 @@ const ApplicationModal = () => {
                   </div>
                 )}
 
-                {/* Navigation */}
                 <div className="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
                   {currentStep > 0 ? (
                     <button
