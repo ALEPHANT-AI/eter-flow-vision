@@ -109,10 +109,7 @@ const ApplicationModal = () => {
     
     const isStepValid = validateAllFields(stepData as any);
     
-    if (isStep
-
-
-Valid && currentStep < totalSteps - 1) {
+    if (isStepValid && currentStep < totalSteps - 1) {
       setCurrentStep(prev => prev + 1);
       console.log('Moving to step:', currentStep + 1);
       console.log('Saving form data:', formData);
