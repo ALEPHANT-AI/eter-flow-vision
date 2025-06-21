@@ -11,6 +11,13 @@ const HeroSection = () => {
     setIsVisible(true);
   }, []);
 
+  const scrollToForm = () => {
+    const formElement = document.getElementById('formulario-aplicacao');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden pt-2 px-4">
       {/* Background with Davi's image and golden filter */}
@@ -39,7 +46,7 @@ const HeroSection = () => {
         </div>
 
         {/* Main content centered with more space from top */}
-        <div className="flex-1 flex items-center justify-start pt-16 md:pt-20">
+        <div className="flex-1 flex items-center justify-start pt-20 md:pt-24">
           <div className="text-left space-y-4 max-w-3xl">
             {/* The Eight Title with Movement tagline */}
             <div className={`transition-all duration-1200 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -76,7 +83,7 @@ const HeroSection = () => {
             {/* CTA Button */}
             <div className={`flex justify-start pt-4 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
               <button 
-                onClick={openModal}
+                onClick={scrollToForm}
                 className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 md:px-10 py-3 md:py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic"
               >
                 {/* Content */}

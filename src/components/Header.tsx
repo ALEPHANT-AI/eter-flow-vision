@@ -1,11 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { useApplicationModal } from '../contexts/ApplicationModalContext';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const { openModal } = useApplicationModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +15,13 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToForm = () => {
+    const formElement = document.getElementById('formulario-aplicacao');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -36,7 +41,7 @@ const Header = () => {
           </div>
           
           <button 
-            onClick={openModal}
+            onClick={scrollToForm}
             className="relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-6 md:px-8 py-2 md:py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic group"
           >
             <span className="relative z-10 text-sm md:text-base">PREENCHER APLICAÇÃO</span>
