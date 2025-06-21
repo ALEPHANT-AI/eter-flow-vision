@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay, DialogTitle, DialogDescription } from './ui/dialog';
@@ -345,7 +346,7 @@ const ApplicationModal = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
-      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-4xl h-[95vh] sm:h-[90vh] max-h-[95vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden [&>button]:hidden">
+      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-4xl max-h-[90vh] sm:max-h-[85vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden [&>button]:hidden">
         {/* Componentes obrigatórios do Radix UI para acessibilidade */}
         <DialogTitle className="sr-only">
           {getStepTitle()}
@@ -356,18 +357,18 @@ const ApplicationModal = () => {
 
         <button
           onClick={closeModal}
-          className="absolute right-3 top-3 sm:right-4 sm:top-4 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+          className="absolute right-2 top-2 sm:right-3 sm:top-3 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
         >
-          <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
         </button>
 
-        <div className="h-full flex flex-col">
+        <div className="h-full flex flex-col min-h-0">
           <ApplicationModalHeader currentStep={currentStep} />
 
-          <div className="flex-1 px-3 sm:px-6 md:px-8 pb-3 sm:pb-6 md:pb-8 overflow-hidden">
+          <div className="flex-1 px-2 sm:px-4 md:px-6 pb-2 sm:pb-4 overflow-hidden min-h-0">
             <div className="card-premium h-full">
-              <form onSubmit={handleSubmit} className="h-full flex flex-col">
-                <div className="flex-1 overflow-y-auto px-1 sm:px-3 md:px-0 py-2 sm:py-4">
+              <form onSubmit={handleSubmit} className="h-full flex flex-col min-h-0">
+                <div className="flex-1 overflow-y-auto px-1 sm:px-2 py-1 sm:py-2 min-h-0">
                   {renderStepContent()}
                 </div>
 
