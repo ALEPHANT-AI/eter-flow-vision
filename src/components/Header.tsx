@@ -26,16 +26,13 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* ETER FLOW Logo with Powered By Alephant */}
-          <div className="flex items-center space-x-3">
+          {/* ETER Logo */}
+          <div className="flex items-center">
             <img 
-              src="/lovable-uploads/6bc9cbd4-7727-4d6d-8de4-1da0209f7d40.png" 
-              alt="ETER FLOW"
-              className="h-6 md:h-8"
+              src="/lovable-uploads/79c57192-38b3-4580-98a3-85751ad4e1a0.png" 
+              alt="ETER"
+              className="h-8 md:h-10"
             />
-            <div className="text-xs text-gold-400 font-medium">
-              Powered By Alephant
-            </div>
           </div>
           
           <button 

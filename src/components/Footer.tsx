@@ -127,16 +127,12 @@ const Footer = () => {
         }`}>
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             {/* Logo */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center">
               <img 
-                src="/lovable-uploads/b51a5c29-18bb-44d4-a063-4685b0fb43a9.png" 
+                src="/lovable-uploads/79c57192-38b3-4580-98a3-85751ad4e1a0.png" 
                 alt="ETER"
                 className="h-12"
               />
-              <div>
-                <div className="text-white font-bold text-lg">Eter Flow</div>
-                <div className="text-white/50 text-xs">Powered by ALEPHANT</div>
-              </div>
             </div>
             
             {/* Copyright */}
