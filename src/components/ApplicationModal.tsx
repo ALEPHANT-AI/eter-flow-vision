@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay, DialogTitle, DialogDescription } from './ui/dialog';
@@ -85,11 +84,9 @@ const ApplicationModal = () => {
     const stepFields = getStepFields(currentStep);
     return stepFields.every(field => {
       const value = formData[field as keyof typeof formData];
-      // Instagram é opcional, então se estiver apenas '@', considerar válido
       if (field === 'instagram') {
         return !errors[field];
       }
-      // experiencia_anterior é opcional
       if (field === 'experiencia_anterior') {
         return !errors[field];
       }
@@ -102,7 +99,7 @@ const ApplicationModal = () => {
       case 1: return ['nome', 'email', 'whatsapp', 'instagram'];
       case 2: return ['empresa', 'cargo', 'faturamento'];
       case 3: return ['principais_desafios', 'cronograma'];
-      case 4: return ['orcamento_investimento']; // Removido experiencia_anterior pois é opcional
+      case 4: return ['orcamento_investimento'];
       default: return [];
     }
   };
@@ -134,13 +131,12 @@ const ApplicationModal = () => {
   };
 
   const sendToGoogleSheets = async (data: typeof formData) => {
-    // Substitua esta URL pela URL do seu Google Apps Script
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
     
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Necessário para Google Apps Script
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -150,7 +146,6 @@ const ApplicationModal = () => {
         })
       });
 
-      // Com no-cors, não podemos ler a resposta, então assumimos sucesso se não houver erro
       console.log('Dados enviados para Google Sheets:', data);
       return true;
     } catch (error) {
@@ -162,7 +157,6 @@ const ApplicationModal = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validar apenas campos obrigatórios para o envio final
     const requiredFieldsForSubmission = {
       nome: formData.nome,
       email: formData.email,
@@ -190,7 +184,6 @@ const ApplicationModal = () => {
     setIsSubmitting(true);
 
     try {
-      // Enviar dados para Google Sheets
       await sendToGoogleSheets(formData);
       
       console.log('Form submitted successfully:', formData);
@@ -200,7 +193,7 @@ const ApplicationModal = () => {
         description: "Seus dados foram registrados. Em breve entraremos em contato.",
       });
 
-      setCurrentStep(5); // Ir para tela de sucesso
+      setCurrentStep(5);
     } catch (error) {
       console.error('Error submitting form:', error);
       
@@ -210,8 +203,6 @@ const ApplicationModal = () => {
         variant: "destructive",
       });
 
-      // Mesmo com erro, permitir continuar para não bloquear o usuário
-      // Em produção, você pode decidir se quer bloquear ou não
       setTimeout(() => {
         setCurrentStep(5);
       }, 2000);
@@ -341,13 +332,11 @@ const ApplicationModal = () => {
     }
   };
 
-  // Debug: adicionar logs para verificar se o modal está sendo renderizado
   console.log('ApplicationModal render - isOpen:', isOpen, 'currentStep:', currentStep);
 
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
-      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-4xl max-h-[90vh] sm:max-h-[85vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden [&>button]:hidden">
-        {/* Componentes obrigatórios do Radix UI para acessibilidade */}
+      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-4xl h-[95vh] sm:h-[90vh] max-h-[90vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden [&>button]:hidden">
         <DialogTitle className="sr-only">
           {getStepTitle()}
         </DialogTitle>
@@ -357,18 +346,18 @@ const ApplicationModal = () => {
 
         <button
           onClick={closeModal}
-          className="absolute right-2 top-2 sm:right-3 sm:top-3 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+          className="absolute right-2 top-2 sm:right-3 sm:top-3 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
         >
-          <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+          <X className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
         </button>
 
         <div className="h-full flex flex-col min-h-0">
           <ApplicationModalHeader currentStep={currentStep} />
 
-          <div className="flex-1 px-2 sm:px-4 md:px-6 pb-2 sm:pb-4 overflow-hidden min-h-0">
+          <div className="flex-1 px-2 sm:px-4 md:px-6 pb-1 sm:pb-2 overflow-hidden min-h-0">
             <div className="card-premium h-full">
               <form onSubmit={handleSubmit} className="h-full flex flex-col min-h-0">
-                <div className="flex-1 overflow-y-auto px-1 sm:px-2 py-1 sm:py-2 min-h-0">
+                <div className="flex-1 overflow-y-auto px-1 sm:px-2 py-1 min-h-0">
                   {renderStepContent()}
                 </div>
 
