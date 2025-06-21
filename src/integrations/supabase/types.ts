@@ -1194,6 +1194,60 @@ export type Database = {
         }
         Relationships: []
       }
+      form_applications: {
+        Row: {
+          cargo: string
+          created_at: string
+          cronograma: string
+          email: string
+          empresa: string
+          experiencia_anterior: string | null
+          faturamento: string
+          id: string
+          instagram: string | null
+          nome: string
+          objetivos_movimento: string | null
+          orcamento_investimento: string
+          principais_desafios: string
+          updated_at: string
+          whatsapp: string
+        }
+        Insert: {
+          cargo: string
+          created_at?: string
+          cronograma: string
+          email: string
+          empresa: string
+          experiencia_anterior?: string | null
+          faturamento: string
+          id?: string
+          instagram?: string | null
+          nome: string
+          objetivos_movimento?: string | null
+          orcamento_investimento: string
+          principais_desafios: string
+          updated_at?: string
+          whatsapp: string
+        }
+        Update: {
+          cargo?: string
+          created_at?: string
+          cronograma?: string
+          email?: string
+          empresa?: string
+          experiencia_anterior?: string | null
+          faturamento?: string
+          id?: string
+          instagram?: string | null
+          nome?: string
+          objetivos_movimento?: string | null
+          orcamento_investimento?: string
+          principais_desafios?: string
+          updated_at?: string
+          whatsapp?: string
+        }
+        Relationships: []
+      }
       messages: {
         Row: {
           channel_metadata: Json | null

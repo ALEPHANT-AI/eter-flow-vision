@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useToast } from '../../hooks/use-toast';
 import useFormValidation from '../../hooks/useFormValidation';
 import { formatPhoneNumber, getStepFields } from './ApplicationModalUtils';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '../../integrations/supabase/client';
 
 interface FormData {
   nome: string;
@@ -155,6 +155,7 @@ const ApplicationFormHandler: React.FC<ApplicationFormHandlerProps> = ({ childre
             cargo: data.cargo,
             faturamento: data.faturamento,
             principais_desafios: data.principais_desafios,
+            objetivos_movimento: data.objetivos_movimento || null,
             cronograma: data.cronograma,
             orcamento_investimento: data.orcamento_investimento,
             experiencia_anterior: data.experiencia_anterior || null
