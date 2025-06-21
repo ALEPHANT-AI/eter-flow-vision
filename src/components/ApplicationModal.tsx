@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, ArrowLeft, CheckCircle, User, Building, Target, DollarSign, Sparkles, Instagram, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
 import { useApplicationModal } from '../contexts/ApplicationModalContext';
+import { useFormValidation } from '../hooks/useFormValidation';
 
 const ApplicationModal = () => {
   const { isOpen, closeModal } = useApplicationModal();
@@ -10,7 +11,7 @@ const ApplicationModal = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    phone: '+55 ',
     instagram: '@',
     company: '',
     role: '',
@@ -22,22 +23,82 @@ const ApplicationModal = () => {
     motivation: ''
   });
 
+  const { errors, validateField, validateStep, clearError } = useFormValidation();
   const totalSteps = 5; // 0 (intro) + 4 form steps
 
-  const handleInputChange = (field: string, value: string) => {
-    if (field === 'instagram' && !value.startsWith('@')) {
-      value = '@' + value;
+  const formatPhoneNumber = (value: string) => {
+    // Remove all non-digits except the + at the beginning
+    const numbers = value.replace(/[^\d+]/g, '');
+    
+    // Ensure it starts with +55
+    if (!numbers.startsWith('+55')) {
+      return '+55 ';
     }
-    setFormData(prev => ({ ...prev, [field]: value }));
+    
+    // Extract just the digits after +55
+    const phoneDigits = numbers.slice(3);
+    
+    // Format: +55 (XX) XXXXX-XXXX
+    if (phoneDigits.length <= 2) {
+      return `+55 ${phoneDigits}`;
+    } else if (phoneDigits.length <= 7) {
+      return `+55 (${phoneDigits.slice(0, 2)}) ${phoneDigits.slice(2)}`;
+    } else {
+      return `+55 (${phoneDigits.slice(0, 2)}) ${phoneDigits.slice(2, 7)}-${phoneDigits.slice(7, 11)}`;
+    }
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    let formattedValue = value;
+    
+    if (field === 'phone') {
+      formattedValue = formatPhoneNumber(value);
+    } else if (field === 'instagram' && !value.startsWith('@')) {
+      formattedValue = '@' + value.replace('@', '');
+    }
+    
+    setFormData(prev => ({ ...prev, [field]: formattedValue }));
+    
+    // Clear error when user starts typing
+    if (errors[field]) {
+      clearError(field);
+    }
+    
+    // Validate field in real-time
+    validateField(field, formattedValue);
+  };
+
+  const canProceedToNextStep = () => {
+    const stepFields = getStepFields(currentStep);
+    return stepFields.every(field => {
+      const value = formData[field as keyof typeof formData];
+      return value && value.trim() !== '' && value !== '@' && value !== '+55 ' && !errors[field];
+    });
+  };
+
+  const getStepFields = (step: number) => {
+    switch (step) {
+      case 1: return ['name', 'email', 'phone', 'instagram'];
+      case 2: return ['company', 'role', 'industry'];
+      case 3: return ['goals', 'timeline'];
+      case 4: return ['currentRevenue', 'motivation'];
+      default: return [];
+    }
   };
 
   const nextStep = () => {
-    if (currentStep < totalSteps - 1) {
+    if (currentStep === 0) {
+      setCurrentStep(prev => prev + 1);
+      return;
+    }
+    
+    const stepFields = getStepFields(currentStep);
+    const isStepValid = validateStep(stepFields, formData);
+    
+    if (isStepValid && currentStep < totalSteps - 1) {
       setCurrentStep(prev => prev + 1);
       console.log('Moving to step:', currentStep + 1);
-      if (currentStep > 0) {
-        console.log('Saving form data:', formData);
-      }
+      console.log('Saving form data:', formData);
     }
   };
 
@@ -49,8 +110,13 @@ const ApplicationModal = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    closeModal();
+    const allFields = getStepFields(1).concat(getStepFields(2), getStepFields(3), getStepFields(4));
+    const isFormValid = validateStep(allFields, formData);
+    
+    if (isFormValid) {
+      console.log('Form submitted:', formData);
+      closeModal();
+    }
   };
 
   const progressPercentage = currentStep === 0 ? 0 : ((currentStep) / (totalSteps - 1)) * 100;
@@ -63,7 +129,7 @@ const ApplicationModal = () => {
       setFormData({
         name: '',
         email: '',
-        phone: '',
+        phone: '+55 ',
         instagram: '@',
         company: '',
         role: '',
@@ -76,6 +142,13 @@ const ApplicationModal = () => {
       });
     }
   }, [isOpen]);
+
+  const getFieldError = (field: string) => errors[field];
+  
+  const getFieldClassName = (field: string, baseClassName: string) => {
+    const hasError = errors[field];
+    return `${baseClassName} ${hasError ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'focus:border-gold-500 focus:ring-gold-500/20'}`;
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
@@ -194,9 +267,7 @@ const ApplicationModal = () => {
 
                 {/* Step 1: Personal Info */}
                 {currentStep === 1 && (
-                  <div className="space-y-6 animate-fade-in">
-                    <h3 className="text-xl font-bold text-white mb-4">Informações Pessoais</h3>
-                    
+                  <div className="space-y-4 animate-fade-in">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="relative">
                         <label className="block text-white/80 text-sm font-medium mb-2">Nome Completo *</label>
@@ -204,9 +275,12 @@ const ApplicationModal = () => {
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          className={getFieldClassName('name', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
                           placeholder="Seu nome completo"
                         />
+                        {getFieldError('name') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('name')}</p>
+                        )}
                       </div>
                       
                       <div className="relative">
@@ -215,9 +289,12 @@ const ApplicationModal = () => {
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          className={getFieldClassName('email', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
                           placeholder="seu@email.com"
                         />
+                        {getFieldError('email') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('email')}</p>
+                        )}
                       </div>
                     </div>
                     
@@ -228,9 +305,12 @@ const ApplicationModal = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => handleInputChange('phone', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
-                          placeholder="(11) 99999-9999"
+                          className={getFieldClassName('phone', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+                          placeholder="+55 (11) 99999-9999"
                         />
+                        {getFieldError('phone') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('phone')}</p>
+                        )}
                       </div>
                       
                       <div className="relative">
@@ -241,10 +321,13 @@ const ApplicationModal = () => {
                             type="text"
                             value={formData.instagram}
                             onChange={(e) => handleInputChange('instagram', e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                            className={getFieldClassName('instagram', "w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
                             placeholder="@seuinstagram"
                           />
                         </div>
+                        {getFieldError('instagram') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('instagram')}</p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -252,9 +335,7 @@ const ApplicationModal = () => {
 
                 {/* Step 2: Professional Info */}
                 {currentStep === 2 && (
-                  <div className="space-y-6 animate-fade-in">
-                    <h3 className="text-xl font-bold text-white mb-4">Informações Profissionais</h3>
-                    
+                  <div className="space-y-4 animate-fade-in">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="relative">
                         <label className="block text-white/80 text-sm font-medium mb-2">Empresa/Negócio *</label>
@@ -262,9 +343,12 @@ const ApplicationModal = () => {
                           type="text"
                           value={formData.company}
                           onChange={(e) => handleInputChange('company', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          className={getFieldClassName('company', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
                           placeholder="Nome da sua empresa"
                         />
+                        {getFieldError('company') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('company')}</p>
+                        )}
                       </div>
                       
                       <div className="relative">
@@ -273,9 +357,12 @@ const ApplicationModal = () => {
                           type="text"
                           value={formData.role}
                           onChange={(e) => handleInputChange('role', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          className={getFieldClassName('role', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
                           placeholder="CEO, Fundador, Especialista..."
                         />
+                        {getFieldError('role') && (
+                          <p className="text-red-400 text-xs mt-1">{getFieldError('role')}</p>
+                        )}
                       </div>
                     </div>
                     
@@ -284,7 +371,7 @@ const ApplicationModal = () => {
                       <select
                         value={formData.industry}
                         onChange={(e) => handleInputChange('industry', e.target.value)}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        className={getFieldClassName('industry', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
                       >
                         <option value="">Selecione seu segmento</option>
                         <option value="tecnologia">Tecnologia</option>
@@ -295,24 +382,28 @@ const ApplicationModal = () => {
                         <option value="educacao">Educação</option>
                         <option value="outros">Outros</option>
                       </select>
+                      {getFieldError('industry') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('industry')}</p>
+                      )}
                     </div>
                   </div>
                 )}
 
                 {/* Step 3: Goals & Vision */}
                 {currentStep === 3 && (
-                  <div className="space-y-6 animate-fade-in">
-                    <h3 className="text-xl font-bold text-white mb-4">Objetivos e Visão</h3>
-                    
+                  <div className="space-y-4 animate-fade-in">
                     <div className="relative">
                       <label className="block text-white/80 text-sm font-medium mb-2">Principais objetivos com sua marca pessoal *</label>
                       <textarea
                         value={formData.goals}
                         onChange={(e) => handleInputChange('goals', e.target.value)}
                         rows={3}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300 resize-none"
+                        className={getFieldClassName('goals', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none")}
                         placeholder="Descreva onde você quer chegar com sua marca pessoal..."
                       />
+                      {getFieldError('goals') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('goals')}</p>
+                      )}
                     </div>
                     
                     <div className="relative">
@@ -320,7 +411,7 @@ const ApplicationModal = () => {
                       <select
                         value={formData.timeline}
                         onChange={(e) => handleInputChange('timeline', e.target.value)}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        className={getFieldClassName('timeline', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
                       >
                         <option value="">Selecione o prazo</option>
                         <option value="6meses">6 meses</option>
@@ -328,21 +419,22 @@ const ApplicationModal = () => {
                         <option value="2anos">2 anos</option>
                         <option value="3anos+">3+ anos</option>
                       </select>
+                      {getFieldError('timeline') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('timeline')}</p>
+                      )}
                     </div>
                   </div>
                 )}
 
                 {/* Step 4: Investment & Commitment */}
                 {currentStep === 4 && (
-                  <div className="space-y-6 animate-fade-in">
-                    <h3 className="text-xl font-bold text-white mb-4">Investimento e Comprometimento</h3>
-                    
+                  <div className="space-y-4 animate-fade-in">
                     <div className="relative">
                       <label className="block text-white/80 text-sm font-medium mb-2">Faturamento atual mensal *</label>
                       <select
                         value={formData.currentRevenue}
                         onChange={(e) => handleInputChange('currentRevenue', e.target.value)}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        className={getFieldClassName('currentRevenue', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
                       >
                         <option value="">Selecione sua faixa de faturamento</option>
                         <option value="50k-100k">R$ 50K - R$ 100K</option>
@@ -350,6 +442,9 @@ const ApplicationModal = () => {
                         <option value="300k-500k">R$ 300K - R$ 500K</option>
                         <option value="500k+">R$ 500K+</option>
                       </select>
+                      {getFieldError('currentRevenue') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('currentRevenue')}</p>
+                      )}
                     </div>
                     
                     <div className="relative">
@@ -358,9 +453,12 @@ const ApplicationModal = () => {
                         value={formData.motivation}
                         onChange={(e) => handleInputChange('motivation', e.target.value)}
                         rows={4}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300 resize-none"
+                        className={getFieldClassName('motivation', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none")}
                         placeholder="Conte sua história, seus diferenciais e por que você está pronto para liderar um movimento..."
                       />
+                      {getFieldError('motivation') && (
+                        <p className="text-red-400 text-xs mt-1">{getFieldError('motivation')}</p>
+                      )}
                     </div>
                     
                     {/* Investment Info - More compact */}
@@ -406,7 +504,8 @@ const ApplicationModal = () => {
                     <button
                       type="button"
                       onClick={nextStep}
-                      className="btn-premium group"
+                      disabled={!canProceedToNextStep()}
+                      className={`btn-premium group ${!canProceedToNextStep() ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >
                       <span className="flex items-center">
                         Próximo
@@ -416,7 +515,8 @@ const ApplicationModal = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="btn-premium text-lg group glow-gold-strong"
+                      disabled={!canProceedToNextStep()}
+                      className={`btn-premium text-lg group glow-gold-strong ${!canProceedToNextStep() ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >
                       <span className="flex items-center">
                         <Sparkles className="w-5 h-5 mr-2 animate-spin" />
