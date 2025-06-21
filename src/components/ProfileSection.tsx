@@ -1,9 +1,10 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Star, TrendingUp, Users, Award, BookOpen } from 'lucide-react';
+import ApplicationModal from './ApplicationModal';
 
 const ProfileSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [counters, setCounters] = useState({
     revenue: 0,
     people: 0,
@@ -107,7 +108,7 @@ const ProfileSection = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
             {/* Image Section */}
             <div className={`relative transition-all duration-1000 delay-300 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
@@ -206,7 +207,10 @@ const ProfileSection = () => {
           <div className={`text-center transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <button className="btn-premium text-lg glow-gold magnetic group hover:scale-110 transition-all duration-300">
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="btn-premium text-lg glow-gold magnetic group hover:scale-110 transition-all duration-300"
+            >
               <span className="flex items-center">
                 QUERO SER ESCOLHIDO
               </span>
@@ -214,6 +218,11 @@ const ProfileSection = () => {
           </div>
         </div>
       </div>
+
+      <ApplicationModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </section>
   );
 };
