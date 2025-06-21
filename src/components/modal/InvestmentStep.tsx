@@ -26,7 +26,7 @@ const InvestmentStep: React.FC<InvestmentStepProps> = ({
         <select
           value={formData.orcamento_investimento}
           onChange={(e) => onInputChange('orcamento_investimento', e.target.value)}
-          className={getFieldClassName('orcamento_investimento', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
+          className={getFieldClassName('orcamento_investimento', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white transition-all duration-300 text-base sm:text-sm")}
         >
           <option value="">Selecione sua faixa de investimento</option>
           <option value="50k-100k">R$ 50K - R$ 100K</option>
@@ -47,7 +47,7 @@ const InvestmentStep: React.FC<InvestmentStepProps> = ({
           value={formData.experiencia_anterior}
           onChange={(e) => onInputChange('experiencia_anterior', e.target.value)}
           rows={4}
-          className={getFieldClassName('experiencia_anterior', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none")}
+          className={getFieldClassName('experiencia_anterior', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none text-base sm:text-sm")}
           placeholder="Conte sobre suas experiências anteriores com consultoria ou mentoria... (opcional)"
         />
         {getFieldError('experiencia_anterior') && (

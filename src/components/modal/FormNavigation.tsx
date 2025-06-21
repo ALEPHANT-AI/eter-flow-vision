@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { ArrowLeft, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
 
@@ -26,11 +25,11 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
 }) => {
   if (currentStep === 5) {
     return (
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-6 sm:mt-8">
         <button
           type="button"
           onClick={handleBackToHome}
-          className="btn-premium text-lg group glow-gold-strong"
+          className="btn-premium text-base sm:text-lg group glow-gold-strong px-6 py-3 sm:px-8 sm:py-4"
         >
           <span className="flex items-center">
             Voltar à página principal
@@ -43,13 +42,13 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
 
   if (currentStep < 5) {
     return (
-      <div className="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
+      <div className="flex justify-between items-center mt-4 sm:mt-6 pt-4 border-t border-white/10">
         {currentStep > 0 ? (
           <button
             type="button"
             onClick={prevStep}
             disabled={isSubmitting}
-            className={`flex items-center px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all duration-300 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`flex items-center px-4 py-2 sm:px-6 sm:py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all duration-300 text-sm sm:text-base ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar
@@ -62,7 +61,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
           <button
             type="button"
             onClick={nextStep}
-            className="btn-premium group text-xl"
+            className="btn-premium group text-lg sm:text-xl px-6 py-3 sm:px-8 sm:py-4"
           >
             <span className="flex items-center">
               <Sparkles className="w-5 h-5 mr-2 animate-spin" />
@@ -75,7 +74,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
             type="button"
             onClick={nextStep}
             disabled={!canProceedToNextStep() || isSubmitting}
-            className={`btn-premium group ${!canProceedToNextStep() || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`btn-premium group px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base ${!canProceedToNextStep() || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <span className="flex items-center">
               Próximo
@@ -86,7 +85,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
           <button
             type="submit"
             disabled={!canProceedToNextStep() || isSubmitting}
-            className={`btn-premium text-lg group glow-gold-strong ${!canProceedToNextStep() || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`btn-premium text-base sm:text-lg group glow-gold-strong px-6 py-3 sm:px-8 sm:py-4 ${!canProceedToNextStep() || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
             onClick={handleSubmit}
           >
             <span className="flex items-center">
@@ -107,4 +106,3 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
 };
 
 export default FormNavigation;
-

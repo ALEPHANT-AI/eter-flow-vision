@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
@@ -319,21 +320,23 @@ const ApplicationModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogOverlay className="fixed inset-0 bg-black/80 z-50" />
-      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[90vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden [&>button]:hidden">
+      <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-4xl h-[95vh] sm:h-[90vh] bg-gradient-to-b from-black-900 to-black-950 border border-white/10 rounded-2xl p-0 z-50 overflow-hidden [&>button]:hidden">
         <button
           onClick={closeModal}
-          className="absolute right-6 top-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+          className="absolute right-4 top-4 sm:right-6 sm:top-6 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
         >
-          <X className="w-5 h-5 text-white" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
         </button>
 
         <div className="h-full flex flex-col">
           <ApplicationModalHeader currentStep={currentStep} />
 
-          <div className="flex-1 px-8 pb-8 overflow-hidden">
+          <div className="flex-1 px-4 sm:px-8 pb-4 sm:pb-8 overflow-hidden">
             <div className="card-premium h-full">
               <form onSubmit={handleSubmit} className="h-full flex flex-col">
-                {renderStepContent()}
+                <div className="flex-1 overflow-y-auto px-2 sm:px-0">
+                  {renderStepContent()}
+                </div>
 
                 <FormNavigation
                   currentStep={currentStep}

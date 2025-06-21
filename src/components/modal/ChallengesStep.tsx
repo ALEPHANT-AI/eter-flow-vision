@@ -27,7 +27,7 @@ const ChallengesStep: React.FC<ChallengesStepProps> = ({
           value={formData.principais_desafios}
           onChange={(e) => onInputChange('principais_desafios', e.target.value)}
           rows={3}
-          className={getFieldClassName('principais_desafios', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none")}
+          className={getFieldClassName('principais_desafios', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white placeholder-white/50 transition-all duration-300 resize-none text-base sm:text-sm")}
           placeholder="Descreva os principais desafios que enfrenta..."
         />
         {getFieldError('principais_desafios') && (
@@ -40,7 +40,7 @@ const ChallengesStep: React.FC<ChallengesStepProps> = ({
         <select
           value={formData.cronograma}
           onChange={(e) => onInputChange('cronograma', e.target.value)}
-          className={getFieldClassName('cronograma', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
+          className={getFieldClassName('cronograma', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white transition-all duration-300 text-base sm:text-sm")}
         >
           <option value="">Selecione o cronograma</option>
           <option value="6meses">6 meses</option>

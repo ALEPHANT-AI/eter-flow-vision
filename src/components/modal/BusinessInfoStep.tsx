@@ -22,14 +22,14 @@ const BusinessInfoStep: React.FC<BusinessInfoStepProps> = ({
 }) => {
   return (
     <div className="space-y-4 animate-fade-in">
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="relative">
           <label className="block text-white/80 text-sm font-medium mb-2">Empresa/Negócio *</label>
           <input
             type="text"
             value={formData.empresa}
             onChange={(e) => onInputChange('empresa', e.target.value)}
-            className={getFieldClassName('empresa', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+            className={getFieldClassName('empresa', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white placeholder-white/50 transition-all duration-300 text-base sm:text-sm")}
             placeholder="Nome da sua empresa"
           />
           {getFieldError('empresa') && (
@@ -43,7 +43,7 @@ const BusinessInfoStep: React.FC<BusinessInfoStepProps> = ({
             type="text"
             value={formData.cargo}
             onChange={(e) => onInputChange('cargo', e.target.value)}
-            className={getFieldClassName('cargo', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+            className={getFieldClassName('cargo', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white placeholder-white/50 transition-all duration-300 text-base sm:text-sm")}
             placeholder="CEO, Fundador, Especialista..."
           />
           {getFieldError('cargo') && (
@@ -57,7 +57,7 @@ const BusinessInfoStep: React.FC<BusinessInfoStepProps> = ({
         <select
           value={formData.faturamento}
           onChange={(e) => onInputChange('faturamento', e.target.value)}
-          className={getFieldClassName('faturamento', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white transition-all duration-300")}
+          className={getFieldClassName('faturamento', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white transition-all duration-300 text-base sm:text-sm")}
         >
           <option value="">Selecione sua faixa de faturamento</option>
           <option value="50k-100k">R$ 50K - R$ 100K</option>

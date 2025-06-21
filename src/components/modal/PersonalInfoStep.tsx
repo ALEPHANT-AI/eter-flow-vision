@@ -24,14 +24,14 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
 }) => {
   return (
     <div className="space-y-4 animate-fade-in">
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="relative">
           <label className="block text-white/80 text-sm font-medium mb-2">Nome Completo *</label>
           <input
             type="text"
             value={formData.nome}
             onChange={(e) => onInputChange('nome', e.target.value)}
-            className={getFieldClassName('nome', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+            className={getFieldClassName('nome', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white placeholder-white/50 transition-all duration-300 text-base sm:text-sm")}
             placeholder="Seu nome completo"
           />
           {getFieldError('nome') && (
@@ -45,7 +45,7 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
             type="email"
             value={formData.email}
             onChange={(e) => onInputChange('email', e.target.value)}
-            className={getFieldClassName('email', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+            className={getFieldClassName('email', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white placeholder-white/50 transition-all duration-300 text-base sm:text-sm")}
             placeholder="seu@email.com"
           />
           {getFieldError('email') && (
@@ -54,14 +54,14 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
         </div>
       </div>
       
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="relative">
           <label className="block text-white/80 text-sm font-medium mb-2">WhatsApp *</label>
           <input
             type="tel"
             value={formData.whatsapp}
             onChange={(e) => onInputChange('whatsapp', e.target.value)}
-            className={getFieldClassName('whatsapp', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+            className={getFieldClassName('whatsapp', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white placeholder-white/50 transition-all duration-300 text-base sm:text-sm")}
             placeholder="+55 (11) 99999-9999"
           />
           {getFieldError('whatsapp') && (
@@ -77,7 +77,7 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
               type="text"
               value={formData.instagram}
               onChange={(e) => onInputChange('instagram', e.target.value)}
-              className={getFieldClassName('instagram', "w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-2.5 text-white placeholder-white/50 transition-all duration-300")}
+              className={getFieldClassName('instagram', "w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 sm:py-2.5 text-white placeholder-white/50 transition-all duration-300 text-base sm:text-sm")}
               placeholder="@seuinstagram"
             />
           </div>

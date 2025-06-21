@@ -15,8 +15,8 @@ const ApplicationModalHeader: React.FC<ApplicationModalHeaderProps> = ({ current
   }
 
   return (
-    <div className="px-8 pt-8 pb-6">
-      <div className="flex justify-between items-center mb-4">
+    <div className="px-4 sm:px-8 pt-4 sm:pt-8 pb-4 sm:pb-6">
+      <div className="flex justify-between items-center mb-3 sm:mb-4">
         {Array.from({ length: 4 }, (_, index) => {
           const StepIcon = stepIcons[index];
           const isActive = currentStep === index + 1;
@@ -24,7 +24,7 @@ const ApplicationModalHeader: React.FC<ApplicationModalHeaderProps> = ({ current
           
           return (
             <div key={index} className="flex flex-col items-center">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${
+              <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${
                 isActive 
                   ? 'bg-gradient-to-br from-gold-500 to-gold-600 scale-110 glow-gold' 
                   : isCompleted 
@@ -32,12 +32,12 @@ const ApplicationModalHeader: React.FC<ApplicationModalHeaderProps> = ({ current
                     : 'bg-white/10'
               }`}>
                 {isCompleted ? (
-                  <CheckCircle className="w-5 h-5 text-white" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 ) : (
-                  <StepIcon className={`w-5 h-5 ${isActive ? 'text-black' : 'text-white/70'}`} />
+                  <StepIcon className={`w-4 h-4 sm:w-5 sm:h-5 ${isActive ? 'text-black' : 'text-white/70'}`} />
                 )}
               </div>
-              <span className={`text-xs mt-2 transition-colors duration-300 ${
+              <span className={`text-[10px] sm:text-xs mt-1 sm:mt-2 transition-colors duration-300 ${
                 isActive ? 'text-gold-400' : isCompleted ? 'text-green-400' : 'text-white/50'
               }`}>
                 Etapa {index + 1}
