@@ -12,7 +12,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-8 px-4">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-2 px-4">
       {/* Background with Davi's image and golden filter */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black-950 via-black-900 to-black-800" />
@@ -28,13 +28,13 @@ const HeroSection = () => {
 
       <div className="container mx-auto relative z-10 max-w-6xl">
         <div className="text-left space-y-4 max-w-3xl">
-          {/* Logo section */}
-          <div className={`flex justify-start mb-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Logo section - moved higher up */}
+          <div className={`flex justify-start mb-4 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-left">
               <img 
                 src="/lovable-uploads/5bf8c202-e854-4fba-8707-b047b0730c9e.png" 
                 alt="ETER"
-                className="h-20 md:h-24 mb-2 object-contain filter brightness-110 contrast-110"
+                className="h-40 md:h-48 mb-2 object-contain filter brightness-110 contrast-110"
               />
             </div>
           </div>
