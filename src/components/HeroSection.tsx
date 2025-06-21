@@ -28,13 +28,13 @@ const HeroSection = () => {
 
       <div className="container mx-auto relative z-10 max-w-6xl">
         <div className="text-left space-y-4 max-w-3xl">
-          {/* Logo section - moved higher up */}
-          <div className={`flex justify-start mb-4 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Logo section - moved to top and reduced size */}
+          <div className={`flex justify-start mb-2 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-left">
               <img 
                 src="/lovable-uploads/5bf8c202-e854-4fba-8707-b047b0730c9e.png" 
                 alt="ETER"
-                className="h-40 md:h-48 mb-2 object-contain filter brightness-110 contrast-110"
+                className="h-20 md:h-24 mb-2 object-contain filter brightness-110 contrast-110"
               />
             </div>
           </div>
