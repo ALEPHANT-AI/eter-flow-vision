@@ -12,7 +12,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 px-4">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-8 px-4">
       {/* Background with Davi's image and golden filter */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black-950 via-black-900 to-black-800" />
@@ -27,14 +27,14 @@ const HeroSection = () => {
       </div>
 
       <div className="container mx-auto relative z-10 max-w-6xl">
-        <div className="text-center space-y-4">
+        <div className="text-left space-y-4 max-w-3xl">
           {/* Logo section */}
-          <div className={`flex justify-start mb-8 -mt-24 -ml-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`flex justify-start mb-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="text-left">
               <img 
                 src="/lovable-uploads/79c57192-38b3-4580-98a3-85751ad4e1a0.png" 
                 alt="ETER"
-                className="h-10 md:h-12 mb-2 object-contain filter brightness-110 contrast-110"
+                className="h-20 md:h-24 mb-2 object-contain filter brightness-110 contrast-110"
               />
             </div>
           </div>
@@ -62,14 +62,14 @@ const HeroSection = () => {
           </div>
 
           {/* Description - Simple subheading */}
-          <div className={`text-sm md:text-base lg:text-lg text-white/70 leading-relaxed transition-all duration-1000 delay-500 max-w-3xl mx-auto ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`text-sm md:text-base lg:text-lg text-white/70 leading-relaxed transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
             <br />
             <strong className="text-white">construa uma marca que lidera, inspira e cria uma comunidade de fãs engajados e compradores</strong>
           </div>
 
           {/* CTA Button */}
-          <div className={`flex justify-center pt-4 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
+          <div className={`flex justify-start pt-4 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
             <button 
               onClick={openModal}
               className="group relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-8 md:px-10 py-3 md:py-4 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic"

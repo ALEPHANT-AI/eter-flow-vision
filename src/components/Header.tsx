@@ -31,7 +31,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/79c57192-38b3-4580-98a3-85751ad4e1a0.png" 
               alt="ETER"
-              className="h-8 md:h-10"
+              className="h-16 md:h-20"
             />
           </div>
           

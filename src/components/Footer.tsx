@@ -131,7 +131,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/79c57192-38b3-4580-98a3-85751ad4e1a0.png" 
                 alt="ETER"
-                className="h-12"
+                className="h-24"
               />
             </div>
             
