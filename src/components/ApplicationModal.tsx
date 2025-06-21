@@ -13,6 +13,7 @@ const ApplicationModal = () => {
         <ApplicationModalCore
           isOpen={isOpen}
           onClose={closeModal}
+          onInputChange={formProps.handleInputChange}
           {...formProps}
         />
       )}
