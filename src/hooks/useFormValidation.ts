@@ -29,13 +29,14 @@ const useFormValidation = () => {
   };
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-    const cleanPhone = phone.replace(/[\s\(\)\-]/g, '');
-    return cleanPhone.length >= 10 && phoneRegex.test(cleanPhone);
+    // More lenient phone validation - just check if it has at least 10 digits
+    const cleanPhone = phone.replace(/[^\d]/g, '');
+    return cleanPhone.length >= 10;
   };
 
   const validateInstagram = (instagram: string): boolean => {
-    if (!instagram || instagram === '@') return true; // Optional field
+    // Make Instagram validation more lenient - allow empty or just @
+    if (!instagram || instagram === '@') return true;
     const instagramRegex = /^@[a-zA-Z0-9._]+$/;
     return instagramRegex.test(instagram);
   };
@@ -46,33 +47,78 @@ const useFormValidation = () => {
       value = '';
     }
     
+    let error = '';
+    
     switch (field) {
       case 'nome':
-        return (value?.trim?.()?.length || 0) < 2 ? 'Nome deve ter pelo menos 2 caracteres' : '';
+        if ((value?.trim?.()?.length || 0) < 2) {
+          error = 'Nome deve ter pelo menos 2 caracteres';
+        }
+        break;
       case 'email':
-        return !value || !validateEmail(value) ? 'Email inválido' : '';
+        if (!value || !validateEmail(value)) {
+          error = 'Email inválido';
+        }
+        break;
       case 'whatsapp':
-        return !value || !validatePhone(value) ? 'WhatsApp inválido (use formato: +55 11 99999-9999)' : '';
+        if (!value || !validatePhone(value)) {
+          error = 'WhatsApp inválido (mínimo 10 dígitos)';
+        }
+        break;
       case 'instagram':
-        return !validateInstagram(value) ? 'Instagram deve começar com @ (ex: @usuario)' : '';
+        if (!validateInstagram(value)) {
+          error = 'Instagram deve começar com @ (ex: @usuario)';
+        }
+        break;
       case 'empresa':
-        return (value?.trim?.()?.length || 0) < 2 ? 'Nome da empresa deve ter pelo menos 2 caracteres' : '';
+        if ((value?.trim?.()?.length || 0) < 2) {
+          error = 'Nome da empresa deve ter pelo menos 2 caracteres';
+        }
+        break;
       case 'cargo':
-        return (value?.trim?.()?.length || 0) < 2 ? 'Cargo deve ter pelo menos 2 caracteres' : '';
+        if ((value?.trim?.()?.length || 0) < 2) {
+          error = 'Cargo deve ter pelo menos 2 caracteres';
+        }
+        break;
       case 'faturamento':
-        return !value ? 'Selecione uma faixa de faturamento' : '';
+        if (!value) {
+          error = 'Selecione uma faixa de faturamento';
+        }
+        break;
       case 'principais_desafios':
-        return (value?.trim?.()?.length || 0) < 10 ? 'Descreva seus principais desafios (mínimo 10 caracteres)' : '';
+        if ((value?.trim?.()?.length || 0) < 10) {
+          error = 'Descreva seus principais desafios (mínimo 10 caracteres)';
+        }
+        break;
       case 'cronograma':
-        return !value ? 'Selecione um cronograma' : '';
+        if (!value) {
+          error = 'Selecione um cronograma';
+        }
+        break;
       case 'orcamento_investimento':
-        return !value ? 'Selecione uma faixa de investimento' : '';
+        if (!value) {
+          error = 'Selecione uma faixa de investimento';
+        }
+        break;
       case 'experiencia_anterior':
         // Campo opcional - não validar se estiver vazio
-        return '';
+        break;
       default:
-        return '';
+        break;
     }
+    
+    // Update errors state
+    setErrors(prev => {
+      const newErrors = { ...prev };
+      if (error) {
+        newErrors[field] = error;
+      } else {
+        delete newErrors[field];
+      }
+      return newErrors;
+    });
+    
+    return error;
   };
 
   const validateAllFields = (formData: FormData): boolean => {

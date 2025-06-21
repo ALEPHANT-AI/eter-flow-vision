@@ -81,22 +81,43 @@ const ApplicationModal = () => {
   };
 
   const canProceedToNextStep = () => {
+    if (currentStep === 0) return true; // Welcome screen, always can proceed
+    
     const stepFields = getStepFields(currentStep);
-    return stepFields.every(field => {
+    console.log('Checking step', currentStep, 'fields:', stepFields);
+    console.log('Current form data:', formData);
+    console.log('Current errors:', errors);
+    
+    // Check if all required fields have values
+    const hasRequiredValues = stepFields.every(field => {
       const value = formData[field as keyof typeof formData];
+      
+      // Special handling for optional fields
       if (field === 'instagram') {
-        return !errors[field];
+        return true; // Instagram is optional
       }
       if (field === 'experiencia_anterior') {
-        return !errors[field];
+        return true; // Experience is optional
       }
-      return value && value.trim() !== '' && !errors[field];
+      
+      // Check if field has a non-empty value
+      const hasValue = value && value.trim() !== '' && value !== '@';
+      console.log(`Field ${field}: value="${value}", hasValue=${hasValue}`);
+      return hasValue;
     });
+    
+    // Check if there are no validation errors for this step
+    const hasNoErrors = stepFields.every(field => !errors[field]);
+    
+    console.log('Has required values:', hasRequiredValues);
+    console.log('Has no errors:', hasNoErrors);
+    
+    return hasRequiredValues && hasNoErrors;
   };
 
   const getStepFields = (step: number) => {
     switch (step) {
-      case 1: return ['nome', 'email', 'whatsapp', 'instagram'];
+      case 1: return ['nome', 'email', 'whatsapp']; // Remove instagram from required fields
       case 2: return ['empresa', 'cargo', 'faturamento'];
       case 3: return ['principais_desafios', 'cronograma'];
       case 4: return ['orcamento_investimento'];
@@ -111,16 +132,23 @@ const ApplicationModal = () => {
     }
     
     const stepFields = getStepFields(currentStep);
-    const stepData = Object.fromEntries(
-      stepFields.map(field => [field, formData[field as keyof typeof formData]])
-    );
+    console.log('Attempting to move from step', currentStep, 'to', currentStep + 1);
     
-    const isStepValid = validateAllFields(stepData as any);
+    // Validate current step fields
+    stepFields.forEach(field => {
+      const value = formData[field as keyof typeof formData];
+      const error = validateField(field, value);
+      if (error) {
+        console.log(`Validation error for ${field}:`, error);
+      }
+    });
     
-    if (isStepValid && currentStep < totalSteps - 1) {
+    if (canProceedToNextStep() && currentStep < totalSteps - 1) {
       setCurrentStep(prev => prev + 1);
       console.log('Moving to step:', currentStep + 1);
-      console.log('Saving form data:', formData);
+      console.log('Form data at step change:', formData);
+    } else {
+      console.log('Cannot proceed to next step. Can proceed:', canProceedToNextStep());
     }
   };
 
