@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
 import { useApplicationModal } from '../contexts/ApplicationModalContext';
+import { useToast } from '../hooks/use-toast';
 import useFormValidation from '../hooks/useFormValidation';
 import ApplicationModalHeader from './modal/ApplicationModalHeader';
 import WelcomeScreen from './modal/WelcomeScreen';
@@ -15,7 +15,9 @@ import FormNavigation from './modal/FormNavigation';
 
 const ApplicationModal = () => {
   const { isOpen, closeModal } = useApplicationModal();
+  const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -130,7 +132,33 @@ const ApplicationModal = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const sendToGoogleSheets = async (data: typeof formData) => {
+    // Substitua esta URL pela URL do seu Google Apps Script
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Necessário para Google Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          timestamp: new Date().toISOString(),
+          ...data
+        })
+      });
+
+      // Com no-cors, não podemos ler a resposta, então assumimos sucesso se não houver erro
+      console.log('Dados enviados para Google Sheets:', data);
+      return true;
+    } catch (error) {
+      console.error('Erro ao enviar para Google Sheets:', error);
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validar apenas campos obrigatórios para o envio final
@@ -148,11 +176,46 @@ const ApplicationModal = () => {
     
     const isFormValid = validateAllFields(requiredFieldsForSubmission as any);
     
-    if (isFormValid) {
-      console.log('Form submitted successfully:', formData);
-      setCurrentStep(5); // Ir para tela de sucesso
-    } else {
+    if (!isFormValid) {
       console.log('Form validation failed:', errors);
+      toast({
+        title: "Erro na validação",
+        description: "Por favor, verifique os campos obrigatórios.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Enviar dados para Google Sheets
+      await sendToGoogleSheets(formData);
+      
+      console.log('Form submitted successfully:', formData);
+      
+      toast({
+        title: "Aplicação enviada com sucesso!",
+        description: "Seus dados foram registrados. Em breve entraremos em contato.",
+      });
+
+      setCurrentStep(5); // Ir para tela de sucesso
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      
+      toast({
+        title: "Erro no envio",
+        description: "Houve um problema ao enviar sua aplicação. Tente novamente.",
+        variant: "destructive",
+      });
+
+      // Mesmo com erro, permitir continuar para não bloquear o usuário
+      // Em produção, você pode decidir se quer bloquear ou não
+      setTimeout(() => {
+        setCurrentStep(5);
+      }, 2000);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -280,6 +343,7 @@ const ApplicationModal = () => {
                   prevStep={prevStep}
                   handleSubmit={handleSubmit}
                   handleBackToHome={handleBackToHome}
+                  isSubmitting={isSubmitting}
                 />
               </form>
             </div>

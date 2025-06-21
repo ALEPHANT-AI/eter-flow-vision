@@ -1,6 +1,7 @@
 
+
 import React from 'react';
-import { ArrowLeft, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
 
 interface FormNavigationProps {
   currentStep: number;
@@ -10,6 +11,7 @@ interface FormNavigationProps {
   prevStep: () => void;
   handleSubmit: (e: React.FormEvent) => void;
   handleBackToHome: () => void;
+  isSubmitting?: boolean;
 }
 
 const FormNavigation: React.FC<FormNavigationProps> = ({
@@ -19,7 +21,8 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
   nextStep,
   prevStep,
   handleSubmit,
-  handleBackToHome
+  handleBackToHome,
+  isSubmitting = false
 }) => {
   if (currentStep === 5) {
     return (
@@ -45,7 +48,8 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
           <button
             type="button"
             onClick={prevStep}
-            className="flex items-center px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all duration-300"
+            disabled={isSubmitting}
+            className={`flex items-center px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all duration-300 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar
@@ -70,8 +74,8 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
           <button
             type="button"
             onClick={nextStep}
-            disabled={!canProceedToNextStep()}
-            className={`btn-premium group ${!canProceedToNextStep() ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={!canProceedToNextStep() || isSubmitting}
+            className={`btn-premium group ${!canProceedToNextStep() || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <span className="flex items-center">
               Próximo
@@ -81,13 +85,17 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
         ) : (
           <button
             type="submit"
-            disabled={!canProceedToNextStep()}
-            className={`btn-premium text-lg group glow-gold-strong ${!canProceedToNextStep() ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={!canProceedToNextStep() || isSubmitting}
+            className={`btn-premium text-lg group glow-gold-strong ${!canProceedToNextStep() || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
             onClick={handleSubmit}
           >
             <span className="flex items-center">
-              <Sparkles className="w-5 h-5 mr-2 animate-spin" />
-              ENVIAR APLICAÇÃO
+              {isSubmitting ? (
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              ) : (
+                <Sparkles className="w-5 h-5 mr-2 animate-spin" />
+              )}
+              {isSubmitting ? 'ENVIANDO...' : 'ENVIAR APLICAÇÃO'}
             </span>
           </button>
         )}
@@ -99,3 +107,4 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
 };
 
 export default FormNavigation;
+
