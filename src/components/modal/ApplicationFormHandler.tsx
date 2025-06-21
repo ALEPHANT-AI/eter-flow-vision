@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { useToast } from '../../hooks/use-toast';
 import useFormValidation from '../../hooks/useFormValidation';
 import { formatPhoneNumber, getStepFields } from './ApplicationModalUtils';
+import { supabase } from '../../lib/supabase';
 
 interface FormData {
   nome: string;
@@ -141,26 +141,35 @@ const ApplicationFormHandler: React.FC<ApplicationFormHandlerProps> = ({ childre
     }
   };
 
-  const sendToGoogleSheets = async (data: FormData) => {
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
-    
+  const sendToSupabase = async (data: FormData) => {
     try {
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          timestamp: new Date().toISOString(),
-          ...data
-        })
-      });
+      const { error } = await supabase
+        .from('form_applications')
+        .insert([
+          {
+            nome: data.nome,
+            email: data.email,
+            whatsapp: data.whatsapp,
+            instagram: data.instagram === '@' ? null : data.instagram,
+            empresa: data.empresa,
+            cargo: data.cargo,
+            faturamento: data.faturamento,
+            principais_desafios: data.principais_desafios,
+            cronograma: data.cronograma,
+            orcamento_investimento: data.orcamento_investimento,
+            experiencia_anterior: data.experiencia_anterior || null
+          }
+        ]);
 
-      console.log('Dados enviados para Google Sheets:', data);
+      if (error) {
+        console.error('Erro do Supabase:', error);
+        throw error;
+      }
+
+      console.log('Dados enviados para Supabase com sucesso:', data);
       return true;
     } catch (error) {
-      console.error('Erro ao enviar para Google Sheets:', error);
+      console.error('Erro ao enviar para Supabase:', error);
       throw error;
     }
   };
@@ -195,7 +204,7 @@ const ApplicationFormHandler: React.FC<ApplicationFormHandlerProps> = ({ childre
     setIsSubmitting(true);
 
     try {
-      await sendToGoogleSheets(formData);
+      await sendToSupabase(formData);
       
       console.log('Form submitted successfully:', formData);
       
@@ -213,10 +222,6 @@ const ApplicationFormHandler: React.FC<ApplicationFormHandlerProps> = ({ childre
         description: "Houve um problema ao enviar sua aplicação. Tente novamente.",
         variant: "destructive",
       });
-
-      setTimeout(() => {
-        setCurrentStep(5);
-      }, 2000);
     } finally {
       setIsSubmitting(false);
     }
