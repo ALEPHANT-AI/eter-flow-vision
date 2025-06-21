@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, ArrowLeft, CheckCircle, User, Building, Target, DollarSign, Sparkles, Instagram, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from './ui/dialog';
@@ -89,25 +90,27 @@ const ApplicationModal = () => {
         </button>
 
         <div className="h-full flex flex-col">
-          {/* Header */}
-          <div className="text-center p-8 pb-6">
-            <h2 className="text-3xl md:text-4xl font-black mb-4 text-white leading-tight">
-              APLICAÇÃO PARA O <span className="text-gradient">THE EIGHT®</span>
-            </h2>
-            <p className="text-base text-white/70 max-w-2xl mx-auto mb-4">
-              Este processo é altamente seletivo. Apenas candidatos que demonstrarem potencial real de liderança serão aceitos.
-            </p>
-            
-            {/* Exclusivity Badge */}
-            <div className="inline-flex items-center glass px-4 py-2 rounded-full">
-              <Sparkles className="w-4 h-4 text-gold-400 mr-2 animate-pulse" />
-              <span className="text-gold-400 text-sm font-medium">8 vagas restantes</span>
+          {/* Header - Only show for step 0 */}
+          {currentStep === 0 && (
+            <div className="text-center p-8 pb-6">
+              <h2 className="text-3xl md:text-4xl font-black mb-4 text-white leading-tight">
+                APLICAÇÃO PARA O <span className="text-gradient">THE EIGHT®</span>
+              </h2>
+              <p className="text-base text-white/70 max-w-2xl mx-auto mb-4">
+                Este processo é altamente seletivo. Apenas candidatos que demonstrarem potencial real de liderança serão aceitos.
+              </p>
+              
+              {/* Exclusivity Badge */}
+              <div className="inline-flex items-center glass px-4 py-2 rounded-full">
+                <Sparkles className="w-4 h-4 text-gold-400 mr-2 animate-pulse" />
+                <span className="text-gold-400 text-sm font-medium">8 vagas restantes</span>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Progress Bar - Only show after step 0 */}
           {currentStep > 0 && (
-            <div className="px-8 pb-6">
+            <div className="px-8 pt-8 pb-6">
               <div className="flex justify-between items-center mb-4">
                 {Array.from({ length: 4 }, (_, index) => {
                   const StepIcon = stepIcons[index];
@@ -150,7 +153,7 @@ const ApplicationModal = () => {
           )}
 
           {/* Content Area */}
-          <div className="flex-1 px-8 pb-8 overflow-y-auto">
+          <div className="flex-1 px-8 pb-8 overflow-hidden">
             <div className="card-premium h-full">
               <form onSubmit={handleSubmit} className="h-full flex flex-col">
                 {/* Step 0: Initial Message */}
@@ -192,16 +195,16 @@ const ApplicationModal = () => {
                 {/* Step 1: Personal Info */}
                 {currentStep === 1 && (
                   <div className="space-y-6 animate-fade-in">
-                    <h3 className="text-2xl font-bold text-white mb-6">Informações Pessoais</h3>
+                    <h3 className="text-xl font-bold text-white mb-4">Informações Pessoais</h3>
                     
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-2 gap-4">
                       <div className="relative">
                         <label className="block text-white/80 text-sm font-medium mb-2">Nome Completo *</label>
                         <input
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
                           placeholder="Seu nome completo"
                         />
                       </div>
@@ -212,20 +215,20 @@ const ApplicationModal = () => {
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
                           placeholder="seu@email.com"
                         />
                       </div>
                     </div>
                     
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-2 gap-4">
                       <div className="relative">
                         <label className="block text-white/80 text-sm font-medium mb-2">WhatsApp *</label>
                         <input
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => handleInputChange('phone', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
                           placeholder="(11) 99999-9999"
                         />
                       </div>
@@ -238,7 +241,7 @@ const ApplicationModal = () => {
                             type="text"
                             value={formData.instagram}
                             onChange={(e) => handleInputChange('instagram', e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
                             placeholder="@seuinstagram"
                           />
                         </div>
@@ -250,16 +253,16 @@ const ApplicationModal = () => {
                 {/* Step 2: Professional Info */}
                 {currentStep === 2 && (
                   <div className="space-y-6 animate-fade-in">
-                    <h3 className="text-2xl font-bold text-white mb-6">Informações Profissionais</h3>
+                    <h3 className="text-xl font-bold text-white mb-4">Informações Profissionais</h3>
                     
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-2 gap-4">
                       <div className="relative">
                         <label className="block text-white/80 text-sm font-medium mb-2">Empresa/Negócio *</label>
                         <input
                           type="text"
                           value={formData.company}
                           onChange={(e) => handleInputChange('company', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
                           placeholder="Nome da sua empresa"
                         />
                       </div>
@@ -270,7 +273,7 @@ const ApplicationModal = () => {
                           type="text"
                           value={formData.role}
                           onChange={(e) => handleInputChange('role', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
                           placeholder="CEO, Fundador, Especialista..."
                         />
                       </div>
@@ -281,7 +284,7 @@ const ApplicationModal = () => {
                       <select
                         value={formData.industry}
                         onChange={(e) => handleInputChange('industry', e.target.value)}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
                       >
                         <option value="">Selecione seu segmento</option>
                         <option value="tecnologia">Tecnologia</option>
@@ -299,15 +302,15 @@ const ApplicationModal = () => {
                 {/* Step 3: Goals & Vision */}
                 {currentStep === 3 && (
                   <div className="space-y-6 animate-fade-in">
-                    <h3 className="text-2xl font-bold text-white mb-6">Objetivos e Visão</h3>
+                    <h3 className="text-xl font-bold text-white mb-4">Objetivos e Visão</h3>
                     
                     <div className="relative">
                       <label className="block text-white/80 text-sm font-medium mb-2">Principais objetivos com sua marca pessoal *</label>
                       <textarea
                         value={formData.goals}
                         onChange={(e) => handleInputChange('goals', e.target.value)}
-                        rows={4}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        rows={3}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300 resize-none"
                         placeholder="Descreva onde você quer chegar com sua marca pessoal..."
                       />
                     </div>
@@ -317,7 +320,7 @@ const ApplicationModal = () => {
                       <select
                         value={formData.timeline}
                         onChange={(e) => handleInputChange('timeline', e.target.value)}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
                       >
                         <option value="">Selecione o prazo</option>
                         <option value="6meses">6 meses</option>
@@ -332,14 +335,14 @@ const ApplicationModal = () => {
                 {/* Step 4: Investment & Commitment */}
                 {currentStep === 4 && (
                   <div className="space-y-6 animate-fade-in">
-                    <h3 className="text-2xl font-bold text-white mb-6">Investimento e Comprometimento</h3>
+                    <h3 className="text-xl font-bold text-white mb-4">Investimento e Comprometimento</h3>
                     
                     <div className="relative">
                       <label className="block text-white/80 text-sm font-medium mb-2">Faturamento atual mensal *</label>
                       <select
                         value={formData.currentRevenue}
                         onChange={(e) => handleInputChange('currentRevenue', e.target.value)}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
                       >
                         <option value="">Selecione sua faixa de faturamento</option>
                         <option value="50k-100k">R$ 50K - R$ 100K</option>
@@ -354,34 +357,31 @@ const ApplicationModal = () => {
                       <textarea
                         value={formData.motivation}
                         onChange={(e) => handleInputChange('motivation', e.target.value)}
-                        rows={5}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300"
+                        rows={4}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/50 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300 resize-none"
                         placeholder="Conte sua história, seus diferenciais e por que você está pronto para liderar um movimento..."
                       />
                     </div>
                     
-                    {/* Investment Info */}
-                    <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20">
-                      <h4 className="text-xl font-bold text-white mb-4">Investimento</h4>
-                      <div className="text-3xl font-black text-gradient mb-2">R$ 97.000</div>
-                      <div className="text-white/80 mb-4">12x de R$ 8.083 sem juros</div>
-                      <div className="text-sm text-gold-400">
-                        ✓ Inclui toda a metodologia ETER<br/>
-                        ✓ Mentoria pessoal com Davi Ribas<br/>
-                        ✓ Entregáveis completos<br/>
-                        ✓ 11 semanas de transformação
+                    {/* Investment Info - More compact */}
+                    <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 p-4">
+                      <h4 className="text-lg font-bold text-white mb-2">Investimento</h4>
+                      <div className="text-2xl font-black text-gradient mb-1">R$ 97.000</div>
+                      <div className="text-white/80 mb-2">12x de R$ 8.083 sem juros</div>
+                      <div className="text-xs text-gold-400">
+                        ✓ Metodologia ETER completa • ✓ Mentoria com Davi Ribas • ✓ 11 semanas de transformação
                       </div>
                     </div>
                   </div>
                 )}
 
                 {/* Navigation */}
-                <div className="flex justify-between items-center mt-8 pt-6 border-t border-white/10">
+                <div className="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
                   {currentStep > 0 ? (
                     <button
                       type="button"
                       onClick={prevStep}
-                      className="flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all duration-300"
+                      className="flex items-center px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all duration-300"
                     >
                       <ArrowLeft className="w-4 h-4 mr-2" />
                       Voltar
