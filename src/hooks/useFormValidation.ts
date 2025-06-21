@@ -41,23 +41,28 @@ const useFormValidation = () => {
   };
 
   const validateField = (field: string, value: string): string => {
+    // Add null/undefined checks
+    if (value === null || value === undefined) {
+      value = '';
+    }
+    
     switch (field) {
       case 'nome':
-        return value.trim().length < 2 ? 'Nome deve ter pelo menos 2 caracteres' : '';
+        return (value?.trim?.()?.length || 0) < 2 ? 'Nome deve ter pelo menos 2 caracteres' : '';
       case 'email':
-        return !validateEmail(value) ? 'Email inválido' : '';
+        return !value || !validateEmail(value) ? 'Email inválido' : '';
       case 'whatsapp':
-        return !validatePhone(value) ? 'WhatsApp inválido (use formato: +55 11 99999-9999)' : '';
+        return !value || !validatePhone(value) ? 'WhatsApp inválido (use formato: +55 11 99999-9999)' : '';
       case 'instagram':
         return !validateInstagram(value) ? 'Instagram deve começar com @ (ex: @usuario)' : '';
       case 'empresa':
-        return value.trim().length < 2 ? 'Nome da empresa deve ter pelo menos 2 caracteres' : '';
+        return (value?.trim?.()?.length || 0) < 2 ? 'Nome da empresa deve ter pelo menos 2 caracteres' : '';
       case 'cargo':
-        return value.trim().length < 2 ? 'Cargo deve ter pelo menos 2 caracteres' : '';
+        return (value?.trim?.()?.length || 0) < 2 ? 'Cargo deve ter pelo menos 2 caracteres' : '';
       case 'faturamento':
         return !value ? 'Selecione uma faixa de faturamento' : '';
       case 'principais_desafios':
-        return value.trim().length < 10 ? 'Descreva seus principais desafios (mínimo 10 caracteres)' : '';
+        return (value?.trim?.()?.length || 0) < 10 ? 'Descreva seus principais desafios (mínimo 10 caracteres)' : '';
       case 'cronograma':
         return !value ? 'Selecione um cronograma' : '';
       case 'orcamento_investimento':

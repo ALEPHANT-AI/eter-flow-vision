@@ -70,7 +70,7 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
         </div>
         
         <div className="relative">
-          <label className="block text-white/80 text-sm font-medium mb-2">Instagram *</label>
+          <label className="block text-white/80 text-sm font-medium mb-2">Instagram</label>
           <div className="relative">
             <Instagram className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
             <input
