@@ -1,11 +1,12 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Search, Lightbulb, Brush, Rocket } from 'lucide-react';
+import { useApplicationModal } from '../contexts/ApplicationModalContext';
 
 const MethodologySection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const { openModal } = useApplicationModal();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -182,7 +183,10 @@ const MethodologySection = () => {
           <div className={`text-center transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <button className="btn-premium text-lg magnetic group hover:scale-110 transition-all duration-300">
+            <button 
+              onClick={openModal}
+              className="btn-premium text-lg magnetic group hover:scale-110 transition-all duration-300"
+            >
               <span className="flex items-center">
                 QUERO SER SELECIONADO
               </span>

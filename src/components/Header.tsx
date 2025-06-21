@@ -1,9 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
+import { useApplicationModal } from '../contexts/ApplicationModalContext';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const { openModal } = useApplicationModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +38,10 @@ const Header = () => {
             </div>
           </div>
           
-          <button className="relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-6 md:px-8 py-2 md:py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic group">
+          <button 
+            onClick={openModal}
+            className="relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 text-black-950 font-bold px-6 md:px-8 py-2 md:py-3 rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-glow-gold-strong hover:from-gold-400 hover:to-gold-500 magnetic group"
+          >
             <span className="relative z-10 text-sm md:text-base">PREENCHER APLICAÇÃO</span>
             <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping rounded-xl" />
           </button>

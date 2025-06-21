@@ -1,9 +1,10 @@
-
 import React, { useEffect, useState } from 'react';
 import { Sparkles, ArrowRight, Shield, Users, Award } from 'lucide-react';
+import { useApplicationModal } from '../contexts/ApplicationModalContext';
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { openModal } = useApplicationModal();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -83,6 +84,7 @@ const Footer = () => {
             isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
           }`}>
             <button 
+              onClick={openModal}
               className="group relative overflow-hidden bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-black-950 font-black px-16 py-8 rounded-3xl transition-all duration-500 hover:scale-110 hover:shadow-glow-gold-strong magnetic text-xl"
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();

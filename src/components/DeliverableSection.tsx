@@ -1,9 +1,9 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Sparkles, Target, Users, Video, Calendar, Palette } from 'lucide-react';
 import DeliverableModal from './DeliverableModal';
 import DeliverableCard from './DeliverableCard';
 import DeliverablePreview from './DeliverablePreview';
+import { useApplicationModal } from '../contexts/ApplicationModalContext';
 
 const DeliverableSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,6 +11,7 @@ const DeliverableSection = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({ image: '', title: '' });
   const sectionRef = useRef<HTMLElement>(null);
+  const { openModal } = useApplicationModal();
 
   // Updated modal images
   const modalImages = {
@@ -49,7 +50,7 @@ const DeliverableSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const openModal = (image: string, title: string) => {
+  const openDeliverableModal = (image: string, title: string) => {
     setModalContent({ image, title });
     setModalOpen(true);
   };
@@ -126,7 +127,7 @@ const DeliverableSection = () => {
           }`}>
             <DeliverablePreview 
               previewImages={previewImages}
-              onImageClick={openModal}
+              onImageClick={openDeliverableModal}
             />
           </div>
 
@@ -151,7 +152,10 @@ const DeliverableSection = () => {
           <div className={`text-center transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <button className="group btn-premium text-lg magnetic hover:scale-110 transition-all duration-300">
+            <button 
+              onClick={openModal}
+              className="group btn-premium text-lg magnetic hover:scale-110 transition-all duration-300"
+            >
               <span className="flex items-center relative z-10">
                 <Sparkles className="w-5 h-5 mr-2 animate-spin" />
                 QUERO SER SELECIONADO
