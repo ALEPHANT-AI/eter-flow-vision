@@ -1209,6 +1209,7 @@ export type Database = {
           objetivos_movimento: string | null
           orcamento_investimento: string | null
           principais_desafios: string | null
+          status: string | null
           updated_at: string
           whatsapp: string
         }
@@ -1226,6 +1227,7 @@ export type Database = {
           objetivos_movimento?: string | null
           orcamento_investimento?: string | null
           principais_desafios?: string | null
+          status?: string | null
           updated_at?: string
           whatsapp: string
         }
@@ -1243,6 +1245,7 @@ export type Database = {
           objetivos_movimento?: string | null
           orcamento_investimento?: string | null
           principais_desafios?: string | null
+          status?: string | null
           updated_at?: string
           whatsapp?: string
         }
@@ -1778,6 +1781,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      save_partial_application: {
+        Args: {
+          p_nome: string
+          p_email: string
+          p_whatsapp: string
+          p_instagram?: string
+        }
+        Returns: Json
+      }
       submit_form_application: {
         Args: {
           p_nome: string

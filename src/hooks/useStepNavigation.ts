@@ -1,6 +1,7 @@
 
 import { getStepFields } from '../components/modal/ApplicationModalUtils';
 import { FormData } from './useApplicationForm';
+import { usePartialSave } from './usePartialSave';
 
 export const useStepNavigation = (
   currentStep: number,
@@ -9,6 +10,8 @@ export const useStepNavigation = (
   errors: { [key: string]: string },
   validateField: (field: string, value: string) => string
 ) => {
+  const { savePartialData } = usePartialSave();
+
   const canProceedToNextStep = () => {
     if (currentStep === 0) return true;
     
@@ -40,7 +43,7 @@ export const useStepNavigation = (
     return hasRequiredValues && hasNoErrors;
   };
 
-  const nextStep = () => {
+  const nextStep = async () => {
     if (currentStep === 0) {
       setCurrentStep(prev => prev + 1);
       return;
@@ -58,6 +61,27 @@ export const useStepNavigation = (
     });
     
     if (canProceedToNextStep() && currentStep < 5) {
+      // Special handling for step 1 to 2 transition - save Part 1 data
+      if (currentStep === 1) {
+        console.log('💾 Auto-saving Part 1 data before moving to step 2...');
+        
+        const partialData = {
+          nome: formData.nome,
+          email: formData.email,
+          whatsapp: formData.whatsapp,
+          instagram: formData.instagram
+        };
+        
+        // Save partial data asynchronously - don't block navigation if it fails
+        savePartialData(partialData).then(result => {
+          if (result.success) {
+            console.log('✅ Part 1 data auto-saved successfully');
+          } else {
+            console.log('⚠️ Part 1 auto-save failed, but continuing navigation:', result.error);
+          }
+        });
+      }
+      
       setCurrentStep(prev => prev + 1);
       console.log('Moving to step:', currentStep + 1);
       console.log('Form data at step change:', formData);

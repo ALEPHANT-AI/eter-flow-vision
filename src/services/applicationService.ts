@@ -91,3 +91,51 @@ export const sendApplicationToSupabase = async (data: FormData) => {
     throw error;
   }
 };
+
+export const savePartialApplication = async (data: Pick<FormData, 'nome' | 'email' | 'whatsapp' | 'instagram'>) => {
+  console.log('💾 savePartialApplication called with data:', data);
+  
+  try {
+    // Validate required fields for partial save
+    const requiredFields = ['nome', 'email', 'whatsapp'];
+    const missingFields = requiredFields.filter(field => !data[field as keyof typeof data]);
+    
+    if (missingFields.length > 0) {
+      console.error('❌ Missing required fields for partial save:', missingFields);
+      throw new Error(`Missing required fields: ${missingFields.join(', ')}`);
+    }
+    
+    console.log('💾 Calling partial save database function...');
+    const { data: insertResult, error } = await supabase.rpc('save_partial_application', {
+      p_nome: data.nome,
+      p_email: data.email,
+      p_whatsapp: data.whatsapp,
+      p_instagram: data.instagram === '' || data.instagram === '@' ? null : data.instagram
+    });
+
+    if (error) {
+      console.error('❌ Partial save database function error:', error);
+      console.error('Detailed error information:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      
+      // Provide more user-friendly error messages
+      if (error.message.includes('permission denied')) {
+        throw new Error('Erro de permissão: Não foi possível salvar os dados parciais. Tente novamente.');
+      } else if (error.message.includes('violates row-level security policy')) {
+        throw new Error('Erro de segurança: Não foi possível processar sua solicitação. Tente novamente.');
+      } else {
+        throw new Error(`Erro no salvamento parcial: ${error.message}`);
+      }
+    }
+
+    console.log('✅ Partial data successfully saved:', insertResult);
+    return { success: true, data: insertResult };
+  } catch (error) {
+    console.error('💥 savePartialApplication error:', error);
+    throw error;
+  }
+};

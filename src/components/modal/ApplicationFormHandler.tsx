@@ -1,10 +1,11 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useFormValidation from '../../hooks/useFormValidation';
 import { useApplicationForm } from '../../hooks/useApplicationForm';
 import { useFormInputHandler } from '../../hooks/useFormInputHandler';
 import { useStepNavigation } from '../../hooks/useStepNavigation';
 import { useFormSubmission } from '../../hooks/useFormSubmission';
+import { usePartialSave } from '../../hooks/usePartialSave';
 
 interface ApplicationFormHandlerProps {
   children: (props: {
@@ -21,6 +22,11 @@ interface ApplicationFormHandlerProps {
     getFieldError: (field: string) => string;
     getFieldClassName: (field: string, baseClassName: string) => string;
     setCurrentStep: (step: number) => void;
+    autoSaveStatus: {
+      isVisible: boolean;
+      status: 'saving' | 'saved' | 'error';
+      lastSaveTime?: Date | null;
+    };
   }) => React.ReactNode;
   onClose: () => void;
   isOpen: boolean;
@@ -28,6 +34,9 @@ interface ApplicationFormHandlerProps {
 
 const ApplicationFormHandler: React.FC<ApplicationFormHandlerProps> = ({ children, onClose, isOpen }) => {
   const { errors, validateField, validateAllFields, clearFieldError } = useFormValidation();
+  const { isSaving, lastSaveTime } = usePartialSave();
+  const [autoSaveVisible, setAutoSaveVisible] = useState(false);
+  const [autoSaveStatus, setAutoSaveStatus] = useState<'saving' | 'saved' | 'error'>('saved');
   
   const {
     currentStep,
@@ -62,6 +71,24 @@ const ApplicationFormHandler: React.FC<ApplicationFormHandlerProps> = ({ childre
     validateAllFields
   );
 
+  // Monitor partial save status
+  useEffect(() => {
+    if (isSaving) {
+      setAutoSaveStatus('saving');
+      setAutoSaveVisible(true);
+    } else if (lastSaveTime) {
+      setAutoSaveStatus('saved');
+      setAutoSaveVisible(true);
+      
+      // Hide the indicator after 3 seconds
+      const timer = setTimeout(() => {
+        setAutoSaveVisible(false);
+      }, 3000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isSaving, lastSaveTime]);
+
   const handleBackToHome = () => {
     onClose();
     resetForm();
@@ -89,7 +116,12 @@ const ApplicationFormHandler: React.FC<ApplicationFormHandlerProps> = ({ childre
         handleBackToHome,
         getFieldError,
         getFieldClassName,
-        setCurrentStep
+        setCurrentStep,
+        autoSaveStatus: {
+          isVisible: autoSaveVisible,
+          status: autoSaveStatus,
+          lastSaveTime
+        }
       })}
     </>
   );
