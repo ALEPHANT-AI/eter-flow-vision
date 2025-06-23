@@ -42,6 +42,8 @@ const useFormValidation = () => {
   };
 
   const validateField = (field: string, value: string): string => {
+    console.log(`🔍 Validating field: ${field} with value: "${value}"`);
+    
     // Add null/undefined checks
     if (value === null || value === undefined) {
       value = '';
@@ -107,6 +109,8 @@ const useFormValidation = () => {
         break;
     }
     
+    console.log(`${error ? '❌' : '✅'} Field ${field} validation result: ${error || 'valid'}`);
+    
     // Update errors state
     setErrors(prev => {
       const newErrors = { ...prev };
@@ -122,6 +126,8 @@ const useFormValidation = () => {
   };
 
   const validateAllFields = (formData: FormData): boolean => {
+    console.log('🔍 validateAllFields called with:', formData);
+    
     const newErrors: FormErrors = {};
     
     // Definir campos obrigatórios por step
@@ -132,16 +138,24 @@ const useFormValidation = () => {
       'orcamento_investimento' // Step 4 (experiencia_anterior é opcional)
     ];
     
+    console.log('📋 Required fields to validate:', requiredFields);
+    
     requiredFields.forEach((field) => {
       const value = formData[field as keyof FormData];
+      console.log(`Checking field ${field}: "${value}"`);
       const error = validateField(field, value);
       if (error) {
         newErrors[field] = error;
       }
     });
 
+    console.log('📊 Validation errors found:', newErrors);
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    
+    const isValid = Object.keys(newErrors).length === 0;
+    console.log(`${isValid ? '✅' : '❌'} Overall validation result: ${isValid}`);
+    
+    return isValid;
   };
 
   const clearFieldError = (field: string) => {

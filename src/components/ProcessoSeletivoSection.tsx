@@ -25,9 +25,11 @@ const ProcessoSeletivoSection = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log('📝 ProcessoSeletivoSection form submission started');
     e.preventDefault();
     
     if (!formData.nome || !formData.email || !formData.telefone) {
+      console.log('❌ Required fields missing in ProcessoSeletivoSection');
       toast({
         title: "Campos obrigatórios",
         description: "Por favor, preencha nome, email e telefone.",
@@ -54,7 +56,9 @@ const ProcessoSeletivoSection = () => {
         experiencia_anterior: ''
       };
 
-      await sendApplicationToSupabase(applicationData);
+      console.log('📤 ProcessoSeletivoSection calling sendApplicationToSupabase with:', applicationData);
+      const result = await sendApplicationToSupabase(applicationData);
+      console.log('✅ ProcessoSeletivoSection submission successful:', result);
       
       toast({
         title: "Aplicação enviada com sucesso!",
@@ -68,11 +72,17 @@ const ProcessoSeletivoSection = () => {
         instagram: '@'
       });
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('💥 ProcessoSeletivoSection submission error:', error);
+      
+      let errorMessage = "Houve um problema ao enviar sua aplicação. Tente novamente.";
+      
+      if (error instanceof Error) {
+        errorMessage = `Erro: ${error.message}`;
+      }
       
       toast({
         title: "Erro no envio",
-        description: "Houve um problema ao enviar sua aplicação. Tente novamente.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {

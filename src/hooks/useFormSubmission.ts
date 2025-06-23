@@ -12,7 +12,10 @@ export const useFormSubmission = (
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log('🎯 handleSubmit called');
     e.preventDefault();
+    
+    console.log('📝 Current form data:', formData);
     
     const requiredFieldsForSubmission = {
       nome: formData.nome,
@@ -26,10 +29,13 @@ export const useFormSubmission = (
       orcamento_investimento: formData.orcamento_investimento
     };
     
+    console.log('🔍 Required fields for validation:', requiredFieldsForSubmission);
+    
     const isFormValid = validateAllFields(requiredFieldsForSubmission as any);
+    console.log('✅ Form validation result:', isFormValid);
     
     if (!isFormValid) {
-      console.log('Form validation failed');
+      console.log('❌ Form validation failed');
       toast({
         title: "Erro na validação",
         description: "Por favor, verifique os campos obrigatórios.",
@@ -38,28 +44,38 @@ export const useFormSubmission = (
       return;
     }
 
+    console.log('🔄 Setting isSubmitting to true');
     setIsSubmitting(true);
 
     try {
-      await sendApplicationToSupabase(formData);
+      console.log('📤 Calling sendApplicationToSupabase...');
+      const result = await sendApplicationToSupabase(formData);
       
-      console.log('Form submitted successfully:', formData);
+      console.log('✅ Form submitted successfully:', result);
       
       toast({
         title: "Aplicação enviada com sucesso!",
         description: "Seus dados foram registrados. Em breve entraremos em contato.",
       });
 
+      console.log('🎉 Moving to success step (5)');
       setCurrentStep(5);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('💥 Error submitting form:', error);
+      
+      let errorMessage = "Houve um problema ao enviar sua aplicação. Tente novamente.";
+      
+      if (error instanceof Error) {
+        errorMessage = `Erro: ${error.message}`;
+      }
       
       toast({
         title: "Erro no envio",
-        description: "Houve um problema ao enviar sua aplicação. Tente novamente.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
+      console.log('🔄 Setting isSubmitting to false');
       setIsSubmitting(false);
     }
   };
