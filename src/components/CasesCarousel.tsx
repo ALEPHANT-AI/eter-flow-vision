@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star, TrendingUp, Users, DollarSign } from 'lucide-react';
 
@@ -62,12 +61,6 @@ const CasesCarousel = () => {
       field: "Influência",
       image: "/lovable-uploads/117d30a6-673b-4632-9a4b-9adbae640b72.png",
       description: "Criador dos Códigos da Influência e Método Influência Máxima, com 17 anos de experiência transformou-se em palestrante TEDx e fundador do Instituto Rafael Medeiros. Mentor de mais de 10 mil empresários, especializa-se em ensinar vendas através da personalidade, criando uma comunidade de líderes que vendem através da autenticidade e não de técnicas manipulativas."
-    },
-    {
-      name: "Guilherme Cattani",
-      field: "Estratégia Digital",
-      image: "/lovable-uploads/7185128b-a8cb-4b12-9902-1d5fe1889d6e.png",
-      description: "Estrategista digital que transformou conhecimento técnico em autoridade no mercado corporativo, criando metodologias próprias para transformação digital. Especialista reconhecido por grandes empresas, desenvolveu uma comunidade de líderes empresariais que buscam inovação e resultados sustentáveis através de estratégias digitais diferenciadas."
     },
     {
       name: "Bianca Lauri",
