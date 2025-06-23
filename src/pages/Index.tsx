@@ -9,20 +9,25 @@ import MethodologySection from '../components/MethodologySection';
 import ProfileSection from '../components/ProfileSection';
 import ProcessoSeletivoSection from '../components/ProcessoSeletivoSection';
 import Footer from '../components/Footer';
+import ApplicationModal from '../components/ApplicationModal';
+import { ApplicationModalProvider } from '../contexts/ApplicationModalContext';
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <HeroSection />
-      <ProblemSection />
-      <DeliverableSection />
-      <CasesCarousel />
-      <MethodologySection />
-      <ProfileSection />
-      <ProcessoSeletivoSection />
-      <Footer />
-    </div>
+    <ApplicationModalProvider>
+      <div className="min-h-screen">
+        <Header />
+        <HeroSection />
+        <ProblemSection />
+        <DeliverableSection />
+        <CasesCarousel />
+        <MethodologySection />
+        <ProfileSection />
+        <ProcessoSeletivoSection />
+        <Footer />
+        <ApplicationModal />
+      </div>
+    </ApplicationModalProvider>
   );
 };
 

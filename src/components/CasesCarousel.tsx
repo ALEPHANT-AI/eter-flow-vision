@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star, TrendingUp, Users, DollarSign } from 'lucide-react';
+import { useApplicationModal } from '../contexts/ApplicationModalContext';
 
 const CasesCarousel = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -7,6 +8,7 @@ const CasesCarousel = () => {
   const [isDragging, setIsDragging] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const { openModal } = useApplicationModal();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -229,7 +231,7 @@ const CasesCarousel = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <button 
-              onClick={scrollToForm}
+              onClick={openModal}
               className="btn-premium text-base md:text-lg magnetic group hover:scale-110 transition-all duration-300"
             >
               <span className="flex items-center">
