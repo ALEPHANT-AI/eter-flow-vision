@@ -45,8 +45,8 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Main content centered with better mobile spacing */}
-        <div className="flex-1 flex items-center justify-start pt-4 md:pt-24">
+        {/* Main content positioned lower on mobile, centered on desktop */}
+        <div className="flex-1 flex items-end md:items-center justify-start pt-8 md:pt-24 pb-8 md:pb-0">
           <div className="text-left space-y-1 md:space-y-4 max-w-4xl w-full">
             {/* The Eight Title with Movement tagline */}
             <div className={`transition-all duration-1200 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -72,7 +72,7 @@ const HeroSection = () => {
               </h2>
             </div>
 
-            {/* Description - Better mobile spacing */}
+            {/* Description */}
             <div className={`text-xs sm:text-sm md:text-lg lg:text-xl text-white/70 leading-relaxed transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               Transforme-se na referência inquestionável do seu mercado através de uma estratégia de marca pessoal que vai além do comum:
               <br />
