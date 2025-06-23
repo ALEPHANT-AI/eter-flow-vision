@@ -1196,53 +1196,53 @@ export type Database = {
       }
       form_applications: {
         Row: {
-          cargo: string
+          cargo: string | null
           created_at: string
-          cronograma: string
+          cronograma: string | null
           email: string
-          empresa: string
+          empresa: string | null
           experiencia_anterior: string | null
-          faturamento: string
+          faturamento: string | null
           id: string
           instagram: string | null
           nome: string
           objetivos_movimento: string | null
-          orcamento_investimento: string
-          principais_desafios: string
+          orcamento_investimento: string | null
+          principais_desafios: string | null
           updated_at: string
           whatsapp: string
         }
         Insert: {
-          cargo: string
+          cargo?: string | null
           created_at?: string
-          cronograma: string
+          cronograma?: string | null
           email: string
-          empresa: string
+          empresa?: string | null
           experiencia_anterior?: string | null
-          faturamento: string
+          faturamento?: string | null
           id?: string
           instagram?: string | null
           nome: string
           objetivos_movimento?: string | null
-          orcamento_investimento: string
-          principais_desafios: string
+          orcamento_investimento?: string | null
+          principais_desafios?: string | null
           updated_at?: string
           whatsapp: string
         }
         Update: {
-          cargo?: string
+          cargo?: string | null
           created_at?: string
-          cronograma?: string
+          cronograma?: string | null
           email?: string
-          empresa?: string
+          empresa?: string | null
           experiencia_anterior?: string | null
-          faturamento?: string
+          faturamento?: string | null
           id?: string
           instagram?: string | null
           nome?: string
           objetivos_movimento?: string | null
-          orcamento_investimento?: string
-          principais_desafios?: string
+          orcamento_investimento?: string | null
+          principais_desafios?: string | null
           updated_at?: string
           whatsapp?: string
         }
@@ -1778,7 +1778,23 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      submit_form_application: {
+        Args: {
+          p_nome: string
+          p_email: string
+          p_whatsapp: string
+          p_instagram?: string
+          p_empresa?: string
+          p_cargo?: string
+          p_faturamento?: string
+          p_principais_desafios?: string
+          p_objetivos_movimento?: string
+          p_cronograma?: string
+          p_orcamento_investimento?: string
+          p_experiencia_anterior?: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never

@@ -26,27 +26,9 @@ export const sendApplicationToSupabase = async (data: FormData) => {
     
     console.log('✅ Supabase connection successful');
     
-    // Prepare data for insertion
-    const insertData = {
-      nome: data.nome,
-      email: data.email,
-      whatsapp: data.whatsapp,
-      instagram: data.instagram === '@' ? null : data.instagram,
-      empresa: data.empresa,
-      cargo: data.cargo,
-      faturamento: data.faturamento,
-      principais_desafios: data.principais_desafios,
-      objetivos_movimento: data.objetivos_movimento || null,
-      cronograma: data.cronograma,
-      orcamento_investimento: data.orcamento_investimento,
-      experiencia_anterior: data.experiencia_anterior || null
-    };
-    
-    console.log('📋 Prepared data for insertion:', insertData);
-    
     // Validate required fields
-    const requiredFields = ['nome', 'email', 'whatsapp', 'empresa', 'cargo', 'faturamento', 'principais_desafios', 'cronograma', 'orcamento_investimento'];
-    const missingFields = requiredFields.filter(field => !insertData[field as keyof typeof insertData]);
+    const requiredFields = ['nome', 'email', 'whatsapp'];
+    const missingFields = requiredFields.filter(field => !data[field as keyof FormData]);
     
     if (missingFields.length > 0) {
       console.error('❌ Missing required fields:', missingFields);
@@ -62,15 +44,25 @@ export const sendApplicationToSupabase = async (data: FormData) => {
       console.log('⚠️ Session check error (this is ok for anonymous users):', sessionError);
     }
     
-    // Attempt insertion with detailed error logging
-    console.log('🚀 Attempting to insert data into Supabase...');
-    const { data: insertResult, error } = await supabase
-      .from('form_applications')
-      .insert([insertData])
-      .select();
+    // Use the secure database function instead of direct INSERT
+    console.log('🚀 Calling secure database function...');
+    const { data: insertResult, error } = await supabase.rpc('submit_form_application', {
+      p_nome: data.nome,
+      p_email: data.email,
+      p_whatsapp: data.whatsapp,
+      p_instagram: data.instagram === '@' ? null : data.instagram,
+      p_empresa: data.empresa || null,
+      p_cargo: data.cargo || null,
+      p_faturamento: data.faturamento || null,
+      p_principais_desafios: data.principais_desafios || null,
+      p_objetivos_movimento: data.objetivos_movimento || null,
+      p_cronograma: data.cronograma || null,
+      p_orcamento_investimento: data.orcamento_investimento || null,
+      p_experiencia_anterior: data.experiencia_anterior || null
+    });
 
     if (error) {
-      console.error('❌ Supabase insertion error:', error);
+      console.error('❌ Database function error:', error);
       console.error('Detailed error information:', {
         message: error.message,
         details: error.details,
@@ -90,7 +82,7 @@ export const sendApplicationToSupabase = async (data: FormData) => {
       }
     }
 
-    console.log('✅ Data successfully inserted into Supabase:', insertResult);
+    console.log('✅ Data successfully inserted via database function:', insertResult);
     return { success: true, data: insertResult };
   } catch (error) {
     console.error('💥 sendApplicationToSupabase error:', error);
