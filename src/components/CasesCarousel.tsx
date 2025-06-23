@@ -36,7 +36,7 @@ const CasesCarousel = () => {
     {
       name: "Alan Nicolas",
       field: "Inteligência Artificial",
-      image: "/lovable-uploads/49fed9fa-0fb7-4458-a9f6-e47f3d43f52a.png",
+      image: "/lovable-uploads/f83dcdac-fe21-4b19-a0df-58682304ded6.png",
       description: "Criador do Movimento Lendário e fundador da Academia Lendária, transformou sua expertise em IA em uma comunidade nacional de \"mentes inquietas\" com mais de 40 hubs regionais espalhados pelo Brasil. Especialista em IA com clareza e propósito, realizou evento com mais de 2 mil participantes em Florianópolis, demonstrando como construir autoridade através de uma filosofia de vida que atrai seguidores engajados."
     },
     {
@@ -54,7 +54,7 @@ const CasesCarousel = () => {
     {
       name: "Iuri Meira",
       field: "Marketing Digital",
-      image: "/lovable-uploads/f83dcdac-fe21-4b19-a0df-58682304ded6.png",
+      image: "/lovable-uploads/49fed9fa-0fb7-4458-a9f6-e47f3d43f52a.png",
       description: "Especialista em marketing digital que transformou uma dívida de R$ 300 mil em um império digital através do \"Clube da Luta Digital\" e metodologia \"Modo Caverna\". Mentor que formou mais de 1.000 milionários na internet, vendeu mais de R$ 70 milhões em 2 anos através de estratégias próprias de tráfego pago e ofertas irresistíveis, criando uma comunidade de elite de empreendedores digitais."
     },
     {
