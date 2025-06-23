@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star, TrendingUp, Users, DollarSign } from 'lucide-react';
 
@@ -68,6 +67,24 @@ const CasesCarousel = () => {
       field: "Estratégia Digital",
       image: "/lovable-uploads/7185128b-a8cb-4b12-9902-1d5fe1889d6e.png",
       description: "Estrategista digital que transformou conhecimento técnico em autoridade no mercado corporativo, criando metodologias próprias para transformação digital. Especialista reconhecido por grandes empresas, desenvolveu uma comunidade de líderes empresariais que buscam inovação e resultados sustentáveis através de estratégias digitais diferenciadas."
+    },
+    {
+      name: "Bianca Lauri",
+      field: "Feminino Raiz",
+      image: "/lovable-uploads/ab7a1a60-71c4-45c6-907a-0dd2c17da64d.png",
+      description: "Psicoterapeuta sistêmica que criou o Feminino Raiz®, o maior movimento feminino do Brasil. Em 8 anos transformou mente, corpo, negócios e relacionamentos de mais de 50 mil mulheres, construindo uma comunidade de mais de 400 mil seguidores nas redes sociais. Demonstra como transformar conhecimento terapêutico em metodologia própria, criando uma tribo engajada que vai muito além de alunas para se tornarem defensoras da marca."
+    },
+    {
+      name: "Rodrigo Mendanha",
+      field: "Nutrição",
+      image: "/lovable-uploads/94da7039-0ccb-478f-931e-7a865e9dcafb.png",
+      description: "Nutricionista que revolucionou o mercado criando a metodologia Nutri High Ticket e fundando a Nutrição Holística®. Especialista em ensinar nutricionistas a faturarem 20-50K por mês através de protocolos de alto valor, criou uma comunidade de profissionais que saíram da commoditização para se tornarem autoridades bem remuneradas em suas especialidades."
+    },
+    {
+      name: "Kelvin Almeida",
+      field: "Branding",
+      image: "/lovable-uploads/e2c06564-8697-4a64-9174-f4647454abc8.png",
+      description: "Especialista em branding que criou a Verso Company e a primeira Escola de Diferenciação do Brasil. Viral no TikTok ensinando diferenciação de marcas, vencedor do TikTok Awards 2024, transformou conhecimento em branding em conteúdo acessível para jovens empreendedores, criando uma comunidade massiva que aprende diferenciação através de entretenimento educativo."
     }
   ];
 
@@ -99,6 +116,13 @@ const CasesCarousel = () => {
 
     document.addEventListener('mousemove', handleDragMove);
     document.addEventListener('mouseup', handleDragEnd);
+  };
+
+  const scrollToForm = () => {
+    const formElement = document.getElementById('formulario-aplicacao');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -210,7 +234,10 @@ const CasesCarousel = () => {
           <div className={`text-center transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <button className="btn-premium text-lg magnetic group hover:scale-110 transition-all duration-300">
+            <button 
+              onClick={scrollToForm}
+              className="btn-premium text-lg magnetic group hover:scale-110 transition-all duration-300"
+            >
               <span className="flex items-center">
                 QUERO PREENCHER APLICAÇÃO
               </span>
