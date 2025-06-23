@@ -127,7 +127,7 @@ const CasesCarousel = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-32 relative overflow-hidden bg-gradient-to-b from-black-950 to-black-900">
+    <section ref={sectionRef} className="py-16 md:py-32 relative overflow-hidden bg-gradient-to-b from-black-950 to-black-900">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl animate-pulse" />
@@ -136,19 +136,19 @@ const CasesCarousel = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className={`text-center mb-16 transition-all duration-1000 ${
+          <div className={`text-center mb-8 md:mb-16 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-5xl md:text-6xl font-black mb-8 text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 md:mb-8 text-white leading-tight">
               GRANDES LÍDERES DO MERCADO QUE FORAM AJUDADOS PELA NOSSA METODOLOGIA
             </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+            <p className="text-sm md:text-lg lg:text-xl text-white/70 max-w-3xl mx-auto">
               Veja como outros líderes transformaram suas marcas pessoais em movimentos poderosos
             </p>
           </div>
 
           {/* Main Carousel */}
-          <div className="relative mb-12">
+          <div className="relative mb-8 md:mb-12">
             <div 
               ref={carouselRef}
               className={`overflow-hidden cursor-grab ${isDragging ? 'cursor-grabbing' : ''}`}
@@ -159,12 +159,12 @@ const CasesCarousel = () => {
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
                 {cases.map((case_, index) => (
-                  <div key={index} className="w-full flex-shrink-0 px-4">
+                  <div key={index} className="w-full flex-shrink-0 px-2 md:px-4">
                     <div className="card-premium bg-gradient-to-br from-white/[0.08] to-white/[0.02] hover:from-white/[0.12] hover:to-white/[0.06] transition-all duration-500">
-                      <div className="grid lg:grid-cols-2 gap-12 items-center">
+                      <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
                         {/* Image Section */}
                         <div className="relative">
-                          <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden">
+                          <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-2xl overflow-hidden">
                             {/* Glow Effect */}
                             <div className="absolute inset-0 bg-gradient-to-t from-gold-500/20 to-transparent z-10" />
                             
@@ -175,20 +175,20 @@ const CasesCarousel = () => {
                             />
                             
                             {/* Name Overlay */}
-                            <div className="absolute bottom-6 left-6 right-6">
-                              <div className="glass-strong p-6 rounded-xl">
-                                <h3 className="text-2xl font-bold text-white mb-1">{case_.name}</h3>
-                                <p className="text-gold-400 font-medium">{case_.field}</p>
+                            <div className="absolute bottom-3 md:bottom-6 left-3 md:left-6 right-3 md:right-6">
+                              <div className="glass-strong p-3 md:p-6 rounded-xl">
+                                <h3 className="text-lg md:text-2xl font-bold text-white mb-1">{case_.name}</h3>
+                                <p className="text-sm md:text-base text-gold-400 font-medium">{case_.field}</p>
                               </div>
                             </div>
                           </div>
                         </div>
 
                         {/* Content Section */}
-                        <div className="space-y-8">
+                        <div className="space-y-4 md:space-y-8">
                           {/* Description */}
-                          <div className="glass-strong p-6 rounded-xl">
-                            <blockquote className="text-white/90 text-lg leading-relaxed">
+                          <div className="glass-strong p-4 md:p-6 rounded-xl">
+                            <blockquote className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed">
                               {case_.description}
                             </blockquote>
                           </div>
@@ -203,28 +203,28 @@ const CasesCarousel = () => {
             {/* Navigation */}
             <button 
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 glass-strong rounded-full flex items-center justify-center hover:bg-white/[0.15] transition-all duration-300 group"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 glass-strong rounded-full flex items-center justify-center hover:bg-white/[0.15] transition-all duration-300 group"
             >
-              <ChevronLeft className="w-6 h-6 text-white group-hover:text-gold-400 transition-colors" />
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:text-gold-400 transition-colors" />
             </button>
             
             <button 
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 glass-strong rounded-full flex items-center justify-center hover:bg-white/[0.15] transition-all duration-300 group"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 glass-strong rounded-full flex items-center justify-center hover:bg-white/[0.15] transition-all duration-300 group"
             >
-              <ChevronRight className="w-6 h-6 text-white group-hover:text-gold-400 transition-colors" />
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:text-gold-400 transition-colors" />
             </button>
           </div>
 
           {/* Dots Navigation */}
-          <div className="flex justify-center space-x-3 mb-16">
+          <div className="flex justify-center space-x-2 md:space-x-3 mb-8 md:mb-16">
             {cases.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex 
-                    ? 'bg-gold-400 w-8' 
+                    ? 'bg-gold-400 w-6 md:w-8' 
                     : 'bg-white/30 hover:bg-white/50'
                 }`}
               />
@@ -237,7 +237,7 @@ const CasesCarousel = () => {
           }`}>
             <button 
               onClick={scrollToForm}
-              className="btn-premium text-lg magnetic group hover:scale-110 transition-all duration-300"
+              className="btn-premium text-base md:text-lg magnetic group hover:scale-110 transition-all duration-300"
             >
               <span className="flex items-center">
                 QUERO PREENCHER APLICAÇÃO
