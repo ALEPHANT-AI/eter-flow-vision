@@ -30,37 +30,37 @@ const CasesCarousel = () => {
     {
       name: "Alan Spadone",
       field: "Micropigmentação",
-      image: "/lovable-uploads/0d9eee17-37a6-46f8-a26b-f07c89cd7cf6.png",
+      image: "/lovable-uploads/97958041-5e44-4b91-9481-3cba966ef268.png",
       description: "Fundador da AS Academy, maior escola de micropigmentação da América Latina e criador de um ecossistema completo da beleza com AS Academy, Make Cake, Odd Sheep e Casa Branca. Transformou-se de profissional comum em autoridade mundial, formando mais de 100 mil profissionais em mais de 25 países através de uma metodologia que vai além da técnica, criando uma verdadeira comunidade global de seguidores fiéis ao movimento."
     },
     {
       name: "Alan Nicolas",
       field: "Inteligência Artificial",
-      image: "/lovable-uploads/3b356b61-f200-4140-b93e-f7a1312f0e66.png",
+      image: "/lovable-uploads/49fed9fa-0fb7-4458-a9f6-e47f3d43f52a.png",
       description: "Criador do Movimento Lendário e fundador da Academia Lendária, transformou sua expertise em IA em uma comunidade nacional de \"mentes inquietas\" com mais de 40 hubs regionais espalhados pelo Brasil. Especialista em IA com clareza e propósito, realizou evento com mais de 2 mil participantes em Florianópolis, demonstrando como construir autoridade através de uma filosofia de vida que atrai seguidores engajados."
     },
     {
       name: "Letícia Felisberto",
       field: "Neuroprosperidade", 
-      image: "/lovable-uploads/26277cf9-2826-4f61-bdc5-748b34dd93c2.png",
+      image: "/lovable-uploads/a41d70c4-487d-466a-9460-dc43191dbc52.png",
       description: "Especialista número 1 do Brasil em Neurociência da Prosperidade, com 22 anos de experiência em terapia, criou o movimento \"Uma Nova Mulher\" através da metodologia Neuroprosperidade. Professora de mais de 30 mil alunas, transformou conhecimento terapêutico em um sistema de atualização de memórias que liberta mulheres de padrões limitantes, criando uma comunidade que faz da prosperidade o novo normal."
     },
     {
       name: "André Diamand",
       field: "Inovação",
-      image: "/lovable-uploads/f79f4335-2f8c-4168-a2cc-67bc66cb7df7.png",
+      image: "/lovable-uploads/2f78c51e-daa3-4f8e-8c29-eab1a0e0d13f.png",
       description: "Ex-executivo IBM que criou a metodologia Sexy Canvas, revolucionando a forma como produtos irresistíveis são desenvolvidos através do mapeamento do comportamento humano. Empreendedor serial, inventor e investidor anjo com especializações internacionais, transformou experiência corporativa em movimento de inovação que atrai empresários buscando criar produtos que realmente conectam com seu público."
     },
     {
       name: "Iuri Meira",
       field: "Marketing Digital",
-      image: "/lovable-uploads/eb7f077e-a0c5-481b-9ba4-16cd917d09c8.png",
+      image: "/lovable-uploads/f83dcdac-fe21-4b19-a0df-58682304ded6.png",
       description: "Especialista em marketing digital que transformou uma dívida de R$ 300 mil em um império digital através do \"Clube da Luta Digital\" e metodologia \"Modo Caverna\". Mentor que formou mais de 1.000 milionários na internet, vendeu mais de R$ 70 milhões em 2 anos através de estratégias próprias de tráfego pago e ofertas irresistíveis, criando uma comunidade de elite de empreendedores digitais."
     },
     {
       name: "Rafa Medeiros",
       field: "Influência",
-      image: "/lovable-uploads/ee5653f8-d938-402f-b27a-0a46bb384154.png",
+      image: "/lovable-uploads/117d30a6-673b-4632-9a4b-9adbae640b72.png",
       description: "Criador dos Códigos da Influência e Método Influência Máxima, com 17 anos de experiência transformou-se em palestrante TEDx e fundador do Instituto Rafael Medeiros. Mentor de mais de 10 mil empresários, especializa-se em ensinar vendas através da personalidade, criando uma comunidade de líderes que vendem através da autenticidade e não de técnicas manipulativas."
     },
     {
