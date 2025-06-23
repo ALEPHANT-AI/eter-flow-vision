@@ -45,8 +45,8 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Main content positioned lower on mobile, centered on desktop */}
-        <div className="flex-1 flex items-end md:items-center justify-start pt-8 md:pt-24 pb-8 md:pb-0">
+        {/* Main content - positioned at bottom on mobile, center on desktop */}
+        <div className="flex-1 flex flex-col justify-end md:justify-center items-start pb-16 md:pb-0 pt-4 md:pt-24">
           <div className="text-left space-y-1 md:space-y-4 max-w-4xl w-full">
             {/* The Eight Title with Movement tagline */}
             <div className={`transition-all duration-1200 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
