@@ -58,8 +58,8 @@ export const useFormSubmission = (
         description: "Seus dados foram registrados. Em breve entraremos em contato.",
       });
 
-      console.log('🎉 Moving to success step (5)');
-      setCurrentStep(5);
+      console.log('🎉 Moving to success step (4)');
+      setCurrentStep(4);
       
       // Track Lead event after successful submission
       trackLead();

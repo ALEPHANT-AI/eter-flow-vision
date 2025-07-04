@@ -23,7 +23,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
   handleBackToHome,
   isSubmitting = false
 }) => {
-  if (currentStep === 5) {
+  if (currentStep === 4) {
     return (
       <div className="flex justify-center mt-3 sm:mt-4 shrink-0">
         <button
@@ -40,7 +40,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
     );
   }
 
-  if (currentStep < 5) {
+  if (currentStep < 4) {
     return (
       <div className="flex justify-between items-center mt-2 sm:mt-4 pt-2 sm:pt-3 border-t border-white/10 shrink-0">
         {currentStep > 0 ? (
@@ -69,7 +69,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
               <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transition-transform group-hover:translate-x-1" />
             </span>
           </button>
-        ) : currentStep < 4 ? (
+        ) : currentStep < 3 ? (
           <button
             type="button"
             onClick={nextStep}

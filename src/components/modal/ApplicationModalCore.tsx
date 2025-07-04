@@ -23,7 +23,6 @@ interface ApplicationModalCoreProps {
     principais_desafios: string;
     objetivos_movimento: string;
     cronograma: string;
-    orcamento_investimento: string;
     experiencia_anterior: string;
   };
   errors: { [key: string]: string };
@@ -60,7 +59,7 @@ const ApplicationModalCore: React.FC<ApplicationModalCoreProps> = ({
   getFieldClassName,
   autoSaveStatus
 }) => {
-  const totalSteps = 6;
+  const totalSteps = 5;
 
   console.log('ApplicationModalCore render - isOpen:', isOpen, 'currentStep:', currentStep);
 

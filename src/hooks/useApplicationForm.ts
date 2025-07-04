@@ -12,7 +12,6 @@ export interface FormData {
   principais_desafios: string;
   objetivos_movimento: string;
   cronograma: string;
-  orcamento_investimento: string;
   experiencia_anterior: string;
 }
 
@@ -30,7 +29,6 @@ export const useApplicationForm = (isOpen: boolean) => {
     principais_desafios: '',
     objetivos_movimento: '',
     cronograma: '',
-    orcamento_investimento: '',
     experiencia_anterior: ''
   });
 
@@ -47,7 +45,6 @@ export const useApplicationForm = (isOpen: boolean) => {
       principais_desafios: '',
       objetivos_movimento: '',
       cronograma: '',
-      orcamento_investimento: '',
       experiencia_anterior: ''
     });
   };
