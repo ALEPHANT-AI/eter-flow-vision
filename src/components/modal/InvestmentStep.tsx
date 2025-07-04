@@ -19,7 +19,7 @@ const InvestmentStep: React.FC<InvestmentStepProps> = ({
   getFieldError
 }) => {
   return (
-    <div className="space-y-4 animate-fade-in">
+    <div className="space-y-6 animate-fade-in">
       <div className="relative">
         <label className="block text-white/80 text-sm font-medium mb-2">
           Experiência anterior com consultoria/mentoria
@@ -37,11 +37,12 @@ const InvestmentStep: React.FC<InvestmentStepProps> = ({
         )}
       </div>
       
-      <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 p-4">
-        <h4 className="text-lg font-bold text-white mb-2">Investimento</h4>
-        <div className="text-2xl font-black text-gradient mb-1">R$ 97.000</div>
-        <div className="text-white/80 mb-2">12x de R$ 8.083 sem juros</div>
-        <div className="text-xs text-gold-400">
+      <div className="card-premium bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-gold-500/20 p-6 text-center">
+        <h4 className="text-xl font-black text-white mb-4">Confirme sua Aplicação</h4>
+        <p className="text-white/90 text-lg leading-relaxed mb-2">
+          Confirme agora sua aplicação para poder ter seu movimento, sua marca, construída pelo próprio <span className="text-gold-400 font-bold">Davi Ribas</span> e se tornar um novo <span className="text-gold-400 font-bold">Case</span>.
+        </p>
+        <div className="text-xs text-gold-400 mt-4">
           ✓ Metodologia ETER completa • ✓ Mentoria com Davi Ribas • ✓ 11 semanas de transformação
         </div>
       </div>
