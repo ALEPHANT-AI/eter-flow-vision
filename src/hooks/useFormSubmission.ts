@@ -1,6 +1,7 @@
 
 import { useToast } from './use-toast';
 import { sendApplicationToSupabase } from '../services/applicationService';
+import { trackLead } from '../utils/pixelTracking';
 import { FormData } from './useApplicationForm';
 
 export const useFormSubmission = (
@@ -60,6 +61,9 @@ export const useFormSubmission = (
 
       console.log('🎉 Moving to success step (5)');
       setCurrentStep(5);
+      
+      // Track Lead event after successful submission
+      trackLead();
     } catch (error) {
       console.error('💥 Error submitting form:', error);
       
