@@ -3,7 +3,6 @@ import React from 'react';
 
 interface InvestmentStepProps {
   formData: {
-    orcamento_investimento: string;
     experiencia_anterior: string;
   };
   errors: { [key: string]: string };
@@ -21,23 +20,6 @@ const InvestmentStep: React.FC<InvestmentStepProps> = ({
 }) => {
   return (
     <div className="space-y-4 animate-fade-in">
-      <div className="relative">
-        <label className="block text-white/80 text-sm font-medium mb-2">Orçamento de investimento *</label>
-        <select
-          value={formData.orcamento_investimento}
-          onChange={(e) => onInputChange('orcamento_investimento', e.target.value)}
-          className={getFieldClassName('orcamento_investimento', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white transition-all duration-300 text-base sm:text-sm")}
-        >
-          <option value="">Selecione sua faixa de investimento</option>
-          <option value="50k-100k">R$ 50K - R$ 100K</option>
-          <option value="100k-300k">R$ 100K - R$ 300K</option>
-          <option value="300k+">R$ 300K+</option>
-        </select>
-        {getFieldError('orcamento_investimento') && (
-          <p className="text-red-400 text-xs mt-1">{getFieldError('orcamento_investimento')}</p>
-        )}
-      </div>
-      
       <div className="relative">
         <label className="block text-white/80 text-sm font-medium mb-2">
           Experiência anterior com consultoria/mentoria

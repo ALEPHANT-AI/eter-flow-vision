@@ -26,8 +26,7 @@ export const useFormSubmission = (
       cargo: formData.cargo,
       faturamento: formData.faturamento,
       principais_desafios: formData.principais_desafios,
-      cronograma: formData.cronograma,
-      orcamento_investimento: formData.orcamento_investimento
+      cronograma: formData.cronograma
     };
     
     console.log('🔍 Required fields for validation:', requiredFieldsForSubmission);

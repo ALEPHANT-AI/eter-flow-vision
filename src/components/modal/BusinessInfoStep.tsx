@@ -60,10 +60,10 @@ const BusinessInfoStep: React.FC<BusinessInfoStepProps> = ({
           className={getFieldClassName('faturamento', "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-white transition-all duration-300 text-base sm:text-sm")}
         >
           <option value="">Selecione sua faixa de faturamento</option>
-          <option value="50k-100k">R$ 50K - R$ 100K</option>
-          <option value="100k-300k">R$ 100K - R$ 300K</option>
-          <option value="300k-500k">R$ 300K - R$ 500K</option>
-          <option value="500k+">R$ 500K+</option>
+          <option value="menos-5k">Menos de 5 mil reais</option>
+          <option value="5k-10k">5 a 10 mil reais</option>
+          <option value="10k-30k">10 a 30 mil reais</option>
+          <option value="30k-50k">30 a 50 mil reais</option>
         </select>
         {getFieldError('faturamento') && (
           <p className="text-red-400 text-xs mt-1">{getFieldError('faturamento')}</p>
