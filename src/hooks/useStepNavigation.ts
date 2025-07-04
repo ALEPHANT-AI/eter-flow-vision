@@ -60,7 +60,7 @@ export const useStepNavigation = (
       }
     });
     
-    if (canProceedToNextStep() && currentStep < 4) {
+    if (canProceedToNextStep() && currentStep < 5) {
       // Special handling for step 1 to 2 transition - save Part 1 data
       if (currentStep === 1) {
         console.log('💾 Auto-saving Part 1 data before moving to step 2...');

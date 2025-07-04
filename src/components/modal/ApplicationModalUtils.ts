@@ -1,5 +1,4 @@
 
-
 export const formatPhoneNumber = (value: string) => {
   if (!value) return '';
   
@@ -26,52 +25,36 @@ export const formatPhoneNumber = (value: string) => {
   return cleaned;
 };
 
-export const getStepTitle = (step: number): string => {
+export const getStepFields = (step: number) => {
   switch (step) {
-    case 0:
-      return 'Bem-vindo ao THE EIGHT®';
-    case 1:
-      return 'Informações Pessoais';
-    case 2:
-      return 'Informações Profissionais';
-    case 3:
-      return 'Desafios e Objetivos';
-    case 4:
-      return 'Aplicação Enviada';
-    default:
-      return 'THE EIGHT®';
+    case 1: return ['nome', 'email', 'whatsapp'];
+    case 2: return ['empresa', 'cargo', 'faturamento'];
+    case 3: return ['principais_desafios', 'cronograma'];
+    case 4: return ['orcamento_investimento'];
+    default: return [];
   }
 };
 
-export const getStepDescription = (step: number): string => {
-  switch (step) {
-    case 0:
-      return 'Programa exclusivo para 8 líderes que querem transformar sua marca pessoal em um movimento poderoso';
-    case 1:
-      return 'Conte-nos sobre você';
-    case 2:
-      return 'Informações sobre sua empresa';
-    case 3:
-      return 'Seus desafios e expectativas';
-    case 4:
-      return 'Sua aplicação foi enviada com sucesso';
-    default:
-      return 'Programa exclusivo para líderes';
+export const getStepTitle = (currentStep: number) => {
+  switch (currentStep) {
+    case 0: return 'Bem-vindo ao ETER - Transforme sua Marca Pessoal';
+    case 1: return 'Informações Pessoais - ETER';
+    case 2: return 'Informações da Empresa - ETER';
+    case 3: return 'Desafios e Objetivos - ETER';
+    case 4: return 'Investimento - ETER';
+    case 5: return 'Aplicação Enviada com Sucesso - ETER';
+    default: return 'ETER - Metodologia de Transformação';
   }
 };
 
-export const getStepFields = (step: number): string[] => {
-  switch (step) {
-    case 1:
-      return ['nome', 'email', 'whatsapp', 'instagram'];
-    case 2:
-      return ['empresa', 'cargo', 'faturamento'];
-    case 3:
-      return ['principais_desafios', 'cronograma'];
-    case 4:
-      return []; // Success screen - no fields
-    default:
-      return [];
+export const getStepDescription = (currentStep: number) => {
+  switch (currentStep) {
+    case 0: return 'Inicie sua jornada de transformação com a metodologia ETER';
+    case 1: return 'Preencha suas informações pessoais para começar';
+    case 2: return 'Conte-nos sobre sua empresa e negócio';
+    case 3: return 'Compartilhe seus desafios e objetivos';
+    case 4: return 'Defina seu investimento na transformação';
+    case 5: return 'Sua aplicação foi enviada e em breve entraremos em contato';
+    default: return 'Formulário de aplicação para a metodologia ETER';
   }
 };
-
