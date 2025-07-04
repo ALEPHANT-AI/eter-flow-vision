@@ -30,7 +30,7 @@ export const getStepFields = (step: number) => {
     case 1: return ['nome', 'email', 'whatsapp'];
     case 2: return ['empresa', 'cargo', 'faturamento'];
     case 3: return ['principais_desafios', 'cronograma'];
-    case 4: return ['orcamento_investimento'];
+    case 4: return []; // Removido 'orcamento_investimento' pois não existe mais
     default: return [];
   }
 };
@@ -41,7 +41,7 @@ export const getStepTitle = (currentStep: number) => {
     case 1: return 'Informações Pessoais - ETER';
     case 2: return 'Informações da Empresa - ETER';
     case 3: return 'Desafios e Objetivos - ETER';
-    case 4: return 'Investimento - ETER';
+    case 4: return 'Finalizar Aplicação - ETER';
     case 5: return 'Aplicação Enviada com Sucesso - ETER';
     default: return 'ETER - Metodologia de Transformação';
   }
@@ -53,7 +53,7 @@ export const getStepDescription = (currentStep: number) => {
     case 1: return 'Preencha suas informações pessoais para começar';
     case 2: return 'Conte-nos sobre sua empresa e negócio';
     case 3: return 'Compartilhe seus desafios e objetivos';
-    case 4: return 'Defina seu investimento na transformação';
+    case 4: return 'Confirme sua aplicação para finalizar o processo';
     case 5: return 'Sua aplicação foi enviada e em breve entraremos em contato';
     default: return 'Formulário de aplicação para a metodologia ETER';
   }

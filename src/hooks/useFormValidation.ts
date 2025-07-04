@@ -97,11 +97,6 @@ const useFormValidation = () => {
           error = 'Selecione um cronograma';
         }
         break;
-      case 'orcamento_investimento':
-        if (!value) {
-          error = 'Selecione uma faixa de investimento';
-        }
-        break;
       case 'experiencia_anterior':
         // Campo opcional - não validar se estiver vazio
         break;
@@ -130,12 +125,12 @@ const useFormValidation = () => {
     
     const newErrors: FormErrors = {};
     
-    // Definir campos obrigatórios por step
+    // Definir campos obrigatórios - removido 'orcamento_investimento'
     const requiredFields = [
       'nome', 'email', 'whatsapp', // Step 1 (instagram é opcional)
       'empresa', 'cargo', 'faturamento', // Step 2
       'principais_desafios', 'cronograma', // Step 3
-      'orcamento_investimento' // Step 4 (experiencia_anterior é opcional)
+      // Step 4 não tem campos obrigatórios agora (experiencia_anterior é opcional)
     ];
     
     console.log('📋 Required fields to validate:', requiredFields);

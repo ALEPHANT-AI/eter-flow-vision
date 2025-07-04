@@ -1,4 +1,3 @@
-
 import { supabase } from '../integrations/supabase/client';
 import { FormData } from '../hooks/useApplicationForm';
 
@@ -57,7 +56,7 @@ export const sendApplicationToSupabase = async (data: FormData) => {
       p_principais_desafios: data.principais_desafios || null,
       p_objetivos_movimento: data.objetivos_movimento || null,
       p_cronograma: data.cronograma || null,
-      p_orcamento_investimento: data.orcamento_investimento || null,
+      p_orcamento_investimento: null,
       p_experiencia_anterior: data.experiencia_anterior || null
     });
 
